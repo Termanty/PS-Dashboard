@@ -3,7 +3,74 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body {
-  background-color: blue;
+main{
+  text-align: center;
+  justify-self: center;
+  width: 1200px;
+  height: 60vh;
+  padding:150px;
+  margin-left: 25%;
+  background-color: rgb(9, 9, 59);
+}
+h3{
+  margin: 50px;
+}
+.progress{
+  display: inline-flex;
+  text-align: center;
+  justify-self: center;
+  margin-bottom: 25px;
+}
+button{
+  margin: 4px;
+  height: 40px;
+  width: 40px;
+  margin-top: 0;
+  cursor: pointer;
+}
+h3,p,button{
+  color: white;
+}
+p{
+  margin:25px;
+}
+.save{
+  background-color: rgb(219, 146, 63);
+  width: 80px;
+  height: 50px;
+  border-radius: 5px;
+  margin:25px;
+  font-family: sans-serif;
+  font-size: medium;
+  cursor: pointer;
+  border:none;
+}
+.save:hover{
+  background-color:rgb(231, 180, 84);
+}
+textarea{
+  background-color: white;
+  color:black;
+  width: 600px;
+  height: 150px;
+  padding-left: 5px;
+  text-align: left;
+  margin-top: 10px;
+}
+.bt0, .bt1, .bt2{
+  background-color: red;
+}
+.bt3, .bt4, .bt5, .bt6{
+  background-color: rgb(219, 146, 63);
+}
+.bt7, .bt8{
+  background-color: yellowgreen;
+}
+.bt9, .bt10{
+  background-color: green;
+}
+.bt10:hover{
+background-image: url(img/favicon.ico);
+background-position: center;
+animation: heart 10s timing-function delay iteration-count direction fill-mode;;
 }

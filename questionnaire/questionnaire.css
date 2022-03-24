@@ -7,9 +7,9 @@ main{
   text-align: center;
   justify-self: center;
   width: 1200px;
-  height: 60vh;
-  padding:150px;
-  margin-left: 25%;
+  height: 80vh;
+  padding:100px;
+  margin-left: 100px;
   background-color: rgb(9, 9, 59);
 }
 h3{
@@ -23,8 +23,8 @@ h3{
 }
 button{
   margin: 4px;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   margin-top: 0;
   cursor: pointer;
 }
@@ -74,3 +74,24 @@ background-image: url(img/favicon.ico);
 background-position: center;
 animation: heart 10s timing-function delay iteration-count direction fill-mode;;
 }
+.btn10animation{
+  -webkit-animation: beat 1s ease-in-out forwards;
+  animation: beat 1s ease-in-out forwards;
+}
+@keyframes beat {
+  0% {
+      -webkit-transform: scale(1.0,1.0);
+            transform: scale(1.0, 1.0);
+    
+  }
+  50% {
+      -webkit-transform: scale(2, 2);
+      transform: scale(2, 2);
+  }
+  
+  100% {
+    -webkit-transform: scalex(2, 2);
+    transform: scalex(2, 2);
+}
+      
+  }

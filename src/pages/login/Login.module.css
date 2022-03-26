@@ -1,0 +1,33 @@
+:root {
+    --navbar_background: #2b2f35;
+    --lightBlue: #567397;
+    --fontColor: white;
+    --bg-signup-login:#162639;
+    --input-bg:#c4c4c4;;
+  }
+
+.login-form {
+    max-width: 460px;
+    margin: 60px auto;
+    padding: 40px;
+    background: var(--bg-signup-login);
+    color: var(--fontColor);
+    padding-left: 60px;
+}
+.login-form label {
+    display: block;
+    margin: 30px auto;
+    font-size: 1.5rem;
+}
+.login-form span {
+    display: block;
+    margin-bottom: 6px;
+}
+.login-form input {
+    padding: 8px 15px;
+    font-size: 2rem;
+    background-color: var(--input-bg);
+    width: 90%;
+    border-radius: 5px;
+    outline: none;
+}

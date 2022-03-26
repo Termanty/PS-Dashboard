@@ -1,8 +1,8 @@
-:root{
-  --navbar_background:#1b242f;
-  --fontColor:white;
+:root {
+  --navbar_background: #1b242f;
+  --fontColor: white;
 }
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;

@@ -45,8 +45,16 @@
       color:var(--lightBlue);
     transform: scale(1.05);
   }
+  .navbar_burger{
+      font-size: 35px;
+      display: none;
+      cursor: pointer;
+  }
   @media (max-width:768px) {
       .navbar_links{
           display: none;
       }
+      .navbar_burger{
+        display: block;
+    }
   }

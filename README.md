@@ -24,4 +24,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 It will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
+## IMP Notes
+Install dependency for burger icon from react:
+`npm install react-icons --save`
 

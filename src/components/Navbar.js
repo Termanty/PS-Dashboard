@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './Navbar.css'
+import {GiHamburgerMenu} from 'react-icons/gi';
 
 function Navbar(){
     return (
@@ -15,6 +17,7 @@ function Navbar(){
                 <li className="navbar_link">Free Tools</li>
                 <li className="navbar_link">Blog</li>
             </u1>
+            <GiHamburgerMenu  className="navbar_burger"/>
             </div>
 
         </div>

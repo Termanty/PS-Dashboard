@@ -1,5 +1,14 @@
 # Promoter Score Dashboard Application (PS Dashboard)
 
+
+## Installation 
+
+```shell
+npm install react-router-dom
+```
+```shell
+npm install firebase
+```
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +6,7 @@
 }
 
 main {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   text-align: center;
   justify-self: center;
   width: 1200px;
@@ -19,7 +19,6 @@ h3 {
   margin: 50px;
 }
 .progress {
-
   display: inline-flex;
   text-align: center;
   justify-self: center;
@@ -149,7 +148,6 @@ textarea {
 }
 @keyframes beat {
   0% {
-
     -webkit-transform: scale(1, 1);
     transform: scale(1, 1);
   }
@@ -164,9 +162,7 @@ textarea {
   }
 }
 
-
 @media only screen and (max-width: 428px) {
- 
   main {
     margin: 0;
     padding: 0;
@@ -178,7 +174,8 @@ textarea {
     flex-direction: column;
   }
 
-  h3,p{
+  h3,
+  p {
     font-size: 1.2rem;
     font-weight: lighter;
     display: inline-block;
@@ -188,24 +185,21 @@ textarea {
     font-size: small;
   }
 
-  .progress{
+  .progress {
     display: none;
   }
 
-
-  
-  .save{
+  .save {
     align-self: center;
-    background-color: #CE672E;
+    background-color: #f328d8;
     border-radius: 13px;
   }
 
-  textarea{
+  textarea {
     width: 300px;
     align-self: center;
-    border: solid 1px #B6C8DD;
-    background-color:#162639 ;
+    border: solid 1px #b6c8dd;
+    background-color: #162639;
     border-radius: 13px;
   }
 }
-

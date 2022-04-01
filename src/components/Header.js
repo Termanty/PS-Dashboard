@@ -30,6 +30,7 @@ const Header = () => {
                   ) : (
                     <>
                     <Tabs
+                    sx={{marginLeft:"auto"}}
                     textColor="inherit"
                     value={value}
                     onChange={(e,value) => setValue(value)}

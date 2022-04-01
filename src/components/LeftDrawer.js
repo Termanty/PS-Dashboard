@@ -22,7 +22,7 @@ import {
         <List>
           {
             PAGES.map((page, index) => (
-              <ListItemButton key={index}>
+              <ListItemButton key={index} onClick={()=>  setOpenDrawer(false)}>
               <ListItemIcon>
                 <ListItemText>{page}</ListItemText>
               </ListItemIcon>

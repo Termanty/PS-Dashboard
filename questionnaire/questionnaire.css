@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+.main_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
   font-family: "Nunito", sans-serif;
   text-align: center;

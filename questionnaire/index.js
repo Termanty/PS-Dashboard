@@ -8,3 +8,19 @@ function clearEmoji() {
   document.getElementById("emoji").innerText = "";
   document.getElementById("emoji").classList.remove("btn10animation");
 }
+
+var rating = document.getElementById("rating");
+var ratingValue = document.getElementById("ratingValue");
+
+rating.position = ratingValue;
+rating.addEventListener("click", function (e) {
+  var x = e.pageX - this.offsetLeft;
+  console.log(`x=${x}`);
+  // var startPosition = document.getElementById("rating").position;
+  var xconvert = x / 300;
+  var finalx = xconvert.toFixed(1);
+  document.getElementById("rating").value = finalx;
+
+  console.log(finalx);
+  ratingValue.value = finalx * 10;
+});

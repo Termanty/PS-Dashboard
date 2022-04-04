@@ -4,6 +4,7 @@ function animation() {
   emoji.innerText = String.fromCodePoint(0x1f495, 0x1f60a);
   emoji.classList.add("btn10animation");
 }
+
 function clearEmoji() {
   document.getElementById("emoji").innerText = "";
   document.getElementById("emoji").classList.remove("btn10animation");
@@ -11,6 +12,7 @@ function clearEmoji() {
 
 var rating = document.getElementById("rating");
 var ratingValue = document.getElementById("ratingValue");
+
 
 rating.position = ratingValue;
 rating.addEventListener("click", function (e) {
@@ -23,4 +25,5 @@ rating.addEventListener("click", function (e) {
 
   console.log(finalx);
   ratingValue.value = finalx * 10;
+
 });

@@ -12,6 +12,7 @@ function clearEmoji() {
 
 var rating = document.getElementById("rating");
 var ratingValue = document.getElementById("ratingValue");
+
 rating.position= ratingValue;
 rating.addEventListener('click',function (e) {
   var x = e.pageX - this.offsetLeft;
@@ -23,4 +24,5 @@ rating.addEventListener('click',function (e) {
 
   console.log(finalx);
   ratingValue.value = finalx*10;
+
 });

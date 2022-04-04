@@ -7,18 +7,18 @@
 
 .main_wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 main {
+  margin-top: 160px;
   font-family: "Nunito", sans-serif;
   text-align: center;
   justify-self: center;
   width: 1200px;
-  height: 80vh;
-  padding: 100px;
-  margin-left: 100px;
+  height: 650px;
+  padding: 0px;
   background-color: rgb(22, 38, 57);
 }
 h3 {
@@ -237,3 +237,15 @@ textarea {
     border-radius: 13px;
   }
 }
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .main_wrapper{
+      padding: 0;
+      margin: 0;
+      width: 768px;
+      height: 100vh;
+    }
+  }

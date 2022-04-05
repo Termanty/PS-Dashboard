@@ -167,7 +167,7 @@ textarea {
     transform: scalex(2, 2);
   }
 }
-.circle {
+.responsive-section {
   display: none;
 }
 @media only screen and (max-width: 428px) {
@@ -190,6 +190,7 @@ textarea {
     display: inline-block;
   }
   .responsive-section {
+    display: block;
     margin: 50px auto;
     width: 100%;
     clear: both;
@@ -248,4 +249,4 @@ textarea {
       width: 768px;
       height: 100vh;
     }
-  }
+  }/*it should look natural, not zoomed version also with ipad (buttons, font etc)*/

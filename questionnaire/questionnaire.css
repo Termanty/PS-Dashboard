@@ -12,7 +12,7 @@
 }
 
 main {
-  margin-top: 160px;
+  margin-top: 60px;
   font-family: "Nunito", sans-serif;
   text-align: center;
   justify-self: center;
@@ -200,18 +200,21 @@ textarea {
     height: 100px;
     border-radius: 50%;
     border: 1px solid gainsboro;
+    background-color: #fff;
   }
   .circle {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    font-size: larger;
+    margin-bottom: 30px;
+    font-size: 18px;
     text-align: center;
   }
   #rating {
     width: 300px;
     height: 23px;
     border: 1px solid gainsboro;
+    cursor: pointer;
   }
   #rating {
     display: block;
@@ -239,9 +242,9 @@ textarea {
   }
 }
 
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .main_wrapper{
       padding: 0;

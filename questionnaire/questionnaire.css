@@ -22,7 +22,7 @@ main {
   text-align: center;
   justify-self: center;
   width: 1200px;
-  height: 650px;
+  height: 800px;
   padding: 0px;
   background-color: rgb(22, 38, 57);
 }
@@ -74,7 +74,7 @@ p {
   border: none;
 }
 .save:hover {
-  background-color: #F26212;
+  background-color: #FF5C02;
   color: white;
 }
 textarea {
@@ -208,12 +208,19 @@ textarea:focus{
     font-weight:normal;
     display: inline-block;
   }
+
+  .likely{
+    font-size: smaller;
+    margin-top: -10px;
+    margin-bottom: 0px;
+  }
   .responsive-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin: 50px auto;
+    margin-top: 40px;
     width: 100%;
     clear: both;
     margin-bottom: 50px;
@@ -256,9 +263,10 @@ textarea:focus{
     display: none;
   }
   .save {
-    margin: 50px;
+    margin: 30px;
     align-self: center;
     border-radius: 13px;
+    font-size: 1.2rem;
   }
 
   textarea {
@@ -312,7 +320,7 @@ textarea:focus{
       border-radius: 3px;
       margin: 50px;
       font-family: sans-serif;
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
    
     textarea {

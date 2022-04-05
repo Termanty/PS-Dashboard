@@ -5,14 +5,19 @@
   box-sizing: border-box;
 }
 
+.body {
+  background-color: #B6C8DD;
+}
+
 .main_wrapper {
+  background-color: #B6C8DD;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 main {
-  margin-top: 60px;
+  margin: 300px 100px;
   font-family: "Nunito", sans-serif;
   text-align: center;
   justify-self: center;
@@ -23,6 +28,11 @@ main {
 }
 h3 {
   margin: 50px;
+}
+
+.likely{
+  font-size: smaller;
+  margin-bottom: 40px;
 }
 .progress {
   display: inline-flex;
@@ -39,6 +49,10 @@ button {
   cursor: pointer;
   border: none;
 }
+
+button:hover {
+  color: #162639;
+}
 h3,
 p,
 button {
@@ -49,7 +63,7 @@ p {
   margin: 25px;
 }
 .save {
-  background-color: rgb(219, 146, 63);
+  background-color: #CE672E;
   width: 100px;
   height: 60px;
   border-radius: 5px;
@@ -60,7 +74,8 @@ p {
   border: none;
 }
 .save:hover {
-  background-color: rgb(231, 180, 84);
+  background-color: #F26212;
+  color: white;
 }
 textarea {
   background-color: white;
@@ -71,6 +86,10 @@ textarea {
   text-align: left;
   margin-top: 10px;
   border-radius: 5px;
+}
+
+textarea:focus{
+  outline:none;
 }
 
 .bt0 {
@@ -146,6 +165,7 @@ textarea {
   background-image: url(img/favicon.ico);
   background-position: center;
   animation: heart 10s timing-function delay iteration-count direction fill-mode;
+  color: #162639;
 }
 
 .btn10animation {
@@ -183,31 +203,36 @@ textarea {
     width: 100%;
     height: 926px;
   }
-  h3,
-  p {
+  h3 {
     font-size: 1.2rem;
-    font-weight: lighter;
+    font-weight:normal;
     display: inline-block;
   }
   .responsive-section {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     margin: 50px auto;
     width: 100%;
     clear: both;
+    margin-bottom: 50px;
   }
   .circle {
-    width: 100px;
-    height: 100px;
+    font-size: large;
+    color: #FF5C02;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     border: 1px solid gainsboro;
-    background-color: #fff;
+    background-color: #B6C8DD;
   }
   .circle {
+    font-size: 90px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    font-size: 18px;
     text-align: center;
   }
   #rating {
@@ -215,30 +240,41 @@ textarea {
     height: 23px;
     border: 1px solid gainsboro;
     cursor: pointer;
+    border:none;
+    border-radius: 20px;
   }
   #rating {
     display: block;
     margin: 10px auto 0 auto;
+   
   }
   p {
-    font-size: small;
+    font-size: 18px;
   }
 
   .progress {
     display: none;
   }
   .save {
+    margin: 50px;
     align-self: center;
-    background-color: rgb(219, 146, 63);
     border-radius: 13px;
   }
 
   textarea {
     width: 300px;
     align-self: center;
-    border: solid 1px #b6c8dd;
+    border: solid 1.5px #b6c8dd;
     background-color: #162639;
     border-radius: 13px;
+    color: white;
+    padding: 8px;
+  }
+
+  textarea:focus{
+    outline: none;
+    border-color: #B6C8DD;
+    box-shadow: 0 0 2px #719ECE;
   }
 }
 
@@ -246,10 +282,43 @@ textarea {
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    .main_wrapper{
-      padding: 0;
-      margin: 0;
-      width: 768px;
-      height: 100vh;
+   main {
+      width: 100%;
+      height: 80vh;
+      }
+
+    h3 {
+      margin: 60px;
+      font-size: 14px;
     }
+
+    button {
+      margin: 3px;
+      height: 40px;
+      width: 40px;
+    }
+
+    h3,
+    p,
+    button {
+     font-size: 10px;
+    }
+    p {
+      margin: 25px;
+    }
+    .save {
+      width: 55px;
+      height: 38px;
+      border-radius: 3px;
+      margin: 50px;
+      font-family: sans-serif;
+      font-size: 1rem;
+    }
+   
+    textarea {
+      width: 300px;
+      height: 100px;
+      padding: 5px;
+   }
+
   }/*it should look natural, not zoomed version also with ipad (buttons, font etc)*/

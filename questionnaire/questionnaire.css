@@ -10,6 +10,7 @@
 }
 
 .main_wrapper {
+  height: 100vh;
   background-color: #B6C8DD;
   display: flex;
   align-items: center;
@@ -17,17 +18,29 @@
 }
 
 main {
-  margin: 300px 100px;
+  margin: 50px auto;
   font-family: "Nunito", sans-serif;
   text-align: center;
   justify-self: center;
-  width: 1200px;
-  height: 800px;
+  width: 900px;
+  height: 700px;
   padding: 0px;
   background-color: rgb(22, 38, 57);
+  border-radius: 5px;
 }
-h3 {
-  margin: 50px;
+h2 {
+  margin:50px;
+  color: white;
+}
+
+h2 {
+  margin-top: 70px;
+}
+
+p {
+  color:white;
+  margin: 20px;
+
 }
 
 .likely{
@@ -43,29 +56,25 @@ h3 {
 
 button {
   margin: 4px;
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   margin-top: 0;
   cursor: pointer;
   border: none;
+  color: white;
 }
 
 button:hover {
   color: #162639;
 }
-h3,
-p,
-button {
-  color: white;
-  font-size: 20px;
-}
-p {
-  margin: 25px;
-}
+
+
+
+
 .save {
   background-color: #CE672E;
-  width: 100px;
-  height: 60px;
+  width: 80px;
+  height: 50px;
   border-radius: 5px;
   margin: 25px;
   font-family: sans-serif;
@@ -190,9 +199,10 @@ textarea:focus{
 .responsive-section {
   display: none;
 }
+
+/***************************mobile version***********************/
 @media only screen and (max-width: 428px) {
   main {
-    margin-left: 0;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -203,14 +213,14 @@ textarea:focus{
     width: 100%;
     height: 926px;
   }
-  h3 {
+  h2 {
     font-size: 1.2rem;
     font-weight:normal;
     display: inline-block;
   }
 
   .likely{
-    font-size: smaller;
+    font-size: 1rem;
     margin-top: -10px;
     margin-bottom: 0px;
   }
@@ -285,19 +295,121 @@ textarea:focus{
     box-shadow: 0 0 2px #719ECE;
   }
 }
+/********************between ipad and mobile*************************/
+@media only screen
+  and (min-device-width: 428.1px)
+  and (max-device-width: 767.9px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    main {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      width: 100%;
+      height: 926px;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight:normal;
+      display: inline-block;
+    }
+  
+    .likely{
+      font-size: 1rem;
+      margin-top: -10px;
+      margin-bottom: 0px;
+    }
+    .responsive-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin: 50px auto;
+      margin-top: 40px;
+      width: 100%;
+      clear: both;
+      margin-bottom: 50px;
+    }
+    .circle {
+      font-size: large;
+      color: #FF5C02;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid gainsboro;
+      background-color: #B6C8DD;
+    }
+    .circle {
+      font-size: 90px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    #rating {
+      width: 300px;
+      height: 23px;
+      border: 1px solid gainsboro;
+      cursor: pointer;
+      border:none;
+      border-radius: 20px;
+    }
+    #rating {
+      display: block;
+      margin: 10px auto 0 auto;
+     
+    }
+    p {
+      font-size: 18px;
+    }
+  
+    .progress {
+      display: none;
+    }
+    .save {
+      margin: 30px;
+      align-self: center;
+      border-radius: 13px;
+      font-size: 1.2rem;
+    }
+  
+    textarea {
+      width: 300px;
+      align-self: center;
+      border: solid 1.5px #b6c8dd;
+      background-color: #162639;
+      border-radius: 13px;
+      color: white;
+      padding: 8px;
+    }
+  
+    textarea:focus{
+      outline: none;
+      border-color: #B6C8DD;
+      box-shadow: 0 0 2px #719ECE;
+    }
 
+  }
+/********************ipad version*************************/
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 1) {
-   main {
-      width: 100%;
-      height: 80vh;
-      }
+    main {
+      margin: 50px auto;
+      font-family: "Nunito", sans-serif;
+      width: 650px;
+      height: 720px;
+      padding: 0px;
+     }
 
     h3 {
-      margin: 60px;
-      font-size: 14px;
+      margin: 50px;
+      font-size: 12px;
     }
 
     button {
@@ -325,7 +437,6 @@ textarea:focus{
    
     textarea {
       width: 300px;
-      height: 100px;
       padding: 5px;
    }
 

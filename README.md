@@ -26,3 +26,5 @@ It will copy all the configuration files and the transitive dependencies (Webpac
 ## Responsive menubar
 1.npm install @mui/material @emotion/react @emotion/styled
 2.npm install @mui/icons-material
+3.npm install react-router-dom
+4.npm install @mui/material @mui/styles

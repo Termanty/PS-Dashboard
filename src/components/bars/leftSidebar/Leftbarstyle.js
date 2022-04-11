@@ -17,9 +17,4 @@ export const leftbarStyle = makeStyles({
     borderRadius: "3px",
     marginLeft: "30px"
   },
-  drawerPaper: {
-    width: "200px",
-    color: 'white',
-    backgroundColor: "black"
-  }
 });

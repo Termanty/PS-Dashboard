@@ -23,17 +23,16 @@ function Leftbar() {
   const classes = leftbarStyle();
 
   return (
-    <div>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx = {{ display: 'flex' }}>
       <CssBaseline />
       {/* header */}
       <AppBar
-        position="fixed"
-        sx = {{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, height:"92px", backgroundColor: "transparent"}}
+        position = "fixed"
+        sx = {{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, height: "92px", backgroundColor: "transparent"}}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div" >
-            Permanent header
+          <Typography variant = "h6" noWrap component = "div" >
+             Header
           </Typography>
         </Toolbar>
       </AppBar>
@@ -50,47 +49,46 @@ function Leftbar() {
             color: "white"
           },
         }}
-        variant="permanent"
-        anchor="left"
+        variant = "permanent"
+        anchor = "left"
       >
         <h1>PHZ full stack</h1>
         {/* <Toolbar /> */}
-        <Divider color="gray"/>
+        <Divider color = "gray"/>
         <List>
-            <ListItem button key="Home" component={Link} to="/">
+            <ListItem button key = "Home" component = {Link} to = "/">
               <ListItemIcon>
-                 <HomeIcon color="success" sx={{ fontSize: 40}}/>
+                 <HomeIcon color = "success" sx = {{ fontSize: 40}}/>
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary = "Home" />
             </ListItem>
 
-            <ListItem button key="My surveys" component={Link} to="/MySurveys">
+            <ListItem button key = "My surveys" component = {Link} to = "/MySurveys">
               <ListItemIcon>
-                 <AutoAwesomeMosaicIcon color="success" sx={{ fontSize: 40}}/>
+                 <AutoAwesomeMosaicIcon color = "success" sx = {{ fontSize: 40}}/>
               </ListItemIcon>
-              <ListItemText primary="My surveys" />
+              <ListItemText primary = "My surveys" />
             </ListItem>
         </List>
-        <Divider color="gray"/>
+        <Divider color = "gray"/>
         <List>
-          <ListItem button key="Data" component={Link} to="/Data">
+          <ListItem button key = "Data" component = {Link} to = "/Data">
               <ListItemIcon>
-                 <DataThresholdingRoundedIcon color="success" sx={{ fontSize: 40}}/>
+                 <DataThresholdingRoundedIcon color = "success" sx = {{ fontSize: 40}}/>
               </ListItemIcon>
-              <ListItemText primary="Data" />
+              <ListItemText primary = "Data" />
             </ListItem>
 
-            <ListItem sx={{marginTop:"50px", textAlign: "center"}} button className={classes.addButton} key={"Create new survey"} component={Link} to="/CreateNewSurvey">
-              <ListItemText primary={"Create new survey"} />
+            <ListItem sx = {{marginTop: "50px", textAlign: "center"}} button className = {classes.addButton} key = {"Create new survey"} component = {Link} to = "/CreateNewSurvey">
+              <ListItemText primary = {"Create new survey"} />
             </ListItem>
 
-            <ListItem sx = {{marginTop: "150px"}} button className={classes.logoutButton} key={"Logout"}>
-              <ListItemText primary={"Logout"} sx = {{textAlign: "center"}}/>
+            <ListItem sx = {{marginTop: "150px"}} button className = {classes.logoutButton} key = {"Logout"}>
+              <ListItemText primary = {"Logout"} sx = {{textAlign: "center"}}/>
             </ListItem>
         </List>
       </Drawer>
      </Box>
-    </div>
   )
 }
 

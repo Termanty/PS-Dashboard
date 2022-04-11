@@ -1,5 +1,5 @@
 import React from 'react';
-import Leftbar from '../bars/leftBar/Leftbar';
+import Leftbar from '../bars/leftSidebar/Leftbar';
 import { Layoutstyle } from "./Layoutstyle";
 
 function Layout({children}) {

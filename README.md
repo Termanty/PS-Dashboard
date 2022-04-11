@@ -23,7 +23,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 It will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-## Responsive menubar
+## Dashboard 
 1.npm install @mui/material @emotion/react @emotion/styled
 2.npm install @mui/icons-material
 3.npm install react-router-dom

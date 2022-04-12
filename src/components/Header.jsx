@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 function Header() {
   const user = useSelector((state) => state.user);
-  console.log(user);
   const drawerWidth = 260;
   return (
     <AppBar

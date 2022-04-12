@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Home = lazy(() => import("./components/pages/Home"));
 const MySurveys = lazy(() => import("./components/pages/MySurveys"));
-const Layout = lazy(() => import("./components/layout/Layout"));
+const Layout = lazy(() => import("./components/Layout"));
 const CreateNewSurvey = lazy(() =>
   import("./components/pages/CreateNewSurvey")
 );

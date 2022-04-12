@@ -15,7 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DataThresholdingRoundedIcon from "@mui/icons-material/DataThresholdingRounded";
 import AutoAwesomeMosaicIcon from "@mui/icons-material/AutoAwesomeMosaic";
 
-import { leftbarStyle } from "./Leftbarstyle";
+import { leftbarStyle } from "./Leftbar.style.js";
 import HomeIcon from "./HomeIcon";
 
 const drawerWidth = 260;

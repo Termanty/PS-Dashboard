@@ -15,6 +15,6 @@ export const leftbarStyle = makeStyles({
     width: "200px",
     height: "50px",
     borderRadius: "3px",
-    marginLeft: "30px"
+    marginLeft: "30px",
   },
 });

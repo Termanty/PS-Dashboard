@@ -3,6 +3,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 
+
 function Header() {
   const user = useSelector((state) => state.user);
   const drawerWidth = 260;
@@ -24,6 +25,7 @@ function Header() {
           Logged in {user.name}
         </Typography>
       </Toolbar>
+     
     </AppBar>
   );
 }

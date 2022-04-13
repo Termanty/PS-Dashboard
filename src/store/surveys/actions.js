@@ -1,5 +1,5 @@
 export const ADD_SURVEY = "ADD_SURVEY";
-export const SAVE_LOADED_SURVEYS = "SAVE_LOADED_SURVEYS";
+export const LOAD_SURVEYS = "LOAD_SURVEYS";
 
 export const addNewSurvey = (name, question) => ({
   type: ADD_SURVEY,
@@ -9,7 +9,7 @@ export const addNewSurvey = (name, question) => ({
   },
 });
 
-export const saveLoadedSurveys = (surveys) => ({
-  type: SAVE_LOADED_SURVEYS,
-  payload: [surveys],
+export const loadSurveys = (surveys) => ({
+  type: LOAD_SURVEYS,
+  payload: surveys,
 });

@@ -49,3 +49,41 @@ rating.addEventListener('click',function (e) {
   }
 
 });
+
+const  setCookie = (getName,getValue,expiredAt)=> {
+  const currentDate = new Date();
+  currentDate.setTime(currentDate.getTime() + (expiredAt *24 * 60 * 60 * 1000));
+  let expires = "expires=" + currentDate.toUTCString();
+  document.cookie = getName+ "=" + getValue + ";" + expires + ";path=/";
+}
+
+const getCookie=(getName) => {
+  let name = getName + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let cookiesAccess = decodedCookie.split(';');
+  for(let i = 0; i < cookiesAccess.length; i++) {
+    while (cookiesAccess[i].charAt(0) === ' ') {
+      cookiesAccess[i]= cookiesAccess[i].substring(1);
+    }
+    if (cookiesAccess[i].indexOf(name) === 0) {
+      return cookiesAccess[i].substring(name.length, cookiesAccess[i].length);
+    }
+  }
+  return "";
+}
+
+const checkCookie = () =>{
+  let userName = getCookie("userName");
+  
+  if (userName !== "") {
+    alert("Welcome again " + userName);
+  } else {
+     userName = prompt("Please insert your name to accept or cancel to checked our policy :","") ;
+     if (userName !== "" && userName != null) {
+       setCookie("userName", userName, 30);
+     }else{
+      alert("Click ok to see our policy",window.location.href = "https://gdpr.eu/cookies/" )
+     }
+  }
+}
+checkCookie()

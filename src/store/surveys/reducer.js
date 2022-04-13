@@ -1,11 +1,11 @@
-import { ADD_SURVEY, SAVE_LOADED_SURVEYS, saveLoadedSurveys } from "./actions";
+import { ADD_SURVEY, LOAD_SURVEYS, loadSurveys } from "./actions";
 
 const surveyReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_SURVEY:
       return [...state, action.payload];
-    case SAVE_LOADED_SURVEYS:
-      return [...action.payload[0]];
+    case LOAD_SURVEYS:
+      return [...action.payload];
     default:
       return state;
   }
@@ -20,7 +20,7 @@ export function fetchSurveys() {
         return response.json();
       })
       .then((data) => {
-        dispatch(saveLoadedSurveys(data));
+        dispatch(loadSurveys(data));
       });
   };
 }

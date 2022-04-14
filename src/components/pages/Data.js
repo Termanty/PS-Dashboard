@@ -1,8 +1,6 @@
-import { sliderClasses } from "@mui/material";
 import {Box} from '@mui/material';
 import {Card} from '@mui/material';
-import {CardContent} from '@mui/material';
-import { CardHeader } from '@mui/material';
+
 import {Typography} from '@mui/material';
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -150,7 +148,7 @@ const NPS=(Promoters - Detractors)
             align = "center" 
             variant="h3"  
             component="div" >
-              Dectractors % 
+              Detractors % 
         </Typography>
         <Typography 
           align = "center" 

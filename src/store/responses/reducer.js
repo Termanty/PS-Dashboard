@@ -13,6 +13,7 @@ export function fetchResponses() {
   return (dispatch) => {
     const url =
       "http://ec2-13-53-206-94.eu-north-1.compute.amazonaws.com/responses";
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => {

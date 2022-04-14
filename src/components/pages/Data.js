@@ -2,10 +2,11 @@ import {Box} from '@mui/material';
 import {Card} from '@mui/material';
 
 import {Typography} from '@mui/material';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-
+import {DoughnutChart, BarChart }from './NPSChart';
+import Plot from 'react-plotly.js';
 
 function Data() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function Data() {
     </li>
   ));
 
-let scores = responses.map((res)=>(Number((res.score))))
+let scores = responses.map((res)=>(((res.score))))
 let detractor=0
 let promoter = 0;
 let passive = 0
@@ -46,6 +47,28 @@ const Detractors =(DE/All)*100
 const Passives=(PA/All)*100
 const NPS=(Promoters - Detractors)
 
+
+const [userData, setUserData]= useState({
+  labels:["Promoter", "Passive", "Detractor"],
+  datasets:[{
+    label:"Net Promoter Score",
+    data:[Promoters,Passives,Detractors],
+    borderWidth: 0,
+    backgroundColor: [
+      '#52A569',
+      '#F3C934',
+      '#E26060',
+    ],
+    hoverOffset: 4,
+  
+  }],
+  options: {
+    title: {
+      display: true,
+      text: "World Wide Wine Production 2018"
+    }
+  }
+});
 
   return (
     <div>
@@ -136,7 +159,7 @@ const NPS=(Promoters - Detractors)
 
     <Card sx={{ 
       maxWidth: 350, 
-      m:3, color:"red", 
+      m:3, color:"#E26060", 
       background:"#E5E5E5",
       '&:hover': {
         backgroundColor: 'white'}
@@ -185,6 +208,65 @@ const NPS=(Promoters - Detractors)
       </Typography>
     </Card>
     </Box>
+
+    <Box 
+      sx={{color:"black", 
+      m:3, width:800, 
+      paddingRight:40,
+      justifyContent: 'center',
+      marginTop:20
+    }} 
+      align = "center" 
+      variant="h3"  
+      component="div" 
+      >
+        <DoughnutChart chartData={userData}/>
+      </Box>
+
+      <Box 
+      sx={{color:"black", 
+      m:3, width:800, 
+      paddingRight:40,
+      justifyContent: 'center',
+      marginTop:20}} 
+      align = "center" 
+      variant="h3"  
+      component="div" 
+      >
+        <BarChart chartData={userData}/>
+      </Box>
+   
+
+   <Box>
+      <Plot
+          data={[
+            {
+              values: [Promoters,Passives, Detractors],
+              labels: ["Promoter", "Passive", "Detractor"],
+              domain: {column: 0},
+              hoverinfo: 'label+percent',
+              textposition: 'inside',
+              hole: .4,
+              type: 'pie'
+            },
+            ]}
+            layout={ { height:700, width: 600, title: 'Net Promoter Score', text:"NPS"} } 
+      />
+
+      <Plot
+          data={[
+            {
+              y: [Promoters,Passives, Detractors],
+              x: ["Promoter", "Passive", "Detractor"],
+              hoverinfo: 'label+percent',
+              type: 'bar'
+            },
+            ]}
+          layout={ {height:700, title: 'Net Promoter Score', text:"NPS"} }
+
+      />
+   </Box>
+
    
     </div>
   );

@@ -3,17 +3,17 @@ import { Doughnut } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS } from "chart.js/auto";
 
-export const DoughnutChart = ({chartData, option}) => {
+export const DoughnutChart = ({chartData}) => {
     return (
-        < Doughnut data={chartData} options={option}/>
+        < Doughnut data={chartData} />
     );
 };
 
 // export default DoughnutChart;
 
 
-export const BarChart = ({chartData,option}) => {
+export const BarChart = ({chartData}) => {
     return (
-        < Bar data={chartData}options={option}/>
+        < Bar data={chartData}/>
     );
 };

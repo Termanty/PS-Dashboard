@@ -33,7 +33,7 @@ let promoter = 0;
 let passive = 0
   for (let i=0; i< scores.length;  i++){
     if (scores[i]>=9) promoter++;
-    if (scores[i]>=7 && scores[i] <8) passive++;
+    if (scores[i]>=7 && scores[i] <=8) passive++;
     if(scores[i] <=6) detractor++;
   };
 let PR= promoter++
@@ -42,10 +42,10 @@ let PA = passive++
 
 const All = PR+DE+PA
 
-const Promoters=(PR/All)*100
-const Detractors =(DE/All)*100
-const Passives=(PA/All)*100
-const NPS=(Promoters - Detractors)
+const Promoters= Math.round((PR/All)*100)
+const Detractors = Math.round((DE/All)*100)
+const Passives= Math.round((PA/All)*100)
+const NPS= Math.round((Promoters - Detractors))
 
 
 const [userData, setUserData]= useState({
@@ -62,12 +62,15 @@ const [userData, setUserData]= useState({
     hoverOffset: 4,
   
   }],
-  options: {
+  options: [{
+    legend:{
+      position:'bottom'
+    },
     title: {
       display: true,
-      text: "World Wide Wine Production 2018"
+      
     }
-  }
+  }]
 });
 
   return (
@@ -208,19 +211,21 @@ const [userData, setUserData]= useState({
       </Typography>
     </Card>
     </Box>
-
+      
     <Box 
       sx={{color:"black", 
       m:3, width:800, 
       paddingRight:40,
       justifyContent: 'center',
-      marginTop:20
+      marginTop:20,
+     
     }} 
       align = "center" 
       variant="h3"  
       component="div" 
       >
-        <DoughnutChart chartData={userData}/>
+         <DoughnutChart chartData={userData}/>
+        {/* <BarChart chartData={userData}/> */}
       </Box>
 
       <Box 
@@ -236,21 +241,57 @@ const [userData, setUserData]= useState({
         <BarChart chartData={userData}/>
       </Box>
    
-
+ 
    <Box>
       <Plot
           data={[
             {
-              values: [Promoters,Passives, Detractors],
+              values: [Promoters ,Passives, Detractors],
               labels: ["Promoter", "Passive", "Detractor"],
               domain: {column: 0},
               hoverinfo: 'label+percent',
               textposition: 'inside',
               hole: .4,
-              type: 'pie'
+              type: 'pie',
             },
             ]}
-            layout={ { height:700, width: 600, title: 'Net Promoter Score', text:"NPS"} } 
+            layout={ { height:700, width: 700, title: 'Net Promoter Score',
+            font:{
+              size: 25
+            },
+            legend: {
+              x: 0.1,
+              y: -0.1,
+              orientation: "h",
+              font:{
+                size: 25
+              },
+              bgcolor: '#E2E2E2',
+              bordercolor: '#FFFFFF',
+              borderwidth: 1,
+              borderradius:1,
+            },
+            annotations: [
+              {
+                font: {
+                  size: 30
+                },
+                showarrow: false,
+                text:`NPS`,
+                x: 0.5,
+                y: 0.55
+              },
+                {
+                  font: {
+                    size: 30
+                  },
+                  showarrow: false,
+                  text:`${NPS}`,
+                  x: 0.5,
+                  y: 0.45
+                }
+            ]
+          }} 
       />
 
       <Plot
@@ -262,12 +303,15 @@ const [userData, setUserData]= useState({
               type: 'bar'
             },
             ]}
-          layout={ {height:700, title: 'Net Promoter Score', text:"NPS"} }
+          layout={ {height:700, title: 'Net Promoter Score',  font:{
+            size: 25
+            },
+          
+          } }
 
       />
-   </Box>
 
-   
+   </Box>
     </div>
   );
 }

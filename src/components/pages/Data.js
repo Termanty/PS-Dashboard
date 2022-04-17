@@ -14,28 +14,28 @@ function Data() {
   useEffect(() => dispatch(fetchResponses()), []);
 
   const responses = useSelector((state) => state.responses);
-  console.log(responses);
-
-
-  const responsesList = responses.map((response) => (
-    <li key={response.id}>
-      <p>
-        score: {response.score}, comment: {response.comment}
-      </p>
+  // const responsesList = responses.map((response) => (
+  //   <li key={response.id}>
+  //     <p>
+  //       score: {response.score}, comment: {response.comment}
+  //     </p>
       
       
-    </li>
-  ));
+  //   </li>
+  // ));
 
-let scores = responses.map((res)=>(((res.score))))
+const scores = responses.map((res, i)=>(((res.score))))
+
 let detractor=0
 let promoter = 0;
 let passive = 0
+
   for (let i=0; i< scores.length;  i++){
     if (scores[i]>=9) promoter++;
-    if (scores[i]>=7 && scores[i] <=8) passive++;
+    if (scores[i]>=7 && scores[i] <=8) ++ passive;
     if(scores[i] <=6) detractor++;
   };
+
 let PR= promoter++
 let DE = detractor++
 let PA = passive++
@@ -49,35 +49,44 @@ const NPS= Math.round((Promoters - Detractors))
 
 
 const [userData, setUserData]= useState({
-  labels:["Promoter", "Passive", "Detractor"],
+  labels:["Detractors", "Passives", "Promoters"],
   datasets:[{
     label:"Net Promoter Score",
-    data:[Promoters,Passives,Detractors],
+    data:[Detractors,Passives,Promoters],
     borderWidth: 0,
     backgroundColor: [
-      '#52A569',
-      '#F3C934',
       '#E26060',
+      '#F3C934',
+      '#52A569',
     ],
     hoverOffset: 4,
-  
-  }],
-  options: [{
-    legend:{
-      position:'bottom'
+    circumference:180,
+    rotation:-90,
+    options:{
+      legend:"bottom",
+      font: {
+        size: 50
     },
-    title: {
-      display: true,
-      
+     
     }
-  }]
-});
+  },
+  
+
+],
+  
+},
+);
 
   return (
     <div>
-      <h1>NET PROMOTER SCORE</h1>
-      <p>Scores</p>
-      <ul>{responsesList}</ul>
+       <Typography  
+        variant="h4" 
+        component="div" 
+        sx={{m:3}}>
+          NET PROMOTER SCORE
+        </Typography>
+    
+      {/* <ul>{responsesList}</ul> */}
     
      <Box  sx={{ marginLeft: 70}}>
       <Card sx={{ maxWidth: 500, m:2, 
@@ -103,7 +112,63 @@ const [userData, setUserData]= useState({
 
     
     <Box  
-        sx={{ display: 'flex', flexDirection: 'row',  marginLeft: 1, height:300 }}>
+        sx={{ display: 'flex', flexDirection: 'row',  marginLeft: 1, height:300, marginBottom:10 }}>
+
+      <Card sx={{ 
+            maxWidth: 350, 
+            m:3, color:"#E26060", 
+            background:"#E5E5E5",
+            '&:hover': {
+              backgroundColor: 'white'}
+          }} >
+              <Typography   
+                  sx={{color:"black", 
+                  m:3, width:800, 
+                  paddingRight:60}} 
+                  align = "center" 
+                  variant="h3"  
+                  component="div" >
+                    Detractors % 
+              </Typography>
+              <Typography 
+                align = "center" 
+                variant="h3" 
+                sx={{fontSize: 60, fontWeight:"bold"}}
+                component="div"
+                marginTop={7} > 
+                {`${Detractors}`} 
+              </Typography>
+      </Card>
+
+      <Card sx={{ 
+        maxWidth: 350, 
+        m:3, 
+        background:"#E5E5E5",  
+        color:"#F3C934",
+        '&:hover': {
+            backgroundColor: 'white'}
+      }}
+      >
+          <Typography   
+            sx={{color:"black", 
+            m:3, width:600, 
+            paddingRight:40,
+            justifyContent: 'center'}} 
+            align = "center" 
+            variant="h3"  
+            component="div" >
+              Passives %
+          </Typography>
+          <Typography 
+          align = "center" 
+          variant="h3" 
+          sx={{fontSize: 60, fontWeight:"bold"}}
+          component="div" 
+          marginTop={7} > 
+          {` ${Passives}`} 
+          </Typography>
+
+      </Card>
 
       <Card sx={{ 
         maxWidth: 350, 
@@ -126,139 +191,60 @@ const [userData, setUserData]= useState({
           <Typography   
           align = "center" 
           variant="h3"
+          sx={{fontSize: 60, fontWeight:"bold"}}
           marginTop={7} > 
           {` ${Promoters} `}
           </Typography>
       </Card>
-
       <Card sx={{ 
-        maxWidth: 350, 
-        m:3, 
-        background:"#E5E5E5",  
-        color:"#F3C934",
+        borderRadius:"50%",
+        maxWidth: 250,
+        m:3,  
+        background:"#E5E5E5",
         '&:hover': {
-            backgroundColor: 'white'}
-      }}
-        >
-          <Typography   
-            sx={{color:"black", 
-            m:3, width:600, 
-            paddingRight:40,
-            justifyContent: 'center'}} 
-            align = "center" 
-            variant="h3"  
-            component="div" >
-              Passives %
-          </Typography>
-          <Typography 
-          align = "center" 
-          variant="h3" 
-          component="div" 
-          marginTop={7} > 
-          {` ${Passives}`} 
-          </Typography>
-
-      </Card>
-
-    <Card sx={{ 
-      maxWidth: 350, 
-      m:3, color:"#E26060", 
-      background:"#E5E5E5",
-      '&:hover': {
-        backgroundColor: 'white'}
-    }} >
+          backgroundColor: 'white'}}} 
+      >
         <Typography   
-            sx={{color:"black", 
-            m:3, width:800, 
-            paddingRight:60}} 
-            align = "center" 
-            variant="h3"  
-            component="div" >
-              Detractors % 
+          sx={{color:"black", 
+          m:5, 
+          width:200,
+          paddingRight:5}} 
+          align = "center" 
+          variant="h4"  
+          component="div" >
+            NPS
         </Typography>
         <Typography 
           align = "center" 
-          variant="h3" 
+          variant="h2" 
+          sx={{fontSize: 60, fontWeight:"bold"}}
           component="div"
-          marginTop={7} > 
-          {`${Detractors}`} 
+          marginTop={-3}  > 
+          {` ${NPS}`}
         </Typography>
-    </Card>
-    <Card sx={{ 
-      borderRadius:"50%",
-      maxWidth: 350,
-      m:3,  
-      background:"#E5E5E5",
-      '&:hover': {
-        backgroundColor: 'white'}}} 
-    >
-      <Typography   
-        sx={{color:"black", 
-        m:3, 
-        width:800,
-        paddingRight:60}} 
-        align = "center" 
-        variant="h3"  
-        component="div" >
-          NPS
-      </Typography>
-      <Typography 
-        align = "center" 
-        variant="h3" 
-        component="div"
-        marginTop={7}  > 
-        {` ${NPS}`}
-      </Typography>
-    </Card>
+      </Card>
     </Box>
-      
-    <Box 
-      sx={{color:"black", 
-      m:3, width:800, 
-      paddingRight:40,
-      justifyContent: 'center',
-      marginTop:20,
-     
-    }} 
-      align = "center" 
-      variant="h3"  
-      component="div" 
-      >
-         <DoughnutChart chartData={userData}/>
-        {/* <BarChart chartData={userData}/> */}
-      </Box>
-
-      <Box 
-      sx={{color:"black", 
-      m:3, width:800, 
-      paddingRight:40,
-      justifyContent: 'center',
-      marginTop:20}} 
-      align = "center" 
-      variant="h3"  
-      component="div" 
-      >
-        <BarChart chartData={userData}/>
-      </Box>
-   
- 
-   <Box>
+    <Box>
       <Plot
           data={[
             {
-              values: [Promoters ,Passives, Detractors],
-              labels: ["Promoter", "Passive", "Detractor"],
+              values: [Detractors ,Passives, Promoters],
+              labels: ["Detractors", "Passives", "Promoters"],
               domain: {column: 0},
               hoverinfo: 'label+percent',
               textposition: 'inside',
               hole: .4,
+            
+              marker:{color: ['#ff0000', '#F3C934', '#00ff00']},
               type: 'pie',
+              
             },
             ]}
             layout={ { height:700, width: 700, title: 'Net Promoter Score',
             font:{
-              size: 25
+              size: 30,
             },
+            
             legend: {
               x: 0.1,
               y: -0.1,
@@ -297,8 +283,8 @@ const [userData, setUserData]= useState({
       <Plot
           data={[
             {
-              y: [Promoters,Passives, Detractors],
-              x: ["Promoter", "Passive", "Detractor"],
+              y: [Detractors ,Passives, Promoters],
+              x: ["Detractors", "Passives", "Promoters"],
               hoverinfo: 'label+percent',
               type: 'bar'
             },
@@ -310,9 +296,38 @@ const [userData, setUserData]= useState({
           } }
 
       />
-
-   </Box>
-    </div>
+    </Box>
+    <Box  
+        sx={{ display: 'flex', flexDirection: 'row',  marginLeft: 1, height:300, marginTop:10 }}>
+    <Box 
+      sx={{color:"black", 
+      m:3, width:800, 
+      paddingRight:40,
+      justifyContent: 'center',
+      }} 
+      align = "center" 
+      variant="h3"  
+      component="div" 
+      >
+        <BarChart chartData={userData}/>
+    </Box>
+    
+    <Box 
+      sx={{color:"black", 
+      m:2, width:700, 
+      paddingRight:50,
+      justifyContent: 'center',
+      marginTop:1,
+     
+    }} 
+      align = "center" 
+      variant="h3"  
+      component="div" 
+      >
+         <DoughnutChart chartData={userData}/>
+    </Box>
+    </Box>
+  </div>
   );
 }
 

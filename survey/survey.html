@@ -9,10 +9,10 @@
   <title>survey</title>
 </head>
 <body>
-<div class="body_wrapper">
- <div class="main_wrapper">
-  <main>
-    <h2 class="question-header">How likely are you recommend us to a friend or colleagues?</h2>
+<div  class="body_wrapper">
+ <div  class="main_wrapper">
+  <main id="main">
+    <h2  class="question-header">How likely are you recommend us to a friend or colleagues?</h2>
     <p class="likely">(0 = Not Likely, 10 = Very Likely)</p>
     <div class="progress" >
       <button class="bt0" onclick="clearEmoji()">0</button>
@@ -34,6 +34,7 @@
     <p>Please provide any comments to help explain your selection.</p>
     <textarea name="message" id="message" cols="30" rows="10"></textarea><br>
     <button class="save">Save</button>
+    <button class="bgcolor" onclick="getColor()">bgcolor</button>
   </main>
  </div>
 </div>

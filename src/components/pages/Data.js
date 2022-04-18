@@ -8,6 +8,7 @@ import { fetchResponses } from "../../store/responses/reducer";
 import {DoughnutChart, BarChart }from './NPSChart';
 import Plot from 'react-plotly.js';
 
+
 function Data() {
   const dispatch = useDispatch();
   
@@ -45,8 +46,9 @@ const All = PR+DE+PA
 const Promoters= Math.round((PR/All)*100)
 const Detractors = Math.round((DE/All)*100)
 const Passives= Math.round((PA/All)*100)
-const NPS= Math.round((Promoters - Detractors))
+const NPScore= Math.round((Promoters - Detractors))
 
+const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
 
 const [userData, setUserData]= useState({
   labels:["Detractors", "Passives", "Promoters"],
@@ -232,10 +234,15 @@ const [userData, setUserData]= useState({
               labels: ["Detractors", "Passives", "Promoters"],
               domain: {column: 0},
               hoverinfo: 'label+percent',
+              rotation:90,
+              marker:{
+                colors: [
+                  '#CE672E', 
+                  '#F3C934', 
+                  '#00ff00'],   
+              },
               textposition: 'inside',
               hole: .4,
-            
-              marker:{color: ['#ff0000', '#F3C934', '#00ff00']},
               type: 'pie',
               
             },
@@ -286,13 +293,21 @@ const [userData, setUserData]= useState({
               y: [Detractors ,Passives, Promoters],
               x: ["Detractors", "Passives", "Promoters"],
               hoverinfo: 'label+percent',
+              marker:{
+                color:[
+                  '#ED6930',
+                  '#ED6930',
+                  '#ED6930'
+                ],
+                opacity: 0.9,
+                size:10
+              },
               type: 'bar'
             },
             ]}
           layout={ {height:700, title: 'Net Promoter Score',  font:{
             size: 25
             },
-          
           } }
 
       />

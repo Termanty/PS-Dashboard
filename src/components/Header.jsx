@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { useSelector } from "react-redux";
 import { useLocation} from "react-router-dom";
+import NotificationBell from "./Notification/NotificationBell";
+import Grid from "@mui/material/Grid";
 
 function Header() {
   const user = useSelector((state) => state.user);
@@ -34,9 +36,12 @@ function Header() {
       />
       </Toolbar>
       }
-       <Typography variant = "h6" noWrap component = "div" color = "black" position = "absolute" marginLeft = "80%">
-          Logged in {user.name}
+      <Grid container justifyContent = "flex-end">
+      <NotificationBell badgeContent = {4}/>
+       <Typography variant = "h6" noWrap component = "div" color = "black" marginLeft = "20px">
+         Logged as {user.name}
        </Typography>
+       </Grid>
     </Toolbar>
    </AppBar>
   );

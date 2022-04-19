@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import {DoughnutChart, BarChart }from './NPSChart';
 import Plot from 'react-plotly.js';
-
+import moment from 'moment';
+import { Bar } from 'react-chartjs-2';
 
 function Data() {
   const dispatch = useDispatch();
@@ -25,16 +26,21 @@ function Data() {
   //   </li>
   // ));
 
-const scores = responses.map((res, i)=>(((res.score))))
+const timeStamp= [];
+for (let i = 0; i < responses.length; i += 1) {
+  timeStamp.push(new Date(responses[i].created_at).toLocaleDateString());
+}
+console.log(timeStamp)
+
 
 let detractor=0
 let promoter = 0;
 let passive = 0
 
-  for (let i=0; i< scores.length;  i++){
-    if (scores[i]>=9) promoter++;
-    if (scores[i]>=7 && scores[i] <=8) ++ passive;
-    if(scores[i] <=6) detractor++;
+  for (let i=0; i< responses.length;  i++){
+    if (responses[i].score>=9) promoter++;
+    if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
+    if(responses[i].score <=6) detractor++;
   };
 
 let PR= promoter++
@@ -89,6 +95,7 @@ const [userData, setUserData]= useState({
         </Typography>
     
       {/* <ul>{responsesList}</ul> */}
+      
     
      <Box  sx={{ marginLeft: 70}}>
       <Card sx={{ maxWidth: 500, m:2, 
@@ -314,33 +321,34 @@ const [userData, setUserData]= useState({
     </Box>
     <Box  
         sx={{ display: 'flex', flexDirection: 'row',  marginLeft: 1, height:300, marginTop:10 }}>
-    <Box 
-      sx={{color:"black", 
-      m:3, width:800, 
-      paddingRight:40,
-      justifyContent: 'center',
+      <Box 
+        sx={{color:"black", 
+        m:3, width:800, 
+        paddingRight:40,
+        justifyContent: 'center',
+        }} 
+        align = "center" 
+        variant="h3"  
+        component="div" 
+        >
+          <BarChart chartData={userData}/>
+      </Box>
+      
+      <Box 
+        sx={{color:"black", 
+        m:2, width:700, 
+        paddingRight:50,
+        justifyContent: 'center',
+        marginTop:1,
+      
       }} 
-      align = "center" 
-      variant="h3"  
-      component="div" 
-      >
-        <BarChart chartData={userData}/>
-    </Box>
-    
-    <Box 
-      sx={{color:"black", 
-      m:2, width:700, 
-      paddingRight:50,
-      justifyContent: 'center',
-      marginTop:1,
-     
-    }} 
-      align = "center" 
-      variant="h3"  
-      component="div" 
-      >
-         <DoughnutChart chartData={userData}/>
-    </Box>
+        align = "center" 
+        variant="h3"  
+        component="div" 
+        >
+          <DoughnutChart chartData={userData}/>
+      </Box>
+
     </Box>
   </div>
   );

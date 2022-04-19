@@ -10,6 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DataThresholdingRoundedIcon from "@mui/icons-material/DataThresholdingRounded";
 import AutoAwesomeMosaicIcon from "@mui/icons-material/AutoAwesomeMosaic";
+import AddIcon from '@mui/icons-material/Add';
 
 import { leftbarStyle } from "./Leftbar.style.js";
 import HomeIcon from "./HomeIcon";
@@ -51,25 +52,22 @@ function Leftbar() {
       <List>
         <ListItem button key="Home" component={Link} to="/">
           <ListItemIcon>
-            <HomeIcon color="success" sx={{ fontSize: 40 }} />
+            <HomeIcon sx={{ fontSize: 30, color: "white" }} />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
 
         <ListItem button key="My surveys" component={Link} to="/MySurveys">
           <ListItemIcon>
-            <AutoAwesomeMosaicIcon color="success" sx={{ fontSize: 40 }} />
+            <AutoAwesomeMosaicIcon sx={{ fontSize: 30, color: "white" }} />
           </ListItemIcon>
-          <ListItemText primary="My surveys" />
+          <ListItemText primary="My Surveys" />
         </ListItem>
-      </List>
-      <Divider color="gray" />
-      <List>
+
         <ListItem button key="Data" component={Link} to="/Data">
           <ListItemIcon>
             <DataThresholdingRoundedIcon
-              color="success"
-              sx={{ fontSize: 40 }}
+              sx={{ fontSize: 30, color: "white" }}
             />
           </ListItemIcon>
           <ListItemText primary="Data" />
@@ -84,10 +82,13 @@ function Leftbar() {
           to="/CreateNewSurvey"
         >
           <ListItemText primary={"Create new survey"} />
+          <ListItemIcon sx={{minWidth: "20px"}}>
+            <AddIcon/>
+          </ListItemIcon>
         </ListItem>
 
         <ListItem
-          sx={{ marginTop: "150px" }}
+          sx={{ marginTop: "300px" }}
           button
           className={classes.logoutButton}
           key={"Logout"}

@@ -5,10 +5,9 @@ import {Typography} from '@mui/material';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import {DoughnutChart, BarChart }from './NPSChart';
 import Plot from 'react-plotly.js';
 import moment from 'moment';
-import { Bar } from 'react-chartjs-2';
+
 
 function Data() {
   const dispatch = useDispatch();
@@ -318,37 +317,6 @@ const [userData, setUserData]= useState({
           } }
 
       />
-    </Box>
-    <Box  
-        sx={{ display: 'flex', flexDirection: 'row',  marginLeft: 1, height:300, marginTop:10 }}>
-      <Box 
-        sx={{color:"black", 
-        m:3, width:800, 
-        paddingRight:40,
-        justifyContent: 'center',
-        }} 
-        align = "center" 
-        variant="h3"  
-        component="div" 
-        >
-          <BarChart chartData={userData}/>
-      </Box>
-      
-      <Box 
-        sx={{color:"black", 
-        m:2, width:700, 
-        paddingRight:50,
-        justifyContent: 'center',
-        marginTop:1,
-      
-      }} 
-        align = "center" 
-        variant="h3"  
-        component="div" 
-        >
-          <DoughnutChart chartData={userData}/>
-      </Box>
-
     </Box>
   </div>
   );

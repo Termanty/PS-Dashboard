@@ -163,7 +163,7 @@ const [userData, setUserData]= useState({
             m:3, width:350, 
             marginLeft:-3,
             paddingRight:10,
-            justifyContent: 'center'}} 
+           }} 
             align = "center" 
             variant="h4"  
             component="div" >
@@ -219,7 +219,7 @@ const [userData, setUserData]= useState({
           sx={{color:"black", 
           m:5, 
           width:120,
-          paddingRight:5}} 
+          paddingRight:2}} 
           align = "center" 
           variant="h4"  
           component="div" >
@@ -301,6 +301,7 @@ const [userData, setUserData]= useState({
             {
               y: [Detractors ,Passives, Promoters],
               x: ["Detractors", "Passives", "Promoters"],
+              text: [[`${Detractors} %`],[`${Passives} %`],[`${Promoters} %`]].map(String),
               hoverinfo: 'label+percent',
               marker:{
                 color:[

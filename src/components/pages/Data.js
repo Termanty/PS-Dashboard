@@ -96,8 +96,8 @@ const [userData, setUserData]= useState({
       {/* <ul>{responsesList}</ul> */}
       
     
-     <Box  sx={{ marginLeft: 70}}>
-      <Card sx={{ maxWidth: 500, m:2, 
+     <Box  sx={{ marginLeft: 27}}>
+      <Card sx={{ maxWidth: 350, m:3, 
         display: 'flex',  
         background:"#E5E5E5", 
         '&:hover': {
@@ -106,10 +106,10 @@ const [userData, setUserData]= useState({
       >
         <Typography 
         align = "center" 
-        variant="h3" 
+        variant="h4" 
         component="div" 
         sx={{color:"black", 
-        m:3, width:800, 
+        m:2, width:600, 
      
         }} 
         
@@ -120,10 +120,10 @@ const [userData, setUserData]= useState({
 
     
     <Box  
-        sx={{ display: 'flex', flexDirection: 'row',  marginLeft: 1, height:300, marginBottom:10 }}>
+        sx={{ display: 'flex', flexDirection: 'row',   height:250, marginBottom:10 }}>
 
       <Card sx={{ 
-            maxWidth: 350, 
+            maxWidth: 220, 
             m:3, color:"#E26060", 
             background:"#E5E5E5",
             '&:hover': {
@@ -131,10 +131,11 @@ const [userData, setUserData]= useState({
           }} >
               <Typography   
                   sx={{color:"black", 
-                  m:3, width:800, 
-                  paddingRight:60}} 
+                  m:3, width:350,
+                  marginLeft:-3, 
+                  paddingRight:10}} 
                   align = "center" 
-                  variant="h3"  
+                  variant="h4"  
                   component="div" >
                     Detractors % 
               </Typography>
@@ -143,13 +144,13 @@ const [userData, setUserData]= useState({
                 variant="h3" 
                 sx={{fontSize: 60, fontWeight:"bold"}}
                 component="div"
-                marginTop={7} > 
+                marginTop={3} > 
                 {`${Detractors}`} 
               </Typography>
       </Card>
 
       <Card sx={{ 
-        maxWidth: 350, 
+        maxWidth: 220, 
         m:3, 
         background:"#E5E5E5",  
         color:"#F3C934",
@@ -159,11 +160,12 @@ const [userData, setUserData]= useState({
       >
           <Typography   
             sx={{color:"black", 
-            m:3, width:600, 
-            paddingRight:40,
+            m:3, width:350, 
+            marginLeft:-3,
+            paddingRight:10,
             justifyContent: 'center'}} 
             align = "center" 
-            variant="h3"  
+            variant="h4"  
             component="div" >
               Passives %
           </Typography>
@@ -172,14 +174,14 @@ const [userData, setUserData]= useState({
           variant="h3" 
           sx={{fontSize: 60, fontWeight:"bold"}}
           component="div" 
-          marginTop={7} > 
+          marginTop={3} > 
           {` ${Passives}`} 
           </Typography>
 
       </Card>
 
       <Card sx={{ 
-        maxWidth: 350, 
+        maxWidth: 220, 
         m:3, 
         color:"#52A569", 
         background:"#E5E5E5", 
@@ -189,10 +191,11 @@ const [userData, setUserData]= useState({
       }} >
           <Typography   
           sx={{color:"black", 
-          m:3, width:600, 
-          paddingRight:40}} 
+          m:3, width:350,
+          marginLeft:-3, 
+          paddingRight:10}} 
           align = "center" 
-          variant="h3"  
+          variant="h4"  
           component="div" >
             Promoters % 
           </Typography>
@@ -200,13 +203,13 @@ const [userData, setUserData]= useState({
           align = "center" 
           variant="h3"
           sx={{fontSize: 60, fontWeight:"bold"}}
-          marginTop={7} > 
+          marginTop={3} > 
           {` ${Promoters} `}
           </Typography>
       </Card>
       <Card sx={{ 
         borderRadius:"50%",
-        maxWidth: 250,
+        maxWidth: 200,
         m:3,  
         background:"#E5E5E5",
         '&:hover': {
@@ -215,7 +218,7 @@ const [userData, setUserData]= useState({
         <Typography   
           sx={{color:"black", 
           m:5, 
-          width:200,
+          width:120,
           paddingRight:5}} 
           align = "center" 
           variant="h4"  
@@ -232,7 +235,7 @@ const [userData, setUserData]= useState({
         </Typography>
       </Card>
     </Box>
-    <Box>
+    <Box sx={{ display: 'flex'}}>
       <Plot
           data={[
             {
@@ -253,9 +256,9 @@ const [userData, setUserData]= useState({
               
             },
             ]}
-            layout={ { height:700, width: 700, title: 'Net Promoter Score',
+            layout={ { height:500, width: 550, title: 'Net Promoter Score',
             font:{
-              size: 30,
+              size: 20,
             },
             
             legend: {
@@ -263,7 +266,7 @@ const [userData, setUserData]= useState({
               y: -0.1,
               orientation: "h",
               font:{
-                size: 25
+                size: 15
               },
               bgcolor: '#E2E2E2',
               bordercolor: '#FFFFFF',
@@ -273,7 +276,7 @@ const [userData, setUserData]= useState({
             annotations: [
               {
                 font: {
-                  size: 30
+                  size: 20
                 },
                 showarrow: false,
                 text:`NPS`,
@@ -282,7 +285,7 @@ const [userData, setUserData]= useState({
               },
                 {
                   font: {
-                    size: 30
+                    size: 40
                   },
                   showarrow: false,
                   text:`${NPS}`,
@@ -311,8 +314,8 @@ const [userData, setUserData]= useState({
               type: 'bar'
             },
             ]}
-          layout={ {height:700, title: 'Net Promoter Score',  font:{
-            size: 25
+          layout={ {height:500, width: 500, title: 'Net Promoter Score',  font:{
+            size: 20
             },
           } }
 

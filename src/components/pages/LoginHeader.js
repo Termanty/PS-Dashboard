@@ -25,7 +25,7 @@ const LoginHeader = () => {
                     </Typography>
                 </AppBar>
             </Box>
-            <Box sx={{ marginTop: "150px", textAlign:"center" }}>
+            <Box sx={{ marginTop: "100px", textAlign:"center" }}>
                 <Container maxWidth="m">
                 <Typography  variant="h4" component="div">Welcome to the PHZ Net Promoter Score service </Typography>
                 <Typography  sx={{ marginTop: "30px"}}variant="h5" component="div">Start using the service now! </Typography>

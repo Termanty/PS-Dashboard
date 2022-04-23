@@ -5,6 +5,7 @@ import {Typography} from '@mui/material';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
+import Responses from '../Data/Responses';
 import Plot from 'react-plotly.js';
 import moment from 'moment';
 
@@ -86,6 +87,7 @@ const [userData, setUserData]= useState({
 
   return (
     <div>
+      <Responses/>
        <Typography  
         variant="h4" 
         component="div" 

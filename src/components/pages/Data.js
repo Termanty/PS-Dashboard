@@ -1,11 +1,12 @@
-import Responses from "../Data/Responses";
 import Doughnut from "../Data/Doughnut";
+import FilterData from "../Data/FilterData";
+
+
 function Data() {
-  
 
   return (
     <div>
-      <Responses/>
+      <FilterData/>
       <Doughnut/>
   </div>
   );

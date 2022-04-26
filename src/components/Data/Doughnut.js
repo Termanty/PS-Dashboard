@@ -1,12 +1,11 @@
 import {Box} from '@mui/material';
-import {Card} from '@mui/material';
 import {Typography} from '@mui/material';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import Responses from '../Data/Responses';
 import Plot from 'react-plotly.js';
 import moment from 'moment';
+import Responses from './Responses';
 
 
 const Doughnut = () => {
@@ -21,7 +20,7 @@ const Doughnut = () => {
         for (let i = 0; i < responses.length; i += 1) {
           timeStamp.push(new Date(responses[i].created_at).toLocaleDateString());
         }
-        console.log(timeStamp)
+        // console.log(timeStamp)
         
         
         let detractor=0
@@ -78,18 +77,19 @@ const Doughnut = () => {
         
           return (
             <div>
-               <Typography  
-                variant="h4" 
-                component="div" 
-                sx={{m:3}}>
-                  NET PROMOTER SCORE
-                </Typography>
-            
+                 <Box  sx={{ marginLeft: 40}}>
+                    <Typography  
+                        variant="h4" 
+                        component="div" 
+                        sx={{m:3}}>
+                        NET PROMOTER SCORE
+                    </Typography>
+                </Box>
               {/* <ul>{responsesList}</ul> */}
               
             
-            <Box sx={{ display: 'flex'}}>
-              <Plot
+            <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+                <Plot
                   data={[
                     {
                       values: [Detractors ,Passives, Promoters],
@@ -147,7 +147,8 @@ const Doughnut = () => {
                         }
                     ]
                   }} 
-              />
+                />
+                <Responses/>
             </Box>
           </div>
         );

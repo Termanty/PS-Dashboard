@@ -6,6 +6,8 @@ import { fetchResponses } from "../../store/responses/reducer";
 import Plot from 'react-plotly.js';
 import moment from 'moment';
 import Responses from './Responses';
+import { Link } from 'react-router-dom';
+import MoodBadOutlinedIcon from '@mui/icons-material/MoodBadOutlined';
 
 
 const Doughnut = () => {
@@ -14,15 +16,6 @@ const Doughnut = () => {
     useEffect(() => dispatch(fetchResponses()), []);
   
     const responses = useSelector((state) => state.responses);
-    // const responsesList = responses.map((response) => (
-
-        const timeStamp= [];
-        for (let i = 0; i < responses.length; i += 1) {
-          timeStamp.push(new Date(responses[i].created_at).toLocaleDateString());
-        }
-        // console.log(timeStamp)
-        
-        
         let detractor=0
         let promoter = 0;
         let passive = 0
@@ -46,34 +39,6 @@ const Doughnut = () => {
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
         
-        const [userData, setUserData]= useState({
-          labels:["Detractors", "Passives", "Promoters"],
-          datasets:[{
-            label:"Net Promoter Score",
-            data:[Detractors,Passives,Promoters],
-            borderWidth: 0,
-            backgroundColor: [
-              '#E26060',
-              '#F3C934',
-              '#52A569',
-            ],
-            hoverOffset: 4,
-            circumference:180,
-            rotation:-90,
-            options:{
-              legend:"bottom",
-              font: {
-                size: 50
-            },
-             
-            }
-          },
-          
-        
-        ],
-          
-        },
-        );
         
           return (
             <div>
@@ -85,15 +50,18 @@ const Doughnut = () => {
                         NET PROMOTER SCORE
                     </Typography>
                 </Box>
-              {/* <ul>{responsesList}</ul> */}
-              
             
             <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                 <Plot
                   data={[
                     {
-                      values: [Detractors ,Passives, Promoters],
+                      values: [Detractors,Passives, Promoters],
+                      // values: [Detractors,Passives, Promoters],
                       labels: ["Detractors", "Passives", "Promoters"],
+                      text: [
+                        [` <a href="#responses"> 😀 </a>`],
+                        [`<a href="https://www.google.com/">😁</a>`],
+                        [`<a href="https://www.google.com/">👏</a>`]],
                       domain: {column: 0},
                       hoverinfo: 'label+percent',
                       rotation:90,
@@ -134,7 +102,8 @@ const Doughnut = () => {
                         showarrow: false,
                         text:`NPS`,
                         x: 0.5,
-                        y: 0.55
+                        y: 0.55,
+                       
                       },
                         {
                           font: {
@@ -144,7 +113,7 @@ const Doughnut = () => {
                           text:`${NPS}`,
                           x: 0.5,
                           y: 0.45
-                        }
+                        },
                     ]
                   }} 
                 />

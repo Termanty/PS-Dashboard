@@ -84,9 +84,9 @@ function FilterData() {
                     sx={{m:1}}> 
                     Detractors
                 </Typography> 
-                    {responses.filter(scores=>scores.score<=6).map((res, i)=>(
-                    <ListItem>  
-                        <ListItemText  spacing={5} primary ={`${res.score} ${" "} ${"  "}${moment(res.created_at).utc().format('DD-MM-YYYY')} ` } />
+                    {responses.filter(scores=>(scores.score<=6) ).map((res, i)=>(
+                    <ListItem key={res.id}>  
+                        <ListItemText  spacing={5} primary ={`${res.score} ${" "} ${"  "}${moment(res.created_at).utc().format('DD-MM-YYYY')} ${" "}${res.comment} ` } />
                     </ListItem>  
                     ))}
                 <Typography 
@@ -96,8 +96,8 @@ function FilterData() {
                     Passives
                 </Typography>
                     {responses.filter(scores=>scores.score>=7 && scores.score<=8).map((res, i)=>(
-                    <ListItem>   
-                        <ListItemText  spacing={5} primary ={`${res.score} ${" "}${moment(res.created_at).utc().format('DD-MM-YYYY')} ` } />
+                    <ListItem key={res.id}>   
+                        <ListItemText  spacing={5} primary ={`${res.score} ${" "}${moment(res.created_at).utc().format('DD-MM-YYYY')} ${res.comment}` } />
                     </ListItem> 
                     ))}
                 <Typography 
@@ -107,8 +107,8 @@ function FilterData() {
                     Promoters
                 </Typography>
                     {responses.filter(scores=>scores.score>=9).map((res, i)=>(
-                        <ListItem>   
-                            <ListItemText  spacing={5} primary ={`${res.score} ${" "}${moment(res.created_at).utc().format('DD-MM-YYYY')} ` } />
+                        <ListItem key={res.id}>   
+                            <ListItemText  spacing={5} primary ={`${res.score} ${" "}${moment(res.created_at).utc().format('DD-MM-YYYY')} ${" "}${res.comment} ` } />
                         </ListItem> 
                     ))}
             </List>   

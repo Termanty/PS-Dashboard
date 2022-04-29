@@ -11,7 +11,7 @@ import moment from 'moment';
 
 function Data() {
   const dispatch = useDispatch();
-  
+
   useEffect(() => dispatch(fetchResponses()), []);
 
   const responses = useSelector((state) => state.responses);
@@ -20,8 +20,8 @@ function Data() {
   //     <p>
   //       score: {response.score}, comment: {response.comment}
   //     </p>
-      
-      
+
+
   //   </li>
   // ));
 
@@ -74,163 +74,163 @@ const [userData, setUserData]= useState({
       font: {
         size: 50
     },
-     
+
     }
   },
-  
+
 
 ],
-  
+
 },
 );
 
   return (
     <div>
-       <Typography  
-        variant="h4" 
-        component="div" 
+       <Typography
+        variant="h4"
+        component="div"
         sx={{m:3}}>
           NET PROMOTER SCORE
         </Typography>
-    
+
       {/* <ul>{responsesList}</ul> */}
-      
-    
+
+
      <Box  sx={{ marginLeft: 27}}>
-      <Card sx={{ maxWidth: 350, m:3, 
-        display: 'flex',  
-        background:"#E5E5E5", 
+      <Card sx={{ maxWidth: 350, m:3,
+        display: 'flex',
+        background:"#E5E5E5",
         '&:hover': {
         backgroundColor: 'white'},
-      }} 
+      }}
       >
-        <Typography 
-        align = "center" 
-        variant="h4" 
-        component="div" 
-        sx={{color:"black", 
-        m:2, width:600, 
-     
-        }} 
-        
+        <Typography
+        align = "center"
+        variant="h4"
+        component="div"
+        sx={{color:"black",
+        m:2, width:600,
+
+        }}
+
         > {`Total Responses ${All}`}
         </Typography>
       </Card>
      </Box>
 
-    
-    <Box  
+
+    <Box
         sx={{ display: 'flex', flexDirection: 'row',   height:250, marginBottom:10 }}>
 
-      <Card sx={{ 
-            maxWidth: 220, 
-            m:3, color:"#E26060", 
+      <Card sx={{
+            maxWidth: 220,
+            m:3, color:"#E26060",
             background:"#E5E5E5",
             '&:hover': {
               backgroundColor: 'white'}
           }} >
-              <Typography   
-                  sx={{color:"black", 
+              <Typography
+                  sx={{color:"black",
                   m:3, width:350,
-                  marginLeft:-3, 
-                  paddingRight:10}} 
-                  align = "center" 
-                  variant="h4"  
+                  marginLeft:-3,
+                  paddingRight:10}}
+                  align = "center"
+                  variant="h4"
                   component="div" >
-                    Detractors % 
+                    Detractors %
               </Typography>
-              <Typography 
-                align = "center" 
-                variant="h3" 
+              <Typography
+                align = "center"
+                variant="h3"
                 sx={{fontSize: 60, fontWeight:"bold"}}
                 component="div"
-                marginTop={3} > 
-                {`${Detractors}`} 
+                marginTop={3} >
+                {`${Detractors}`}
               </Typography>
       </Card>
 
-      <Card sx={{ 
-        maxWidth: 220, 
-        m:3, 
-        background:"#E5E5E5",  
+      <Card sx={{
+        maxWidth: 220,
+        m:3,
+        background:"#E5E5E5",
         color:"#F3C934",
         '&:hover': {
             backgroundColor: 'white'}
       }}
       >
-          <Typography   
-            sx={{color:"black", 
-            m:3, width:350, 
+          <Typography
+            sx={{color:"black",
+            m:3, width:350,
             marginLeft:-3,
             paddingRight:10,
-           }} 
-            align = "center" 
-            variant="h4"  
+           }}
+            align = "center"
+            variant="h4"
             component="div" >
               Passives %
           </Typography>
-          <Typography 
-          align = "center" 
-          variant="h3" 
+          <Typography
+          align = "center"
+          variant="h3"
           sx={{fontSize: 60, fontWeight:"bold"}}
-          component="div" 
-          marginTop={3} > 
-          {` ${Passives}`} 
+          component="div"
+          marginTop={3} >
+          {` ${Passives}`}
           </Typography>
 
       </Card>
 
-      <Card sx={{ 
-        maxWidth: 220, 
-        m:3, 
-        color:"#52A569", 
-        background:"#E5E5E5", 
+      <Card sx={{
+        maxWidth: 220,
+        m:3,
+        color:"#52A569",
+        background:"#E5E5E5",
         '&:hover': {
             backgroundColor: 'white'},
-            
+
       }} >
-          <Typography   
-          sx={{color:"black", 
+          <Typography
+          sx={{color:"black",
           m:3, width:350,
-          marginLeft:-3, 
-          paddingRight:10}} 
-          align = "center" 
-          variant="h4"  
+          marginLeft:-3,
+          paddingRight:10}}
+          align = "center"
+          variant="h4"
           component="div" >
-            Promoters % 
+            Promoters %
           </Typography>
-          <Typography   
-          align = "center" 
+          <Typography
+          align = "center"
           variant="h3"
           sx={{fontSize: 60, fontWeight:"bold"}}
-          marginTop={3} > 
+          marginTop={3} >
           {` ${Promoters} `}
           </Typography>
       </Card>
-      <Card sx={{ 
+      <Card sx={{
         borderRadius:"50%",
         maxWidth: 200,
-        m:3,  
+        m:3,
         background:"#E5E5E5",
         '&:hover': {
-          backgroundColor: 'white'}}} 
+          backgroundColor: 'white'}}}
       >
-        <Typography   
-          sx={{color:"black", 
-          m:5, 
+        <Typography
+          sx={{color:"black",
+          m:5,
           width:120,
-          paddingRight:2}} 
-          align = "center" 
-          variant="h4"  
+          paddingRight:2}}
+          align = "center"
+          variant="h4"
           component="div" >
             NPS
         </Typography>
-        <Typography 
-          align = "center" 
-          variant="h2" 
+        <Typography
+          align = "center"
+          variant="h2"
           sx={{fontSize: 60, fontWeight:"bold"}}
           component="div"
-          marginTop={-3}  > 
+          marginTop={-3}  >
           {` ${NPS}`}
         </Typography>
       </Card>
@@ -246,21 +246,21 @@ const [userData, setUserData]= useState({
               rotation:90,
               marker:{
                 colors: [
-                  '#CE672E', 
-                  '#F3C934', 
-                  '#00ff00'],   
+                  '#CE672E',
+                  '#F3C934',
+                  '#00ff00'],
               },
               textposition: 'inside',
               hole: .4,
               type: 'pie',
-              
+
             },
             ]}
             layout={ { height:500, width: 550, title: 'Net Promoter Score',
             font:{
               size: 20,
             },
-            
+
             legend: {
               x: 0.1,
               y: -0.1,
@@ -293,7 +293,7 @@ const [userData, setUserData]= useState({
                   y: 0.45
                 }
             ]
-          }} 
+          }}
       />
 
       <Plot

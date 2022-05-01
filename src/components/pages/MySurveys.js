@@ -8,10 +8,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import { PagesStyle } from './Pages.style.js';
 
 function Dashboard() {
   const dispatch = useDispatch();
+  const classes = PagesStyle();
   useEffect(() =>
   dispatch(fetchSurveys()), []);
 
@@ -28,23 +30,29 @@ function Dashboard() {
   });
 
   return (
-    // <div>
-    //   <h1>My surveys</h1>
-    //   <ul>{surveysList}</ul>
-    // </div>
     <TableContainer sx={{marginTop:5}}>
       <Table sx={{minWidth: 650}}>
       <TableHead>
         <TableRow>
             <TableCell
             align = "left"
-            sx={{fontSize: 18, paddingBottom: 5, color: "gray"}}
+            sx={{fontSize: 20, paddingBottom: 5, color: "gray"}}
             >Name
             </TableCell>
             <TableCell
             align = "left"
-            sx={{fontSize: 18, paddingBottom: 5, color: "gray"}}
-            >Survey question
+            sx={{fontSize: 20, paddingBottom: 5, color: "gray"}}
+            >Date created
+            </TableCell>
+            <TableCell
+            align = "left"
+            sx={{fontSize: 20, paddingBottom: 5, color: "gray"}}
+            >Status
+            </TableCell>
+            <TableCell
+            align = "left"
+            sx={{fontSize: 20, paddingBottom: 5, color: "gray"}}
+            >Open
             </TableCell>
         </TableRow>
         </TableHead>
@@ -54,11 +62,19 @@ function Dashboard() {
             key={ survey.id }
             sx={{ '&:last-child td, &:last-child th': {border: 0} }}
             >
-              <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:16}}>
+              <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
                 {survey.name}
               </TableCell>
-              <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:16}}>
-                {survey.question_text}
+              <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
+                {survey.created_at}
+              </TableCell>
+              <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
+                <div style={{display: "flex"}}>
+                {"Ongoing"}<div className={classes.circle} />
+                </div>
+              </TableCell>
+              <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
+                <Button className={classes.openButton} variant = "contained" href = "/Data">Open</Button>
               </TableCell>
             </TableRow>
           ))}

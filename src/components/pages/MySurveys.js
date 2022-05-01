@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import { PagesStyle } from './Pages.style.js';
+import moment from "moment";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ function Dashboard() {
                 {survey.name}
               </TableCell>
               <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
-                {survey.created_at}
+                {moment(survey.created_at).utc().format('DD.MM.YYYY')}
               </TableCell>
               <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
                 <div style={{display: "flex"}}>

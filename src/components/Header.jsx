@@ -20,7 +20,9 @@ function Header() {
         width: `calc(100% - ${drawerWidth}px)`,
         ml: `${drawerWidth}px`,
         height: "92px",
-        backgroundColor: "transparent",
+        backgroundColor: "white",
+        border:" 1px solid #F3F6F9",
+        zIndex: 1100,
       }}
     >
     <Toolbar sx = {{ marginTop: 2 }}>

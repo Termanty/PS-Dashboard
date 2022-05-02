@@ -11,8 +11,9 @@ import { BarChart } from "./LineChart1";
 
 import { Chart as ChartJS } from "chart.js/auto";
 import { Box } from "@mui/system";
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+// import ReactDatePicker from "react-datepicker";
+
 
 
 const LineChart = () => {
@@ -21,7 +22,7 @@ const LineChart = () => {
     const responses = useSelector((state) => state.responses);
 
 
-    const [selectedDate, setSelectedDate] = useState(null)
+    
     const data = {
       labels: responses.filter(scores=>scores.score >=9).map((date) => (moment(date.created_at).utc().format('DD-MM-YYYY'))),
       datasets: [
@@ -56,6 +57,10 @@ const LineChart = () => {
         // barPercentage: 0.5,
         scales: {
           x: {
+            type:'time',
+            time:{
+              unit:'day'
+            },
             stacked:true,
             offset: true,
             ticks: {
@@ -92,14 +97,14 @@ const LineChart = () => {
       </Box>
 
       <Box>
-      <DatePicker
+      {/* <ReactDatePicker
         selected={selectedDate}
         onChange={date => setSelectedDate(date)}
         placeholderText={'dd/mm/yyyy'}
         filterDate={date => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
         showYearDropdown // year show and scrolldown alos
         scrollableYearDropdown
-      />
+      /> */}
       </Box>
         </div>
     );

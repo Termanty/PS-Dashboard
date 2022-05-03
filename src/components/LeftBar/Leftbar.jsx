@@ -63,7 +63,7 @@ function Leftbar() {
           </ListItemIcon>
           <ListItemText primary="My Surveys" />
         </ListItem>
-
+        <Divider color="gray" />
         <ListItem button key="Data" component={Link} to="/Data">
           <ListItemIcon>
             <DataThresholdingRoundedIcon

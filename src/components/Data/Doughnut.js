@@ -1,21 +1,16 @@
 import {Box} from '@mui/material';
 import {Typography} from '@mui/material';
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import Plot from 'react-plotly.js';
-import moment from 'moment';
 import Responses from './Responses';
-import { Link } from 'react-router-dom';
-import MoodBadOutlinedIcon from '@mui/icons-material/MoodBadOutlined';
-
 
 const Doughnut = () => {
     const dispatch = useDispatch();
-  
     useEffect(() => dispatch(fetchResponses()), []);
-  
     const responses = useSelector((state) => state.responses);
+
         let detractor=0
         let promoter = 0;
         let passive = 0
@@ -38,9 +33,7 @@ const Doughnut = () => {
         const NPScore= Math.round((Promoters - Detractors))
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
-        
-        
-          return (
+         return (
             <div>
                  <Box  sx={{ marginLeft: 40}}>
                     <Typography  
@@ -59,9 +52,9 @@ const Doughnut = () => {
                       // values: [Detractors,Passives, Promoters],
                       labels: ["Detractors", "Passives", "Promoters"],
                       text: [
-                        [` <a href="#responses"> 😀 </a>`],
-                        [`<a href="https://www.google.com/">😁</a>`],
-                        [`<a href="https://www.google.com/">👏</a>`]],
+                        [` <a href="#responses"> 😞 </a>`],
+                        [`<a href="https://www.google.com/">😀</a>`],
+                        [`<a href="https://www.google.com/">😁</a>`]],
                       domain: {column: 0},
                       hoverinfo: 'label+percent',
                       rotation:90,
@@ -69,7 +62,7 @@ const Doughnut = () => {
                         colors: [
                           '#CE672E', 
                           '#F3C934', 
-                          '#00ff00'],   
+                          '#306830'],   
                       },
                       textposition: 'inside',
                       hole: .4,
@@ -122,5 +115,4 @@ const Doughnut = () => {
           </div>
         );
 };
-
 export default Doughnut;

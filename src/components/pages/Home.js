@@ -2,6 +2,8 @@ import React from 'react';
 import HomeCard from './homePage/HomeCard';
 import {items} from './homePage/HomePageData';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper'
 
 function Home() {
 
@@ -11,17 +13,20 @@ function Home() {
       <h1>Net Promoter Score Evaluation</h1>
       <h2 style={{fontWeight: 600}}>Online tools for your product and service evaluation</h2>
       </div>
-      <Grid container spacing={{ xs: 2, md: 3}}>
+      <Paper sx={{padding: "3%"}}>
+      <Box sx={{flexGrow: 1}}>
+      <Grid container spacing={2} >
       {items.map((item) => (
-        <Grid display= "table-row" marginLeft="4%" item xs={2} sm={3} md={3} key={item.id}>
+        <Grid item xs={6} md={4}>
         <HomeCard
         key={item.id}
         name={item.name}
         description={item.description} />
         </Grid>
       ))}
-
       </Grid>
+      </Box>
+      </Paper>
     </>
   )
 }

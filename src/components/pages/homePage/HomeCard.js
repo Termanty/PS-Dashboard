@@ -8,8 +8,14 @@ import Button from '@mui/material/Button';
 function HomeCard({id, name, description}) {
   return (
 
-      <Card key={id}
-      sx={{ maxWidth: 345, Height:200, textAlign: "center", justifyContent: "center", border: "1px solid black", padding: "5px" }}
+      <Card
+      key={id}
+      sx={{
+        maxWidth: 345,
+        height:260,
+        textAlign: "center",
+        border: "1px solid black",
+        padding: "5px" }}
       >
         <CardContent>
         <Typography sx={{ fontSize: "30px", fontWeight: 800 }}>

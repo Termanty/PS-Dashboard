@@ -17,4 +17,7 @@ export const leftbarStyle = makeStyles({
     borderRadius: "3px",
     marginLeft: "20px",
   },
+  headerIndex: {
+    overflow: "scoll"
+  }
 });

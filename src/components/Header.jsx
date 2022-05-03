@@ -1,11 +1,12 @@
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { useSelector } from "react-redux";
 import { useLocation} from "react-router-dom";
-import NotificationBell from "./Notification/NotificationBell";
 import Grid from "@mui/material/Grid";
+import NotificationBell from "./Notification/NotificationBell";
 
 function Header() {
   const user = useSelector((state) => state.user);
@@ -19,7 +20,9 @@ function Header() {
         width: `calc(100% - ${drawerWidth}px)`,
         ml: `${drawerWidth}px`,
         height: "92px",
-        backgroundColor: "transparent",
+        backgroundColor: "white",
+        border:" 1px solid #F3F6F9",
+        zIndex: 1100,
       }}
     >
     <Toolbar sx = {{ marginTop: 2 }}>
@@ -31,8 +34,7 @@ function Header() {
       <OutlinedInput
       type = "text"
        placeholder = "Search..."
-       marginTop = {2}
-       sx = {{ width: 300, height: 45, backgroundColor: "#F3F6F9", borderRadius: 5, marginLeft: 20 }}
+       sx = {{ width: 300, height: 45, backgroundColor: "#F3F6F9", borderRadius: 5, marginLeft: 20, marginTop: 1 }}
       />
       </Toolbar>
       }

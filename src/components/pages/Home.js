@@ -9,11 +9,12 @@ function Home() {
 
   return (
     <>
-    <div style={{textAlign: "center", marginBottom:"50px",marginTop:"50px"}}>
-      <h1>Net Promoter Score Evaluation</h1>
+    <div style={{textAlign: "center", marginBottom: "50px",marginTop: "50px"}}>
+      <div style={{fontSize: "3.5rem",fontWeight: "bold"}}>Net Promoter Score Evaluation</div>
       <h2 style={{fontWeight: 600}}>Online tools for your product and service evaluation</h2>
       </div>
-      <Paper sx={{padding: "3%"}}>
+      <Paper sx={{padding: "3%",backgroundColor: "#EFF0F3"}}>
+      <Paper sx={{padding: "2%"}}>
       <Box sx={{flexGrow: 1}}>
       <Grid container spacing={2} >
       {items.map((item) => (
@@ -21,12 +22,15 @@ function Home() {
         <HomeCard
         key={item.id}
         name={item.name}
-        description={item.description} />
+        description={item.description}
+        link={item.link}
+        />
         </Grid>
       ))}
       </Grid>
       </Box>
       </Paper>
+    </Paper>
     </>
   )
 }

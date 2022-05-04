@@ -12,8 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from '../../store/responses/reducer';
 import moment from 'moment';
 
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.text.disabled,

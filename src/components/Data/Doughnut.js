@@ -33,86 +33,88 @@ const Doughnut = () => {
         const NPScore= Math.round((Promoters - Detractors))
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
-         return (
-            <div>
-                 <Box  sx={{ marginLeft: 40}}>
-                    <Typography  
-                        variant="h4" 
-                        component="div" 
-                        sx={{m:3}}>
-                        NET PROMOTER SCORE
-                    </Typography>
-                </Box>
-            
-            <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-                <Plot
-                  data={[
-                    {
-                      values: [Detractors,Passives, Promoters],
-                      // values: [Detractors,Passives, Promoters],
-                      labels: ["Detractors", "Passives", "Promoters"],
-                      text: [
-                        [` <a href="#responses"> 😞 </a>`],
-                        [`<a href="https://www.google.com/">😀</a>`],
-                        [`<a href="https://www.google.com/">😁</a>`]],
-                      domain: {column: 0},
-                      hoverinfo: 'label+percent',
-                      rotation:90,
-                      marker:{
-                        colors: [
-                          '#CE672E', 
-                          '#F3C934', 
-                          '#306830'],   
-                      },
-                      textposition: 'inside',
-                      hole: .4,
-                      type: 'pie',
+        return (
+           <div>
+                <Box  sx={{ marginLeft: 40}}>
+                   <Typography  
+                       variant="h4" 
+                       component="div" 
+                       sx={{m:3}}>
+                       NET PROMOTER SCORE
+                   </Typography>
+               </Box>
+           
+           <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+               <Plot
+                 data={[
+                   {
+                     values: [Detractors,Passives, Promoters],
+                     // values: [Detractors,Passives, Promoters],
+                     labels: ["Detractors", "Passives", "Promoters"],
+                     text: [
+                       [` <a href="/MySurveys"  target="_top"> 😞 </a>`],
+                       [`<a href="/"  target="_top">😀</a>`],
+                       [`<a href="/data"  target="_top">😁</a>`]],
+                     domain: {column: 0},
+                     hoverinfo: 'label+percent',
+                     rotation:90,
+                     marker:{
+                       colors: [
+                         '#E26060', 
+                         '#F3C934', 
+                         '#52A569'],   
+                     },
+                     textposition: 'inside',
+                     hole: .4,
+                     type: 'pie',
+                     textfont:{'size': [25, 25, 25], 'color': ['#FFFFFF', '#FFFFFF', '#FFFFFF']}
+                     
+                   },
+                   ]}
+                   layout={ { height:500, width: 550, title: 'Net Promoter Score',
+                   font:{
+                     size: 20,
+                   },
+                   
+                   legend: {
+                     x: 0,
+                     y: -0.1,
+                     orientation: "h",
+                     font:{
+                       size: 15,
+                       borderpad:'50px'
+                     },
+                     bgcolor: '#C4C4C4',
+                     bordercolor: '#FFFFFF',
+                     borderwidth: 1,
+                     borderpad:20,
+                   },
+                   annotations: [
+                     {
+                       font: {
+                         size: 20
+                       },
+                       showarrow: false,
+                       text:`NPS`,
+                       x: 0.5,
+                       y: 0.55,
                       
-                    },
-                    ]}
-                    layout={ { height:500, width: 550, title: 'Net Promoter Score',
-                    font:{
-                      size: 20,
-                    },
-                    
-                    legend: {
-                      x: 0.1,
-                      y: -0.1,
-                      orientation: "h",
-                      font:{
-                        size: 15
-                      },
-                      bgcolor: '#E2E2E2',
-                      bordercolor: '#FFFFFF',
-                      borderwidth: 1,
-                      borderradius:1,
-                    },
-                    annotations: [
-                      {
-                        font: {
-                          size: 20
-                        },
-                        showarrow: false,
-                        text:`NPS`,
-                        x: 0.5,
-                        y: 0.55,
-                       
-                      },
-                        {
-                          font: {
-                            size: 40
-                          },
-                          showarrow: false,
-                          text:`${NPS}`,
-                          x: 0.5,
-                          y: 0.45
-                        },
-                    ]
-                  }} 
-                />
-                <Responses/>
-            </Box>
-          </div>
-        );
+                     },
+                       {
+                         font: {
+                           size: 40
+                         },
+                         showarrow: false,
+                         text:`${NPS}`,
+                         x: 0.5,
+                         y: 0.45
+                       },
+                   ]
+                 }} 
+               />
+               <Responses/>
+           </Box>
+         </div>
+       );     
 };
 export default Doughnut;

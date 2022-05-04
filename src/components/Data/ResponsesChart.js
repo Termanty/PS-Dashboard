@@ -1,15 +1,11 @@
 import { Box } from "@mui/material";
 import { Paper } from "@mui/material";
-
 import { Chart as ChartJS } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-
 import moment from "moment";
-
 
 function reducer(accumulator, day) {
   if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
@@ -23,23 +19,18 @@ function toTime(response) {
  
 }
 
-
 const BarChart = ({chartData, options}) => {
     return (
         < Bar data={chartData} options={options}/>
     );
-  };
+  }; 
 
-
-
-  
-
-function Chart() {
+function ResponsesChart() {
   const dispatch = useDispatch();
-
   useEffect(() => dispatch(fetchResponses()), []);
-
   const responses = useSelector((state) => state.responses);
+
+  const responsesPerDay = responses.map(toTime).reduce(reducer, {});
   const detractorsPerDay = responses
     .filter((r) => r.score <= 6)
     .map(toTime)
@@ -58,12 +49,11 @@ function Chart() {
     labels: "",
     datasets: [
       {
-        label: "Promoters",
-        data: promotersPerDay,
+        label: "Detractors",
+        data: detractorsPerDay,
         backgroundColor: [
-          '#306830',
+          '#E26060',
         ],
-        
       },
       {
         label: "Passives",
@@ -73,11 +63,21 @@ function Chart() {
         ],
       },
       {
-        label: "Detractors",
-        data: detractorsPerDay,
+        label: "Promoters",
+        data: promotersPerDay,
         backgroundColor: [
-          '#CE672E',
+          '#52A569',
         ],
+      },
+      {
+        label: "Total Response",
+        data: responsesPerDay,
+        backgroundColor: [
+          '#162639',
+        ],
+        type: 'line',
+        order: 1,
+        tension:0.5
       },
        
        
@@ -88,26 +88,33 @@ function Chart() {
         padding: 20
     },
       plugins: {
+        tooltip:{yAlign:'bottom'},
         legend: {
           position: 'bottom',
-            display: true,
-            labels:{
-              font:{
-                size:20
-              }
-            }
+          display: true,
+          labels:{
+            font:{
+                size:20,
+            },
+            usePointStyle:true,
+            pointStyle: 'circle',
+              
+          }
         },
         title: {
           display: true,
           text: 'Response volume',
+          align:'center',
+          padding:{
+            bottom:40
+          },
           font:{
-            size:20
+            size:25
           }
         }
     },
   
       scales: {
-
         x: {
           stacked:true,
           offset: true,
@@ -121,6 +128,13 @@ function Chart() {
       
         },
         y: {
+          title: {
+            display: true,
+            text: 'Response',
+            font: {
+              size: 25,
+          },
+          },
           stacked: true,
           beginAtZero: true,
           ticks: {
@@ -138,7 +152,7 @@ function Chart() {
         <Box sx={{ 
           boxShadow: 10,
           width:900, 
-          border: "solid 1px #282c34",
+          border: "solid 1px #162639",
           borderRadius:2,
           margin:10}}>
           <BarChart 
@@ -149,4 +163,4 @@ function Chart() {
     </Paper>
   );
 }
-export default Chart;
+export default ResponsesChart;

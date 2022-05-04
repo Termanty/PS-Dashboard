@@ -1,6 +1,6 @@
 import Doughnut from "../Data/Doughnut";
-import Chart from "../Data/Chart";
-import NPSgraph from "../Data/NPSgraph";
+import ResponsesChart from "../Data/ResponsesChart";
+import NPSChart from "../Data/NPSChart";
 
 
 function Data() {
@@ -8,8 +8,8 @@ function Data() {
   return (
     <div>
       <Doughnut/>
-      <Chart/>
-      <NPSgraph/> 
+      <NPSChart/> 
+      <ResponsesChart/>
   </div>
   );
 }

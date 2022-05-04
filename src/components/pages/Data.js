@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import Plot from "react-plotly.js";
 import moment from "moment";
+import { useParams } from "react-router-dom";
 
 function reducer(accumulator, day) {
   if (!accumulator[day]) accumulator[day] = 0;
@@ -20,6 +21,8 @@ function toTime(response) {
 }
 
 function Data() {
+  let {name} = useParams()
+  console.log({name});
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchResponses()), []);

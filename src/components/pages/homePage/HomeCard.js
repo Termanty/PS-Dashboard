@@ -5,9 +5,15 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
-function HomeCard({id, name, description}) {
+function HomeCard({id, name, description,link}) {
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+  const onClickUrl = (url) => {
+    return () => openInNewTab(url)
+  }
   return (
-
       <Card
       key={id}
       sx={{
@@ -25,7 +31,7 @@ function HomeCard({id, name, description}) {
           {description}
         </Typography>
         </CardContent>
-        <CardActions sx={{justifyContent: "center", float: "bottom"}}>
+        <CardActions sx={{justifyContent: "center"}}>
           <Button
           sx={{ width:"120px",
           height: "40px",
@@ -33,6 +39,7 @@ function HomeCard({id, name, description}) {
           borderRadius: "5px",
           color: "white",
           }}
+          onClick={onClickUrl(link)}
           >
             Read more
           </Button>

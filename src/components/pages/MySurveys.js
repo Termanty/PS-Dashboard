@@ -76,7 +76,7 @@ function Dashboard() {
                 </div>
               </TableCell>
               <TableCell component = "th" scope = "row" sx={{borderBottom: "none", fontSize:18}}>
-              <Button className={classes.openButton} key={survey.name} variant = "contained" href = {`/${survey.name}`}>Open</Button>
+              <Button className={classes.openButton} key={survey.id} variant = "contained" href = {`/${survey.name}`}>Open</Button>
               </TableCell>
             </TableRow>
           ))}

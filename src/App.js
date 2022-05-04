@@ -21,9 +21,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/MySurveys" element={<MySurveys />} />
-              {/* <Route path="/:survey.name" element={<Data />} /> */}
               <Route path="/:name" element={<Data />} />
-              {/* </Route> */}
               <Route path="/CreateNewSurvey" element={<CreateNewSurvey />} />
               <Route path="/Data" element={<Data />} />
               <Route  path="login" element={<Login/>} />

@@ -2,7 +2,6 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import OutlinedInput from '@mui/material/OutlinedInput';
 import { useSelector } from "react-redux";
 import { useLocation} from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -31,11 +30,7 @@ function Header() {
       <Typography variant = "h6" noWrap component = "div" color = "black" position = "relative" marginRight = "50">
       My Surveys
       </Typography>
-      <OutlinedInput
-      type = "text"
-       placeholder = "Search..."
-       sx = {{ width: 300, height: 45, backgroundColor: "#F3F6F9", borderRadius: 5, marginLeft: 20, marginTop: 1 }}
-      />
+
       </Toolbar>
       }
       <Grid container justifyContent = "flex-end">

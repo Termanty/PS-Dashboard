@@ -19,6 +19,7 @@
     "ag-grid-react": "^27.2.1",
     "chart.js": "^3.7.1",
     "chartjs-adapter-date-fns": "^2.0.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "date-fns": "^2.28.0",
     "moment": "^2.29.3",
     "plotly.js": "^2.11.1",

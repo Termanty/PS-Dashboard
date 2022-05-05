@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import moment from "moment";
+import LineChart from "./LineChart";
 
 function reducer(accumulator, day) {
   if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
@@ -54,6 +55,9 @@ function ResponsesChart() {
         backgroundColor: [
           '#E26060',
         ],
+        categoryPercentage: 0.8,
+        barPercentage: 0.7,
+            
       },
       {
         label: "Passives",
@@ -61,6 +65,8 @@ function ResponsesChart() {
         backgroundColor: [
           '#F3C934',
         ],
+        categoryPercentage: 0.8,
+        barPercentage: 0.7,
       },
       {
         label: "Promoters",
@@ -68,6 +74,8 @@ function ResponsesChart() {
         backgroundColor: [
           '#52A569',
         ],
+        categoryPercentage: 0.8,
+        barPercentage: 0.7,
       },
       {
         label: "Total Response",
@@ -153,12 +161,17 @@ function ResponsesChart() {
           boxShadow: 10,
           width:900, 
           border: "solid 1px #162639",
-          borderRadius:2,
+          borderRadius:1,
           margin:10}}>
+            <Box>
+            <LineChart/>
+          <Box>
           <BarChart 
           chartData={data}
           options={options}
           />
+          </Box>
+            </Box>
         </Box>
     </Paper>
   );

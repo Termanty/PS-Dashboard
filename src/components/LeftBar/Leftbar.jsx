@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "./phz-logo-small.svg";
+import { ReactComponent as Logo } from "./logo.svg";
+//import Logo from "./logo.svg";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";

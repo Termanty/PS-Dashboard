@@ -46,7 +46,9 @@ function Leftbar() {
           alignItems: "center",
         }}
       >
+        <Link to="/">
         <Logo />
+        </Link>
       </Box>
       {/* <Toolbar /> */}
       <Divider color="gray" />

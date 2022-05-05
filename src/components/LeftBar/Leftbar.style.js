@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { createTheme } from "@mui/material";
 
 export const leftbarStyle = makeStyles({
   addButton: {
@@ -20,4 +21,28 @@ export const leftbarStyle = makeStyles({
   headerIndex: {
     overflow: "scoll"
   }
+});
+
+export const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    background: {
+      paper: "#ffffff",
+    },
+    text: {
+      primary: "#111111",
+    },
+  },
+});
+
+export const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    background: {
+      paper: "#222",
+    },
+    text: {
+      primary: "#fff",
+    },
+  },
 });

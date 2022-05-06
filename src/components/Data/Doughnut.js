@@ -49,7 +49,6 @@ const Doughnut = () => {
                  data={[
                    {
                      values: [Detractors,Passives, Promoters],
-                     // values: [Detractors,Passives, Promoters],
                      labels: ["Detractors", "Passives", "Promoters"],
                      text: [
                        [` <a href="/MySurveys"  target="_top"> 😞 </a>`],

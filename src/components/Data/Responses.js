@@ -55,7 +55,6 @@ const Responses = () => {
             <Table  aria-label="customized table">
                 <TableHead>
                 <TableRow >
-                    {/* <StyledTableCell align="center">S/NO</StyledTableCell> */}
                     <StyledTableCell align="center">Date Created</StyledTableCell>
                     <StyledTableCell align="center">Score</StyledTableCell>
                     <StyledTableCell align="left">Comments</StyledTableCell>
@@ -64,7 +63,6 @@ const Responses = () => {
                 <TableBody >
                 {responses.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((response) => (
                     <StyledTableRow key={response.id} >
-                        {/* <StyledTableCell align="center">{response.id}</StyledTableCell> */}
                     <StyledTableCell align="center">
                         {moment(response.created_at).utc().format('DD-MM-YYYY')}
                     </StyledTableCell>

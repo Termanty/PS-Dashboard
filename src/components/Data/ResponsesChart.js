@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import moment from "moment";
-import LineChart from "./LineChart";
+
 
 function reducer(accumulator, day) {
   if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
@@ -163,15 +163,14 @@ function ResponsesChart() {
           border: "solid 1px #162639",
           borderRadius:1,
           margin:10}}>
-            <Box>
-            <LineChart/>
-          <Box>
+        <Box>
+        <Box>
           <BarChart 
           chartData={data}
           options={options}
           />
+        </Box>
           </Box>
-            </Box>
         </Box>
     </Paper>
   );

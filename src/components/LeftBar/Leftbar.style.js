@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { createTheme } from "@mui/material";
+import { amber, deepOrange, grey } from '@mui/material/colors';
 
 export const leftbarStyle = makeStyles({
   addButton: {
@@ -42,7 +43,8 @@ export const darkTheme = createTheme({
       paper: "#222",
     },
     text: {
-      primary: "#fff",
+      primary: '#fff',
+            secondary: grey[500],
     },
   },
 });

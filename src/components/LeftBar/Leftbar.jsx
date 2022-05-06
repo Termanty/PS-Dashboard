@@ -42,8 +42,10 @@ function Leftbar() {
         sx={{
           height: "92px",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "left",
+          alignItems: "left",
+          paddingLeft: "57px",
+          paddingTop: "7px"
         }}
       >
         <Link to="/">

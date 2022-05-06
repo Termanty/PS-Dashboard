@@ -16,10 +16,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.text.disabled,
       color: theme.palette.common.white,
-      fontSize:25
+      fontSize:20
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 16,
+      fontSize: 15,
     },
   }));
   
@@ -50,7 +50,7 @@ const Responses = () => {
   const responses = useSelector((state) => state.responses);
 
     return (
-        <Paper sx={{ width: '50%', overflow: 'hidden', marginTop:"20px", marginLeft:"50px" }}>
+        <Paper sx={{ width: '30%', overflow: 'hidden', marginTop:"20px", marginLeft:"10px" }}>
             <TableContainer>
             <Table  aria-label="customized table">
                 <TableHead>

@@ -38,7 +38,7 @@ function Layout({ children }) {
 
   return (
     <ThemeProvider theme={theme.darkTheme ? darkTheme : lightTheme}>
-      <Paper
+      {/* <Paper
         style={{
           // minHeight: "100vh",
           // width:'100%',
@@ -47,7 +47,7 @@ function Layout({ children }) {
           // // alignItems: "center",
           // justifyContent: "center",
         }}
-      >
+      > */}
         <ToggleSwitch />
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -61,7 +61,7 @@ function Layout({ children }) {
         <Main>{children}</Main>
       </Box>
     </Box>
-    </Paper>
+    {/* </Paper> */}
     </ThemeProvider>
   );
 }

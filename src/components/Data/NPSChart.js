@@ -110,7 +110,7 @@ const data = {
             bottom:30
           },
           font:{
-            size:25
+            size:20
           }
         }
     },
@@ -132,7 +132,7 @@ const data = {
             maxRotation: 30,
             minRotation: 30,
             font: {
-              size: 20,
+              size: 15,
           },
         },
       
@@ -143,7 +143,7 @@ const data = {
             display: true,
             text: 'Score',
             font: {
-              size: 25,
+              size: 20,
           },
           },
           grid:{
@@ -156,7 +156,7 @@ const data = {
           beginAtZero: true,
           ticks: {
             font: {
-              size: 20,
+              size: 15,
           },
         },
       }
@@ -168,7 +168,7 @@ const data = {
    <Paper elevation={0}>
         <Box sx={{ 
           boxShadow: 10,
-          width:900, 
+          width:700, 
           border: "solid 1px #282c34",
           borderRadius:2,
           margin:10}}>

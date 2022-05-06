@@ -24,13 +24,8 @@ const Doughnut = () => {
         let PR= promoter++
         let DE = detractor++
         let PA = passive++
-        
         const All = PR+DE+PA
-        
-        const Promoters= Math.round((PR/All)*100)
-        const Detractors = Math.round((DE/All)*100)
-        const Passives= Math.round((PA/All)*100)
-        const NPScore= Math.round((Promoters - Detractors))
+        const NPScore= Math.round((PR-DE)/All * 100)
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
         return (
@@ -48,7 +43,7 @@ const Doughnut = () => {
                <Plot
                  data={[
                    {
-                     values: [Detractors,Passives, Promoters],
+                     values: [DE,PA, PR],
                      labels: ["Detractors", "Passives", "Promoters"],
                      text: [
                        [` <a href="/MySurveys"  target="_top"> 😞 </a>`],
@@ -56,6 +51,7 @@ const Doughnut = () => {
                        [`<a href="/data"  target="_top">😁</a>`]],
                      domain: {column: 0},
                      hoverinfo: 'label+percent',
+                     textinfo:'value',
                      rotation:90,
                      marker:{
                        colors: [
@@ -70,7 +66,7 @@ const Doughnut = () => {
                      
                    },
                    ]}
-                   layout={ { height:500, width: 550, title: 'Net Promoter Score',
+                   layout={ { height:400, width: 450, title: 'Net Promoter Score',
                    font:{
                      size: 20,
                    },
@@ -80,8 +76,7 @@ const Doughnut = () => {
                      y: -0.1,
                      orientation: "h",
                      font:{
-                       size: 15,
-                       borderpad:'50px'
+                       size: 10,
                      },
                      bgcolor: '#C4C4C4',
                      bordercolor: '#FFFFFF',
@@ -96,12 +91,12 @@ const Doughnut = () => {
                        showarrow: false,
                        text:`NPS`,
                        x: 0.5,
-                       y: 0.55,
+                       y: 0.6,
                       
                      },
                        {
                          font: {
-                           size: 40
+                           size: 30
                          },
                          showarrow: false,
                          text:`${NPS}`,

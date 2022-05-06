@@ -6,17 +6,36 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import moment from "moment";
+import 'chartjs-adapter-date-fns';
+import { format} from 'date-fns'
 
+
+// function reducer(accumulator, day) {
+//   if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
+//   accumulator[moment(day).format('DD-MM-YYYY')]++;
+//   return accumulator;
+// }
 
 function reducer(accumulator, day) {
-  if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
-  accumulator[moment(day).format('DD-MM-YYYY')]++;
+  if (!accumulator[day]) accumulator[day] = 0;
+  accumulator[day]++;
   return accumulator;
 }
 
+// function reducer(accumulator, day) {
+//   if (!accumulator[(format(day, 'DD/MM/YYYY'))]) accumulator[(format(day, 'DD/MM/YYYY'))] = 0;
+//   accumulator[(format(day, 'DD/MM/YYYY'))]++;
+//   return accumulator;
+// }
+
+
 function toTime(response) {
   const time = response.created_at
-  return time.slice(0, 10).split("-").join("");
+  const parts = time.slice(0, -1).split('T');
+  const dateTime = parts[0]
+  return dateTime;
+
+  // return time.slice(0, 10).split("-").join("");
  
 }
 
@@ -56,7 +75,7 @@ function ResponsesChart() {
           '#E26060',
         ],
         categoryPercentage: 0.8,
-        barPercentage: 0.7,
+        barPercentage: 0.8,
             
       },
       {
@@ -66,7 +85,7 @@ function ResponsesChart() {
           '#F3C934',
         ],
         categoryPercentage: 0.8,
-        barPercentage: 0.7,
+        barPercentage: 0.8,
       },
       {
         label: "Promoters",
@@ -75,7 +94,7 @@ function ResponsesChart() {
           '#52A569',
         ],
         categoryPercentage: 0.8,
-        barPercentage: 0.7,
+        barPercentage: 0.8,
       },
       {
         label: "Total Response",
@@ -102,7 +121,7 @@ function ResponsesChart() {
           display: true,
           labels:{
             font:{
-                size:20,
+                size:15,
             },
             usePointStyle:true,
             pointStyle: 'circle',
@@ -114,23 +133,30 @@ function ResponsesChart() {
           text: 'Response volume',
           align:'center',
           padding:{
-            bottom:40
+            bottom:20
           },
           font:{
-            size:25
+            size:0
           }
         }
     },
   
       scales: {
         x: {
+        type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            day: 'MMM d, yy'
+          }
+        },
           stacked:true,
           offset: true,
           ticks: {
             maxRotation: 30,
             minRotation: 30,
             font: {
-              size: 20,
+              size: 15,
           },
         },
       
@@ -140,14 +166,14 @@ function ResponsesChart() {
             display: true,
             text: 'Response',
             font: {
-              size: 25,
+              size: 15,
           },
           },
           stacked: true,
           beginAtZero: true,
           ticks: {
             font: {
-              size: 20,
+              size: 10,
           },
         },
       }
@@ -159,7 +185,7 @@ function ResponsesChart() {
    <Paper elevation={0}>
         <Box sx={{ 
           boxShadow: 10,
-          width:900, 
+          width:700, 
           border: "solid 1px #162639",
           borderRadius:1,
           margin:10}}>

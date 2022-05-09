@@ -45,10 +45,10 @@ const [dateTo, setDateTo] = useState("");
   </LocalizationProvider> */}
   </div>
   <div style={{margin: 50, display: "inline-flex", columnGap: 20}}>
-  <input type="date" id="dateFrom" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
-  <input type="date" id="dateTo" value={dateTo} onChange={(e) =>
+  <label>Date From  <input type="date" id="dateFrom" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} /></label>
+ <label>Date To  <input type="date" id="dateTo" value={dateTo} onChange={(e) =>
   setDateTo(e.target.value)}
-   />
+   /></label>
   </div>
      <Doughnut dateFrom={dateFrom} dateTo={dateTo}/>
       <NPSChart/>

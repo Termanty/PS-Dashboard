@@ -14,7 +14,7 @@ const Data = lazy(() => import("./components/pages/Data"));
 
 function App() {
   return (
-    <div className="app">
+  <div>
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Layout>
@@ -30,7 +30,7 @@ function App() {
           </Layout>
         </Suspense>
       </Router>
-    </div>
+</div>
   );
 }
 

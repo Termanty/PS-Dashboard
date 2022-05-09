@@ -6,7 +6,8 @@ import { fetchResponses } from "../../store/responses/reducer";
 import Plot from 'react-plotly.js';
 import Responses from './Responses';
 
-const Doughnut = () => {
+const Doughnut = (dateTo, dateFrom) => {
+  console.log(dateTo, dateFrom);
     const dispatch = useDispatch();
     useEffect(() => dispatch(fetchResponses()), []);
     const responses = useSelector((state) => state.responses);
@@ -14,31 +15,31 @@ const Doughnut = () => {
         let detractor=0
         let promoter = 0;
         let passive = 0
-        
+
           for (let i=0; i< responses.length;  i++){
             if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
           };
-        
+
         let PR= promoter++
         let DE = detractor++
         let PA = passive++
         const All = PR+DE+PA
         const NPScore= Math.round((PR-DE)/All * 100)
-        
+
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
         return (
            <div>
                 <Box  sx={{ marginLeft: 40}}>
-                   <Typography  
-                       variant="h4" 
-                       component="div" 
+                   <Typography
+                       variant="h4"
+                       component="div"
                        sx={{m:3}}>
                        NET PROMOTER SCORE
                    </Typography>
                </Box>
-           
+
            <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                <Plot
                  data={[
@@ -55,22 +56,22 @@ const Doughnut = () => {
                      rotation:90,
                      marker:{
                        colors: [
-                         '#E26060', 
-                         '#F3C934', 
-                         '#52A569'],   
+                         '#E26060',
+                         '#F3C934',
+                         '#52A569'],
                      },
                      textposition: 'inside',
                      hole: .4,
                      type: 'pie',
                      textfont:{'size': [25, 25, 25], 'color': ['#FFFFFF', '#FFFFFF', '#FFFFFF']}
-                     
+
                    },
                    ]}
                    layout={ { height:400, width: 450, title: 'Net Promoter Score',
                    font:{
                      size: 20,
                    },
-                   
+
                    legend: {
                      x: 0,
                      y: -0.1,
@@ -92,7 +93,7 @@ const Doughnut = () => {
                        text:`NPS`,
                        x: 0.5,
                        y: 0.6,
-                      
+
                      },
                        {
                          font: {
@@ -104,11 +105,11 @@ const Doughnut = () => {
                          y: 0.45
                        },
                    ]
-                 }} 
+                 }}
                />
                <Responses/>
            </Box>
          </div>
-       );     
+       );
 };
 export default Doughnut;

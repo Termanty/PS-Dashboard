@@ -53,7 +53,7 @@ function Leftbar() {
         </Link>
       </Box>
       {/* <Toolbar /> */}
-      <Divider color="gray" />
+      <Divider color="gray" variant="soft"/>
       <List>
         <ListItem button key="Home" component={Link} to="/">
           <ListItemIcon>

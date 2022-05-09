@@ -1,3 +1,6 @@
+
+import React from "react";
+import { Typography } from "@mui/material";
 import React from 'react';
 import HomeCard from './homePage/HomeCard';
 import {items} from './homePage/HomePageData';
@@ -5,9 +8,19 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper'
 
+
 function Home() {
 
   return (
+
+    <div>
+      <Typography variant="h3" component="h2">
+        Welcome to the PHZ Dashboard
+      </Typography>
+      <Typography variant="h5">Let's get started!</Typography>
+    </div>
+  );
+
     <>
     <div style={{textAlign: "center", marginBottom: "50px",marginTop: "50px"}}>
       <div style={{fontSize: "3.5rem",fontWeight: "bold"}}>Net Promoter Score Evaluation</div>
@@ -33,6 +46,7 @@ function Home() {
     </Paper>
     </>
   )
+
 }
 
-export default Home
+export default Home;

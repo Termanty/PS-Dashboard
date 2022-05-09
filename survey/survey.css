@@ -7,6 +7,7 @@
 
 .body {
   background-color: #B6C8DD;
+  font-family: 'Nunito', sans-serif;
 }
 
 .main_wrapper {
@@ -16,6 +17,160 @@
   align-items: center;
   justify-content: center;
 }
+
+/*bg-modal*/
+.bg-modal{
+  width: 100%;
+  height: 100%;
+/*   background-color:rgba(0,0,0,0.7); */
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.modal-content {
+  width: 900px;
+  height: 700px;
+  /* background-color: #B6C8DD; */
+  background-color: #162639;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.thanks_container {
+  width: 600px;
+  height: 380px;
+  border-radius: 10px;
+  background-color: #717fa53c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+ 
+}
+
+/********************hearts container****************************/
+.hearts_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem; 
+  text-align: center;
+}
+
+.square {
+  position: absolute;
+  bottom: -100px;
+  background-color: #f2f2f2;
+  animation: boxes 3s infinite ease-in-out;
+  background: url("./heart.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  animation: hearts 5s infinite ease-in-out;
+
+}
+
+.square:nth-child(1) {
+  width: 60px;
+  height: 50px;
+  left: 7%;
+  animation-delay: 1s;
+}
+
+.square:nth-child(2) {
+  width: 60px;
+  height: 50px;
+  left: 16%;
+  animation-delay: 5s;
+}
+
+.square:nth-child(3) {
+  width: 60px;
+  height: 50px;
+  left: 25%;
+  animation-delay: 2s;
+}
+
+.square:nth-child(4) {
+  width: 60px;
+  height: 50px;
+  left: 36%;
+  animation-delay: 3s;
+}
+
+.square:nth-child(5) {
+  width: 60px;
+  height: 50px;
+  left: 49%;
+  animation-delay: 4s;
+}
+
+.square:nth-child(6) {
+  width: 60px;
+  height: 50px;
+  left: 55%;
+  animation-delay: 2.2s;
+}
+
+.square:nth-child(7) {
+  width: 60px;
+  height: 50px;
+  left: 70%;
+  animation-delay: 3.5s;
+}
+
+
+
+@keyframes hearts {
+  0% {
+    bottom: -100px
+  }
+
+  50% {
+    bottom: 50%;
+    opacity: 0;
+  }
+
+  100% {
+    bottom: 100%;
+    transform: rotate(180deg);
+    opacity: 1;
+
+  }
+}
+
+
+#thanks_close {
+  position: absolute;
+  color:#FF5C02;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  top:10px;
+  right: 30px;
+  transform: rotate(45deg);
+  cursor: pointer;
+ }
 
 main {
   margin: 50px auto;
@@ -27,6 +182,19 @@ main {
   padding: 0px;
   background-color: rgb(22, 38, 57);
   border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#close {
+    float: right;
+    margin-right: 20px;
+    color: #FF5C02;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    top: 10px;
+    right: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
 }
 h2 {
   margin:50px;
@@ -66,10 +234,20 @@ button {
 
 button:hover {
   color: #162639;
+  border: 1.5px solid white;
+  font-size: larger;
 }
 
+button:focus {
+  color: #162639;
+  border: 1.5px solid white;
+  font-size: larger;
+  filter: brightness(150%);
+}
 
-
+#save{
+  border: none;
+}
 
 .save {
   background-color: #CE672E;
@@ -81,10 +259,18 @@ button:hover {
   font-size: 20px;
   cursor: pointer;
   border: none;
+ 
 }
+
 .save:hover {
   background-color: #FF5C02;
   color: white;
+}
+
+.save .overlay {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
 }
 textarea {
   background-color: white;
@@ -199,6 +385,8 @@ textarea:focus{
 .responsive-section {
   display: none;
 }
+
+
 
 /***************************mobile version***********************/
 @media only screen and (max-width: 428px) {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "./phz-logo-small.svg";
+import { ReactComponent as Logo } from "./logo.svg";
+//import Logo from "./logo.svg";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -41,11 +42,15 @@ function Leftbar() {
         sx={{
           height: "92px",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "left",
+          alignItems: "left",
+          paddingLeft: "57px",
+          paddingTop: "7px"
         }}
       >
+        <Link to="/">
         <Logo />
+        </Link>
       </Box>
       {/* <Toolbar /> */}
       <Divider color="gray" variant="soft"/>
@@ -63,7 +68,7 @@ function Leftbar() {
           </ListItemIcon>
           <ListItemText primary="My Surveys" />
         </ListItem>
-
+        <Divider color="gray" />
         <ListItem button key="Data" component={Link} to="/Data">
           <ListItemIcon>
             <DataThresholdingRoundedIcon

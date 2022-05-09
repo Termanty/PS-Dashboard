@@ -14,13 +14,14 @@ const Data = lazy(() => import("./components/pages/Data"));
 
 function App() {
   return (
-    <div className="app">
+  <div>
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/MySurveys" element={<MySurveys />} />
+              <Route path="/:name" element={<Data />} />
               <Route path="/CreateNewSurvey" element={<CreateNewSurvey />} />
               <Route path="/Data" element={<Data />} />
               <Route  path="login" element={<Login/>} />
@@ -29,7 +30,7 @@ function App() {
           </Layout>
         </Suspense>
       </Router>
-    </div>
+</div>
   );
 }
 

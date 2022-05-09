@@ -5,22 +5,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import Plot from 'react-plotly.js';
 import Responses from './Responses';
+import moment from "moment";
 
-const Doughnut = (dateTo, dateFrom) => {
-  console.log(dateTo, dateFrom);
+const Doughnut = (props) => {
+  console.log(`dateFrom:${moment(props.dateFrom).utc().format('DD-MM-YYYY')}`, props.dateTo);
+
+  let dateFromValue = moment(props.dateFrom).utc().format('DD-MM-YYYY');
+  let dateToValue = moment(props.dateTo).utc().format('DD-MM-YYYY')
+  console.log(dateToValue)
+
     const dispatch = useDispatch();
     useEffect(() => dispatch(fetchResponses()), []);
     const responses = useSelector((state) => state.responses);
+    console.log(responses)
 
         let detractor=0
         let promoter = 0;
         let passive = 0
 
           for (let i=0; i< responses.length;  i++){
+            if(props.dateFrom==="" || props.dateTo===""){
             if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
-          };
+            
+          } else {
+            let respDate= moment(responses[i].created_at).utc().format('DD-MM-YYYY');
+            console.log(respDate)
+            if(respDate >=dateFromValue || respDate <=dateToValue){
+              if (responses[i].score>=9) promoter++;
+            if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
+            if(responses[i].score <=6) detractor++;
+            }
+          }
+        };
 
         let PR= promoter++
         let DE = detractor++

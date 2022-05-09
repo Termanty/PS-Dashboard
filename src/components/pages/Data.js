@@ -13,7 +13,8 @@ const [dateTo, setDateTo] = useState(new Date());
 
   return (
     <div>
-       <div style={{margin: 50}}>
+       <div>
+       {/* <div style={{margin: 50}}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DesktopDatePicker
           label="From"
@@ -38,11 +39,19 @@ const [dateTo, setDateTo] = useState(new Date());
           <TextField {...params} />
           </React.Fragment>}
         />
-  </LocalizationProvider>
+  </LocalizationProvider> */}
+    </div>
+  <div>
+  <div style={{margin: 50, display: "inline-flex", columnGap: 20}}>
+  <input type="date" id="dateFrom" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
+  <input type="date" id="dateTo" value={dateTo} onChange={(e) =>
+  setDateTo(e.target.value)}
+   />
   </div>
-      <Doughnut/>
+  </div>
+      <Doughnut dateTo={dateTo} dateFrom={dateFrom}/>
       <NPSChart/> 
-      <ResponsesChart dateTo={dateTo} dateFrom={dateFrom}/>
+      <ResponsesChart/>
   </div>
   );
 }

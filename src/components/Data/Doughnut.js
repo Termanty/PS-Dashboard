@@ -11,13 +11,19 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Button } from '@mui/material';
 import moment from 'moment';
 
-import { PieChart, Pie, Sector, Label, Tooltip, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Label, Tooltip, Cell, ResponsiveContainer, Legend,fontSize } from 'recharts';
 import { Chart } from "chart.js";
 Chart.register(ChartDataLabels);
 
 
 
-const DoughnutNPS = () => {
+const DoughnutNPS = (props) => {
+  console.log(`dateFrom:${moment(props.dateFrom).utc().format('DD-MM-YYYY')}`, props.dateTo);
+
+  let dateFromValue = moment(props.dateFrom).utc().format('DD-MM-YYYY');
+  let dateToValue = moment(props.dateTo).utc().format('DD-MM-YYYY')
+  console.log(dateToValue)
+
     const dispatch = useDispatch();
     useEffect(() => dispatch(fetchResponses()), []);
     const responses = useSelector((state) => state.responses);
@@ -27,9 +33,19 @@ const DoughnutNPS = () => {
         let passive = 0
         
           for (let i=0; i< responses.length;  i++){
+            if(props.dateFrom==="" || props.dateTo===""){
             if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
+          }else{
+            let respDate= moment(responses[i].created_at).utc().format('DD-MM-YYYY');
+            console.log(respDate)
+            if(respDate >=dateFromValue || respDate <=dateToValue){
+              if (responses[i].score>=9) promoter++;
+            if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
+            if(responses[i].score <=6) detractor++;
+            }
+          }
           };
         
         let PR= promoter++
@@ -39,11 +55,7 @@ const DoughnutNPS = () => {
         const NPScore= Math.round((PR-DE)/All * 100)
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
-
-
-        //
         
-        //
         const data=[
           {name: 'Detractors', value: DE},
           {name:'Passives', value: PA},    
@@ -72,6 +84,7 @@ const DoughnutNPS = () => {
        <text
          x={x}
          y={y}
+         tick={{fontSize: 30}}
          fill="white"
          textAnchor={x > cx ? "start" : "end"}
          dominantBaseline="central"
@@ -120,8 +133,9 @@ const DoughnutNPS = () => {
 					>
 						{data.map((entry, index) => (
 							<Cell
-								key={`cell-${index}`}
+								// key={`cell-${index}`}
 								fill={COLORS[index % COLORS.length]}
+                onClick={() => alert(data[index].value) }
 							/>
 						))}
 
@@ -139,33 +153,8 @@ const DoughnutNPS = () => {
         <Legend />
 				</PieChart>
         </ResponsiveContainer>
-      
-		
             </Box>
              <Responses/>
-               {/* <div className="nps-categories">
-					<div className="nps-one-category">
-						<div className="nps-category-circle-promoters"></div>
-						<div className="sum-number">{PR}</div>
-						<div className="nps-category-name">Promoters</div>
-					</div>
-					<div className="nps-one-category">
-						<div className="nps-category-circle-passives"></div>
-						<div className="sum-number">{PA}</div>
-						<div className="nps-category-name">Passives</div>
-					</div>
-					<div className="nps-one-category">
-						<div className="nps-category-circle-detractors"></div>
-						<div className="sum-number">{DE}</div>
-						<div className="nps-category-name">Detractors</div>
-					</div>
-					<div className="nps-category-line"></div>
-					<div className="nps-one-category">
-						<div className="nps-category-circle-total"></div>
-						<div className="sum-number">{NPS}</div>
-						<div className="nps-category-name">Total responses</div>
-					</div>
-				</div> */}
            </Box>
          </div>
        );     

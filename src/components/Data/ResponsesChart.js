@@ -5,9 +5,9 @@ import { Bar } from "react-chartjs-2";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import moment from "moment";
 import 'chartjs-adapter-date-fns';
-import { format} from 'date-fns'
+import moment from "moment";
+
 
 
 // function reducer(accumulator, day) {
@@ -45,7 +45,16 @@ const BarChart = ({chartData, options}) => {
     );
   }; 
 
-function ResponsesChart() {
+function ResponsesChart(dateTo, dateFrom) {
+ 
+// dateTo.setTime()
+
+// console.log(dateTo.setTime())
+
+  // console.log(d.toUTCString())
+  // console.log((dateFrom).format('MMM d, yy'))
+
+
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchResponses()), []);
   const responses = useSelector((state) => state.responses);

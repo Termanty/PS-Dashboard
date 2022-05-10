@@ -6,12 +6,10 @@ import { fetchResponses } from "../../store/responses/reducer";
 import Plot from 'react-plotly.js';
 import Responses from './Responses';
 import moment from "moment";
-
+import 'chartjs-adapter-date-fns';
 const Doughnut = (props) => {
-  console.log(`dateFrom:${moment(props.dateFrom).utc().format('DD-MM-YYYY')}`, props.dateTo);
-
-  let dateFromValue = moment(props.dateFrom).utc().format('DD-MM-YYYY');
-  let dateToValue = moment(props.dateTo).utc().format('DD-MM-YYYY')
+  let dateFromValue = moment(props.dateFrom).format('YYYY-MM-DD');
+  let dateToValue = moment(props.dateTo).format('YYYY-MM-DD');
   console.log(dateToValue)
 
     const dispatch = useDispatch();
@@ -19,26 +17,28 @@ const Doughnut = (props) => {
     const responses = useSelector((state) => state.responses);
     console.log(responses)
 
-        let detractor=0
+        let detractor = 0
         let promoter = 0;
         let passive = 0
 
-          for (let i=0; i< responses.length;  i++){
-            if(props.dateFrom==="" || props.dateTo===""){
+        if(props.dateFrom==="" || props.dateTo===""){
+          for (let i = 0; i < responses.length;  i++){
             if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
-            
-          } else {
-            let respDate= moment(responses[i].created_at).utc().format('DD-MM-YYYY');
-            console.log(respDate)
-            if(respDate >=dateFromValue || respDate <=dateToValue){
+          }
+        }
+           else {
+            for (let i = 0; i < responses.length;  i++){
+            let respDate=moment(responses[i].created_at).format('YYYY-MM-DD');
+            if(respDate >= dateFromValue && respDate <= dateToValue){
+              console.log(respDate)
               if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
             }
           }
-        };
+          }
 
         let PR= promoter++
         let DE = detractor++

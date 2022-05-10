@@ -10,7 +10,7 @@ import TablePagination from '@mui/material/TablePagination';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from '../../store/responses/reducer';
-import moment from 'moment';
+import 'chartjs-adapter-date-fns';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -32,7 +32,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-const Responses = () => {
+const Responses = ({selection}) => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -47,10 +47,19 @@ const Responses = () => {
     };
 
   useEffect(() => dispatch(fetchResponses()), []);
-  const responses = useSelector((state) => state.responses);
-
+  let responses = useSelector((state) => state.responses);
+  
+    if(selection ==='Promoters'){
+      responses=responses.filter(res=>(res.score>=9))
+    }
+    if(selection ==='Passives'){
+      responses=responses.filter(res=>(res.score>=7 && res.score<=8 ))
+    }
+    if(selection ==='Detractors'){
+      responses=responses.filter(res=>(res.score<=6))
+    }
     return (
-        <Paper sx={{ width: '30%', overflow: 'hidden', marginTop:"20px", marginLeft:"10px" }}>
+        <Paper sx={{ width: '40%', overflow: 'hidden', marginTop:"20px", marginLeft:"-80px" }}>
             <TableContainer>
             <Table  aria-label="customized table">
                 <TableHead>
@@ -64,7 +73,7 @@ const Responses = () => {
                 {responses.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((response) => (
                     <StyledTableRow key={response.id} >
                     <StyledTableCell align="center">
-                        {moment(response.created_at).utc().format('DD-MM-YYYY')}
+                        {new Date(response.created_at).toDateString()}
                     </StyledTableCell>
                     <StyledTableCell align="center">{response.score}</StyledTableCell>
                     <StyledTableCell align="left">{response.comment}</StyledTableCell>

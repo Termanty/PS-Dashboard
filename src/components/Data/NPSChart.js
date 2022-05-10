@@ -5,16 +5,19 @@ import { Chart as ChartJS } from "chart.js/auto";
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import moment from "moment";
 
 function reducer(accumulator, day) {
-  if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
-  accumulator[moment(day).format('DD-MM-YYYY')]++;
+  if (!accumulator[day]) accumulator[day] = 0;
+  accumulator[day]++;
   return accumulator;
 }
+
 function toTime(response) {
   const time = response.created_at
-  return time.slice(0, 10).split("-").join("");
+  const parts = time.slice(0, -1).split('T');
+  const dateTime = parts[0]
+  return dateTime;
+
 }
 
 const LineChart = ({chartData, options}) => {
@@ -31,11 +34,6 @@ function NPSChart() {
   const responsesPerDay = responses.map(toTime).reduce(reducer, {});
   const detractorsPerDay = responses
     .filter((r) => (r.score <=6 )) 
-    .map(toTime)
-    .reduce(reducer, {});
-
-  const passivesPerDay = responses
-    .filter((r) => r.score >= 7 && r.score <= 8)
     .map(toTime)
     .reduce(reducer, {});
 
@@ -62,7 +60,7 @@ const data = {
             type: 'line',
             order: 0,
             borderColor:" #532469",
-            tension:0.5,
+            tension:0.2,
             hoverPointRadius:1,
         }, 
         {
@@ -74,7 +72,7 @@ const data = {
           order: 1,
           showLine:false,
           pointRadius:0,
-          tension:0.5,
+          tension:0.7,
         },  
     ],
 }
@@ -122,6 +120,13 @@ const data = {
       scales: {
 
         x: {
+          type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            day: 'MMM d, yy'
+          }
+        },
           stacked: true,
           grid: {
             drawBorder: false, 
@@ -165,7 +170,7 @@ const data = {
   };
 
   return (
-   <Paper elevation={0}>
+   <Paper elevation={0} sx={{ width: '40%',  marginLeft:"80px" }}>
         <Box sx={{ 
           boxShadow: 10,
           width:700, 

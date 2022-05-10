@@ -1,17 +1,13 @@
 import {Box} from '@mui/material';
 import {Typography} from '@mui/material';
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import Plot from 'react-plotly.js';
 import Responses from './Responses';
-import { Doughnut } from 'react-chartjs-2';
 import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Button } from '@mui/material';
 import moment from 'moment';
-
-import { PieChart, Pie, Label, Tooltip, Cell, ResponsiveContainer, Legend,fontSize } from 'recharts';
+import { PieChart, Pie, Label, Tooltip, Cell, ResponsiveContainer, Legend } from 'recharts';
 import { Chart } from "chart.js";
 Chart.register(ChartDataLabels);
 
@@ -24,6 +20,7 @@ const DoughnutNPS = (props) => {
   let dateToValue = moment(props.dateTo).utc().format('DD-MM-YYYY')
   console.log(dateToValue)
 
+  const [selection, setSelection]=useState('all');
     const dispatch = useDispatch();
     useEffect(() => dispatch(fetchResponses()), []);
     const responses = useSelector((state) => state.responses);
@@ -61,20 +58,10 @@ const DoughnutNPS = (props) => {
           {name:'Passives', value: PA},    
           {name:'Promoters', value: PR}
         ]
-        const COLORS = [ 
-          '#E26060',
-          '#F3C934',
-          '#52A569',];
+        const COLORS = [ '#E26060','#F3C934','#52A569',];
         
-
         const RADIAN = Math.PI / 180;
-        const renderCustomizedLabel = ({
-         cx,
-         cy,
-         midAngle,
-         innerRadius,
-         outerRadius,
-         index
+        const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,index
          }) => {
              const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
              const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -84,7 +71,7 @@ const DoughnutNPS = (props) => {
        <text
          x={x}
          y={y}
-         tick={{fontSize: 30}}
+         fontSize='25' 
          fill="white"
          textAnchor={x > cx ? "start" : "end"}
          dominantBaseline="central"
@@ -93,70 +80,67 @@ const DoughnutNPS = (props) => {
        </text>
        );
        };
+      return (
+          <Box>
+              <Box  sx={{ marginLeft: 40}}>
+                <Typography  
+                  variant="h4" 
+                  component="div" 
+                  sx={{m:0}}>
+                  NET PROMOTER SCORE
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+                <Box 
+                  sx={{color:"black", 
+                  width:700, 
+                  justifyContent: 'center',
+                  marginTop:0,
+                  marginLeft:-15,
+                  paddingRight:-25
+                }} 
+                  align = "center" 
+                  variant="h3"  
+                  component="div" 
+                >
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart >
+                <Pie
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomizedLabel}
+                  innerRadius={70}
+                  outerRadius={150}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                      onClick={() => setSelection(data[index].name) }
+                    />
+                  ))}
 
-
-
-        return (
-           <div>
-                <Box  sx={{ marginLeft: 40}}>
-                   <Typography  
-                       variant="h4" 
-                       component="div" 
-                       sx={{m:3}}>
-                       NET PROMOTER SCORE
-                   </Typography>
-               </Box>
-               <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-               <Box 
-                sx={{color:"black", 
-                 width:400, 
-                justifyContent: 'center',
-                marginTop:1,
-                marginRight:2
-              }} 
-                align = "center" 
-                variant="h3"  
-                component="div" 
-               >
-                     <ResponsiveContainer width="100%" height="100%">
-              <PieChart width={400} height={400}>
-					<Pie
-						data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-						innerRadius={80}
-						outerRadius={150}
-						paddingAngle={2}
-						dataKey="value"
-					>
-						{data.map((entry, index) => (
-							<Cell
-								// key={`cell-${index}`}
-								fill={COLORS[index % COLORS.length]}
-                onClick={() => alert(data[index].value) }
-							/>
-						))}
-
-						<Label
-							value={NPS}
-							position="center"
-							fontFamily="Rubik"
-							fontWeight={500}
-							fontSize="2rem"
-              
-							fill="#2E282A"
-						/>
-					</Pie>
-				<Tooltip/>
-        <Legend />
-				</PieChart>
-        </ResponsiveContainer>
-            </Box>
-             <Responses/>
-           </Box>
-         </div>
+                  <Label
+                    value={NPS}
+                    position="center"
+                    fontFamily="Rubik"
+                    fontWeight={500}
+                    fontSize='40' 
+                    fill="#2E282A"
+                  />
+					      </Pie>
+				        <Tooltip/>
+                <Legend position="top"/>
+				      </PieChart>
+            </ResponsiveContainer>
+          </Box>
+             <Responses selection={selection}/>
+        </Box>
+       </Box> 
        );     
 };
 export default DoughnutNPS;

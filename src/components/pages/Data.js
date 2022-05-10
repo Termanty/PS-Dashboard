@@ -7,8 +7,8 @@ import { Paper } from "@mui/material";
 
 
 function Data(props) {
-  const [dateFrom, setDateFrom] = useState(new Date);
-  const [dateTo, setDateTo] = useState(new Date());
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
 
   return (
     <Paper elevation={0}>
@@ -23,8 +23,8 @@ function Data(props) {
         </Grid>
 
       </Box>
-      <Doughnut dateTo={dateTo} dateFrom={dateFrom}/>
-      <NPSChart/> 
+      <Doughnut dateFrom={dateFrom} dateTo={dateTo}/>
+      <NPSChart dateFrom={dateFrom} dateTo={dateTo}/> 
       <ResponsesChart dateTo={dateTo} dateFrom={dateFrom}/>
   </Paper>
   );

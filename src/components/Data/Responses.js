@@ -32,7 +32,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-const Responses = () => {
+const Responses = ({selection}) => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -47,7 +47,18 @@ const Responses = () => {
     };
 
   useEffect(() => dispatch(fetchResponses()), []);
-  const responses = useSelector((state) => state.responses);
+  let responses = useSelector((state) => state.responses);
+
+  if(selection ==='Promoters'){
+    responses=responses.filter(res=>(res.score>=9))
+  }
+  if(selection ==='Passives'){
+    responses=responses.filter(res=>(res.score>=7 && res.score<=8 ))
+  }
+  if(selection ==='Detractors'){
+    responses=responses.filter(res=>(res.score<=6))
+  }
+
 
     return (
         <Paper sx={{ width: '30%', overflow: 'hidden', marginTop:"20px", marginLeft:"10px" }}>

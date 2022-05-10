@@ -1,6 +1,6 @@
 import {Box} from '@mui/material';
 import {Typography} from '@mui/material';
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import Responses from './Responses';
@@ -8,7 +8,7 @@ import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import moment from 'moment';
 import 'chartjs-adapter-date-fns';
-import { format} from 'date-fns'
+import { addSeconds, format} from 'date-fns'
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
@@ -17,48 +17,19 @@ import { Chart } from "chart.js";
 Chart.register(ChartDataLabels);
 
 
-function reducer(accumulator, day) {
-  if (!accumulator[day]) accumulator[day] = 0;
-  accumulator[day]++;
-  return accumulator;
-}
-function toTime(response) {
-  const time = response.created_at
-  const parts = time.slice(0, -1).split('T');
-  const dateTime = parts[0]
-  return dateTime;
- 
-}
+
 
 const DoughnutNPS = (props) => {
   
   console.log(`dateFrom:${(props.dateFrom)}`, props.dateTo);
-
-
   let dateFromValue =(props.dateFrom);
   let dateToValue =(props.dateTo)
   console.log(dateToValue)
+  const [selection, setSelection]=useState('all');
 
     const dispatch = useDispatch();
     useEffect(() => dispatch(fetchResponses()), []);
     const responses = useSelector((state) => state.responses);
-
-  const responsesPerDay = responses.map(toTime).reduce(reducer, {});
-  const detractorsPerDay = responses
-    .filter((r) => r.score <= 6)
-    .map(toTime)
-    .reduce(reducer, {});
-
-  const passivesPerDay = responses
-    .filter((r) => r.score >= 7 && r.score <= 8)
-    .map(toTime)
-    .reduce(reducer, {});
-  const promotersPerDay = responses
-    .filter((r) => r.score >= 9)
-    .map(toTime)
-    .reduce(reducer, {});
-
-
         let detractor=0
         let promoter = 0;
         let passive = 0
@@ -85,43 +56,27 @@ const DoughnutNPS = (props) => {
         let PA = passive++
         const All = PR+DE+PA
         const NPScore= Math.round((PR-DE)/All * 100)
-        
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
-        
-
-
-        const DetractorV= {text:responses.filter(scores=>scores.score<=6).map((res)=>(
-          <li key={res.score}>   
+        const DetractorV= responses.slice(scores=>scores.score<=6).map((res)=>(
+          <li key={res.id}>   
               <p>{res.score}</p>  
+              <p>{res.comment}</p>  
           </li> 
-      ))}
+      ))
       console.log(<li>{DetractorV}</li>)
-
-  
-
-        const data=[
-          {name: 'Detractors', value: DE, day:DetractorV},
-          {name:'Passives', value: PA, day:passivesPerDay},    
-          {name:'Promoters', value: PR, day:promotersPerDay}
+      const data=[
+          {name: 'Detractors', value: DE},
+          {name:'Passives', value: PA},    
+          {name:'Promoters', value: PR}
         ]
-        const COLORS = [ 
-          '#E26060',
-          '#F3C934',
-          '#52A569',];
+      const COLORS = [ '#E26060','#F3C934', '#52A569',];
         
 
         const RADIAN = Math.PI / 180;
-        const renderCustomizedLabel = ({
-         cx,
-         cy,
-         midAngle,
-         innerRadius,
-         outerRadius,
-         index
-         }) => {
-             const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-             const x = cx + radius * Math.cos(-midAngle * RADIAN);
-             const y = cy + radius * Math.sin(-midAngle * RADIAN);
+        const renderCustomizedLabel = ({ cx,cy, midAngle,innerRadius,outerRadius,index}) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
        
        return (
        <text
@@ -136,8 +91,6 @@ const DoughnutNPS = (props) => {
        </text>
        );
        };
-
-
 
         return (
            <div>
@@ -178,8 +131,9 @@ const DoughnutNPS = (props) => {
 							<Cell
 								key={`cell-${index}`}
 								fill={COLORS[index % COLORS.length]}
-                onClick={() => console.log(data[index].day)  }
+                onClick={() => setSelection(data[index].name)  }
 							/>
+              
 						))}
 
 						<Label
@@ -197,7 +151,7 @@ const DoughnutNPS = (props) => {
 				</PieChart>
         </ResponsiveContainer>
             </Box>
-             <Responses/>
+             <Responses selection={selection}/>
            </Box>
          </div>
        );     

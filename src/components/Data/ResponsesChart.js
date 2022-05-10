@@ -5,16 +5,7 @@ import { Bar } from "react-chartjs-2";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import moment from "moment";
 import 'chartjs-adapter-date-fns';
-import { format} from 'date-fns'
-
-
-// function reducer(accumulator, day) {
-//   if (!accumulator[moment(day).format('DD-MM-YYYY')]) accumulator[moment(day).format('DD-MM-YYYY')] = 0;
-//   accumulator[moment(day).format('DD-MM-YYYY')]++;
-//   return accumulator;
-// }
 
 function reducer(accumulator, day) {
   if (!accumulator[day]) accumulator[day] = 0;
@@ -22,21 +13,12 @@ function reducer(accumulator, day) {
   return accumulator;
 }
 
-// function reducer(accumulator, day) {
-//   if (!accumulator[(format(day, 'DD/MM/YYYY'))]) accumulator[(format(day, 'DD/MM/YYYY'))] = 0;
-//   accumulator[(format(day, 'DD/MM/YYYY'))]++;
-//   return accumulator;
-// }
-
-
 function toTime(response) {
   const time = response.created_at
   const parts = time.slice(0, -1).split('T');
   const dateTime = parts[0]
   return dateTime;
 
-  // return time.slice(0, 10).split("-").join("");
- 
 }
 
 const BarChart = ({chartData, options}) => {
@@ -45,7 +27,13 @@ const BarChart = ({chartData, options}) => {
     );
   }; 
 
-function ResponsesChart() {
+function ResponsesChart(props) {
+  console.log(`dateFrom:${(props.dateFrom)}`, props.dateTo);
+
+  let dateFromValue = (props.dateFrom);
+  let dateToValue = (props.dateTo)
+  console.log(dateToValue)
+
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchResponses()), []);
   const responses = useSelector((state) => state.responses);
@@ -182,7 +170,7 @@ function ResponsesChart() {
   };
 
   return (
-   <Paper elevation={0}>
+   <Paper elevation={0} sx={{ width: '40%',  marginLeft:"80px" }}>
         <Box sx={{ 
           boxShadow: 10,
           width:700, 

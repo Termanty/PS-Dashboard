@@ -1,12 +1,27 @@
 import {Box} from '@mui/material';
 import {Typography} from '@mui/material';
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import Plot from 'react-plotly.js';
 import Responses from './Responses';
+import "chartjs-plugin-datalabels";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import moment from 'moment';
+import { PieChart, Pie, Label, Tooltip, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { Chart } from "chart.js";
+import 'chartjs-adapter-date-fns';
+Chart.register(ChartDataLabels);
 
-const Doughnut = () => {
+
+
+const DoughnutNPS = (props) => {
+  console.log(`dateFrom:${new Date(props.dateFrom).toDateString()}`, props.dateTo);
+
+  let dateFromValue = new Date(props.dateFrom).toDateString();
+  let dateToValue = new Date(props.dateTo).toDateString()
+  console.log(dateToValue)
+
+  const [selection, setSelection]=useState('all');
     const dispatch = useDispatch();
     useEffect(() => dispatch(fetchResponses()), []);
     const responses = useSelector((state) => state.responses);
@@ -16,9 +31,19 @@ const Doughnut = () => {
         let passive = 0
         
           for (let i=0; i< responses.length;  i++){
+            if(props.dateFrom==="" || props.dateTo===""){
             if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
+          }else{
+            let respDate= new Date(responses[i].created_at).toDateString();
+            console.log(respDate)
+            if(respDate >=dateFromValue || respDate <=dateToValue){
+              if (responses[i].score>=9) promoter++;
+            if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
+            if(responses[i].score <=6) detractor++;
+            }
+          }
           };
         
         let PR= promoter++
@@ -28,87 +53,97 @@ const Doughnut = () => {
         const NPScore= Math.round((PR-DE)/All * 100)
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
-        return (
-           <div>
-                <Box  sx={{ marginLeft: 40}}>
-                   <Typography  
-                       variant="h4" 
-                       component="div" 
-                       sx={{m:3}}>
-                       NET PROMOTER SCORE
-                   </Typography>
-               </Box>
-           
-           <Box sx={{ display: 'flex', flexDirection: 'row'}}>
-               <Plot
-                 data={[
-                   {
-                     values: [DE,PA, PR],
-                     labels: ["Detractors", "Passives", "Promoters"],
-                     text: [
-                       [` <a href="/MySurveys"  target="_top"> 😞 </a>`],
-                       [`<a href="/"  target="_top">😀</a>`],
-                       [`<a href="/data"  target="_top">😁</a>`]],
-                     domain: {column: 0},
-                     hoverinfo: 'label+percent',
-                     textinfo:'value',
-                     rotation:90,
-                     marker:{
-                       colors: [
-                         '#E26060', 
-                         '#F3C934', 
-                         '#52A569'],   
-                     },
-                     textposition: 'inside',
-                     hole: .4,
-                     type: 'pie',
-                     textfont:{'size': [25, 25, 25], 'color': ['#FFFFFF', '#FFFFFF', '#FFFFFF']}
-                     
-                   },
-                   ]}
-                   layout={ { height:400, width: 450, title: 'Net Promoter Score',
-                   font:{
-                     size: 20,
-                   },
-                   
-                   legend: {
-                     x: 0,
-                     y: -0.1,
-                     orientation: "h",
-                     font:{
-                       size: 10,
-                     },
-                     bgcolor: '#C4C4C4',
-                     bordercolor: '#FFFFFF',
-                     borderwidth: 1,
-                     borderpad:20,
-                   },
-                   annotations: [
-                     {
-                       font: {
-                         size: 20
-                       },
-                       showarrow: false,
-                       text:`NPS`,
-                       x: 0.5,
-                       y: 0.6,
-                      
-                     },
-                       {
-                         font: {
-                           size: 30
-                         },
-                         showarrow: false,
-                         text:`${NPS}`,
-                         x: 0.5,
-                         y: 0.45
-                       },
-                   ]
-                 }} 
-               />
-               <Responses/>
-           </Box>
-         </div>
+        
+        const data=[
+          {name: 'Detractors', value: DE},
+          {name:'Passives', value: PA},    
+          {name:'Promoters', value: PR}
+        ]
+        const COLORS = [ '#E26060','#F3C934','#52A569',];
+        
+        const RADIAN = Math.PI / 180;
+        const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,index
+         }) => {
+             const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+             const x = cx + radius * Math.cos(-midAngle * RADIAN);
+             const y = cy + radius * Math.sin(-midAngle * RADIAN);
+       
+       return (
+       <text
+         x={x}
+         y={y}
+         fontSize='25' 
+         fill="white"
+         textAnchor={x > cx ? "start" : "end"}
+         dominantBaseline="central"
+       >
+         {data[index].value}
+       </text>
+       );
+       };
+      return (
+          <Box>
+              <Box  sx={{ marginLeft: 40}}>
+                <Typography  
+                  variant="h4" 
+                  component="div" 
+                  sx={{m:0}}>
+                  NET PROMOTER SCORE
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+                <Box 
+                  sx={{color:"black", 
+                  width:700, 
+                  justifyContent: 'center',
+                  marginTop:0,
+                  marginLeft:-15,
+                  paddingRight:-25
+                }} 
+                  align = "center" 
+                  variant="h3"  
+                  component="div" 
+                >
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart >
+                <Pie
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomizedLabel}
+                  innerRadius={70}
+                  outerRadius={150}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                      onClick={() => setSelection(data[index].name) }
+                    />
+                  ))}
+
+                  <Label
+                    value={NPS}
+                    position="center"
+                    fontFamily="Rubik"
+                    fontWeight={500}
+                    fontSize='40' 
+                    fill="#2E282A"
+                  />
+					      </Pie>
+				        <Tooltip/>
+                <Legend 
+                height={36}
+                color={'#000000'}/>
+				      </PieChart>
+            </ResponsiveContainer>
+          </Box>
+             <Responses selection={selection}/>
+        </Box>
+       </Box> 
        );     
 };
-export default Doughnut;
+export default DoughnutNPS;

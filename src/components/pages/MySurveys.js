@@ -23,7 +23,7 @@ function Dashboard() {
   dispatch(fetchSurveys()), []);
 
   const surveys = useSelector((state) => state.surveys);
-  console.log(surveys);
+  
 
   const surveysList = surveys.map((survey) => {
     return (

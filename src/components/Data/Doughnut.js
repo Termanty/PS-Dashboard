@@ -9,15 +9,16 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import moment from 'moment';
 import { PieChart, Pie, Label, Tooltip, Cell, ResponsiveContainer, Legend } from 'recharts';
 import { Chart } from "chart.js";
+import 'chartjs-adapter-date-fns';
 Chart.register(ChartDataLabels);
 
 
 
 const DoughnutNPS = (props) => {
-  console.log(`dateFrom:${moment(props.dateFrom).utc().format('DD-MM-YYYY')}`, props.dateTo);
+  console.log(`dateFrom:${new Date(props.dateFrom).toDateString()}`, props.dateTo);
 
-  let dateFromValue = moment(props.dateFrom).utc().format('DD-MM-YYYY');
-  let dateToValue = moment(props.dateTo).utc().format('DD-MM-YYYY')
+  let dateFromValue = new Date(props.dateFrom).toDateString();
+  let dateToValue = new Date(props.dateTo).toDateString()
   console.log(dateToValue)
 
   const [selection, setSelection]=useState('all');
@@ -35,7 +36,7 @@ const DoughnutNPS = (props) => {
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
           }else{
-            let respDate= moment(responses[i].created_at).utc().format('DD-MM-YYYY');
+            let respDate= new Date(responses[i].created_at).toDateString();
             console.log(respDate)
             if(respDate >=dateFromValue || respDate <=dateToValue){
               if (responses[i].score>=9) promoter++;
@@ -134,7 +135,9 @@ const DoughnutNPS = (props) => {
                   />
 					      </Pie>
 				        <Tooltip/>
-                <Legend position="top"/>
+                <Legend 
+                height={36}
+                color={'#000000'}/>
 				      </PieChart>
             </ResponsiveContainer>
           </Box>

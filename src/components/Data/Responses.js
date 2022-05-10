@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import TableSortLabel from '@mui/material/TableSortLabel';
 import TablePagination from '@mui/material/TablePagination';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,10 +33,94 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
+// For descending and ascending order
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getComparator(order, orderBy) {
+  return order === 'asc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort(array, comparator) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
+// For ending title
+const headCells = [
+  {
+    id: 'created_at',
+    label: 'Date Created',
+    
+  },
+  {
+    id: 'score',
+    label: 'Score',
+  },
+  {
+    id: 'comment',
+    label: 'Comments',
+  },
+  
+];
+
+function EnhancedTableHead(props) {
+  const {  order, orderBy,  onRequestSort } =
+    props;
+  const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+  };
+
+
+  return (
+    <TableHead>
+      <TableRow>
+        
+        {headCells.map((headCell) => (
+          <TableCell
+          sx={{backgroundColor:'gray', fontSize:25}}
+          align="center"
+          key={headCell.id}
+          >
+          
+            <TableSortLabel 
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'desc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              {headCell.label}
+            </TableSortLabel>
+         
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+}
+// end here
+
 const Responses = ({selection}) => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    const [order, setOrder] = React.useState('asc');
+    const [orderBy, setOrderBy] = React.useState('created_at');
     
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -44,6 +129,11 @@ const Responses = ({selection}) => {
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
+    };
+    const handleRequestSort = (event, property) => {
+      const isAsc = orderBy === property && order === 'desc';
+      setOrder(isAsc ? 'asc' : 'desc');
+      setOrderBy(property);
     };
 
   useEffect(() => dispatch(fetchResponses()), []);
@@ -61,16 +151,15 @@ const Responses = ({selection}) => {
     return (
         <Paper sx={{ width: '40%', overflow: 'hidden', marginTop:"20px", marginLeft:"-80px" }}>
             <TableContainer>
-            <Table  aria-label="customized table">
-                <TableHead>
-                <TableRow >
-                    <StyledTableCell align="center">Date Created</StyledTableCell>
-                    <StyledTableCell align="center">Score</StyledTableCell>
-                    <StyledTableCell align="left">Comments</StyledTableCell>
-                </TableRow>
-                </TableHead>
+            <Table >
+                <EnhancedTableHead
+                  order={order}
+                  orderBy={orderBy}
+                  onRequestSort={handleRequestSort}
+                />
+                
                 <TableBody >
-                {responses.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((response) => (
+                {stableSort(responses, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((response) => (
                     <StyledTableRow key={response.id} >
                     <StyledTableCell align="center">
                         {new Date(response.created_at).toDateString()}

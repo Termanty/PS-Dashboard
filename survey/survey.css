@@ -6,23 +6,23 @@
 }
 
 .body {
-  background-color: #B6C8DD;
-  font-family: 'Nunito', sans-serif;
+  background-color: white;
+  font-family: "Nunito", sans-serif;
 }
 
 .main_wrapper {
   height: 100vh;
-  background-color: #B6C8DD;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /*bg-modal*/
-.bg-modal{
+.bg-modal {
   width: 100%;
   height: 100%;
-/*   background-color:rgba(0,0,0,0.7); */
+  /*   background-color: rgba(0, 0, 0, 0.7); */
   background: rgba(255, 255, 255, 0.3);
   position: absolute;
   top: 0;
@@ -35,7 +35,7 @@
 .modal-content {
   width: 900px;
   height: 700px;
-  /* background-color: #B6C8DD; */
+  /*  background-color: #b6c8dd; */
   background-color: #162639;
   display: flex;
   align-items: center;
@@ -45,18 +45,20 @@
 }
 
 .thanks_container {
-  width: 600px;
-  height: 380px;
+  width: 900px;
+  height: 700px;
+  /* width: 600px;
+  height: 380px; */
   border-radius: 10px;
-  background-color: #717fa53c;
+  /*  background-color: #717fa53c; */
+  /*  background-color: #717fa500; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 60px;
-  font-family: 'Nunito', sans-serif;
+  /*  margin-top: 60px; */
+  font-family: "Nunito", sans-serif;
   font-size: 2rem;
- 
 }
 
 /********************hearts container****************************/
@@ -65,6 +67,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  opacity: 1;
 }
 
 .text {
@@ -73,78 +76,81 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   text-align: center;
 }
 
 .square {
   position: absolute;
   bottom: -100px;
-  background-color: #f2f2f2;
+  /*  background-color: #f2f2f2; */
   animation: boxes 3s infinite ease-in-out;
-  background: url("./heart.png");
+  background: url("./heart_filled.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  animation: hearts 5s infinite ease-in-out;
-
+  animation: hearts 2.5s infinite ease-in-out;
 }
 
 .square:nth-child(1) {
-  width: 60px;
+  width: 65px;
   height: 50px;
   left: 7%;
   animation-delay: 1s;
 }
 
 .square:nth-child(2) {
-  width: 60px;
+  width: 65px;
   height: 50px;
   left: 16%;
-  animation-delay: 5s;
+  animation-delay: 0.2s;
 }
 
 .square:nth-child(3) {
-  width: 60px;
+  width: 65px;
   height: 50px;
   left: 25%;
-  animation-delay: 2s;
+  animation-delay: 0.9s;
 }
 
 .square:nth-child(4) {
-  width: 60px;
+  width: 65px;
   height: 50px;
   left: 36%;
-  animation-delay: 3s;
+  animation-delay: 0.5s;
 }
 
 .square:nth-child(5) {
-  width: 60px;
+  width: 65px;
   height: 50px;
   left: 49%;
-  animation-delay: 4s;
+  animation-delay: 1s;
 }
 
 .square:nth-child(6) {
   width: 60px;
   height: 50px;
   left: 55%;
-  animation-delay: 2.2s;
+  animation-delay: 1.5s;
 }
 
 .square:nth-child(7) {
-  width: 60px;
+  width: 65px;
   height: 50px;
   left: 70%;
-  animation-delay: 3.5s;
+  animation-delay: 0.5s;
 }
-
-
+.square:nth-child(8) {
+  width: 65px;
+  height: 50px;
+  left: 80%;
+  animation-delay: 1s;
+}
 
 @keyframes hearts {
   0% {
-    bottom: -100px
+    bottom: -100px;
   }
 
   50% {
@@ -156,21 +162,20 @@
     bottom: 100%;
     transform: rotate(180deg);
     opacity: 1;
-
   }
 }
 
-
 #thanks_close {
   position: absolute;
-  color:#FF5C02;
+  color: #ff6363;
   font-size: 2.5rem;
   font-weight: bolder;
-  top:10px;
+  top: 10px;
   right: 30px;
   transform: rotate(45deg);
   cursor: pointer;
- }
+  z-index: 100;
+}
 
 main {
   margin: 50px auto;
@@ -181,23 +186,24 @@ main {
   height: 700px;
   padding: 0px;
   background-color: rgb(22, 38, 57);
+
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #close {
-    float: right;
-    margin-right: 20px;
-    color: #FF5C02;
-    font-size: 2.5rem;
-    font-weight: bolder;
-    top: 10px;
-    right: 30px;
-    transform: rotate(45deg);
-    cursor: pointer;
+  float: right;
+  margin-right: 20px;
+  color: #ff5c02;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  top: 10px;
+  right: 30px;
+  transform: rotate(45deg);
+  cursor: pointer;
 }
 h2 {
-  margin:50px;
+  margin: 50px;
   color: white;
 }
 
@@ -206,12 +212,11 @@ h2 {
 }
 
 p {
-  color:white;
+  color: white;
   margin: 20px;
-
 }
 
-.likely{
+.likely {
   font-size: smaller;
   margin-bottom: 40px;
 }
@@ -234,23 +239,23 @@ button {
 
 button:hover {
   color: #162639;
-  border: 1.5px solid white;
+  /*  border: 1.5px solid white; */
   font-size: larger;
 }
 
 button:focus {
   color: #162639;
-  border: 1.5px solid white;
   font-size: larger;
+  font-weight: bold;
   filter: brightness(150%);
 }
 
-#save{
+#save {
   border: none;
 }
 
 .save {
-  background-color: #CE672E;
+  background-color: #d05715;
   width: 80px;
   height: 50px;
   border-radius: 5px;
@@ -259,12 +264,17 @@ button:focus {
   font-size: 20px;
   cursor: pointer;
   border: none;
- 
 }
 
 .save:hover {
-  background-color: #FF5C02;
+  background-color: #ff5c02;
   color: white;
+  filter: none;
+}
+
+.save:focus {
+  font-weight: initial;
+  background-color: #ff5c02;
 }
 
 .save .overlay {
@@ -283,8 +293,8 @@ textarea {
   border-radius: 5px;
 }
 
-textarea:focus{
-  outline:none;
+textarea:focus {
+  outline: none;
 }
 
 .bt0 {
@@ -386,8 +396,6 @@ textarea:focus{
   display: none;
 }
 
-
-
 /***************************mobile version***********************/
 @media only screen and (max-width: 428px) {
   main {
@@ -401,13 +409,76 @@ textarea:focus{
     width: 100%;
     height: 926px;
   }
+
+  /*bg-modal*/
+  .bg-modal {
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal-content {
+    width: 428px;
+    height: 926px;
+    padding: 0;
+  }
+
+  .thanks_container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 1.5rem;
+  }
+
+  .square:nth-child(1) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(2) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(3) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(4) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(5) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(6) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(7) {
+    width: 45px;
+    height: 35px;
+  }
+  .square:nth-child(8) {
+    width: 45px;
+    height: 35px;
+  }
+
+  #close {
+    position: relative;
+    left: 190px;
+  }
   h2 {
     font-size: 1.2rem;
-    font-weight:normal;
+    font-weight: normal;
     display: inline-block;
   }
 
-  .likely{
+  .likely {
     font-size: 1rem;
     margin-top: -10px;
     margin-bottom: 0px;
@@ -425,12 +496,12 @@ textarea:focus{
   }
   .circle {
     font-size: large;
-    color: #FF5C02;
+    color: #ff5c02;
     width: 160px;
     height: 160px;
     border-radius: 50%;
     border: 1px solid gainsboro;
-    background-color: #B6C8DD;
+    background-color: #b6c8dd;
   }
   .circle {
     font-size: 90px;
@@ -445,13 +516,12 @@ textarea:focus{
     height: 23px;
     border: 1px solid gainsboro;
     cursor: pointer;
-    border:none;
+    border: none;
     border-radius: 20px;
   }
   #rating {
     display: block;
     margin: 10px auto 0 auto;
-   
   }
   p {
     font-size: 18px;
@@ -465,6 +535,12 @@ textarea:focus{
     align-self: center;
     border-radius: 13px;
     font-size: 1.2rem;
+    font-weight: normal;
+  }
+
+  .save:focus {
+    font-weight: thin;
+    background-color: #ff5c02;
   }
 
   textarea {
@@ -477,155 +553,99 @@ textarea:focus{
     padding: 8px;
   }
 
-  textarea:focus{
+  textarea:focus {
     outline: none;
-    border-color: #B6C8DD;
-    box-shadow: 0 0 2px #719ECE;
+    border-color: #b6c8dd;
+    box-shadow: 0 0 2px #719ece;
   }
 }
-/********************between ipad and mobile*************************/
-@media only screen
-  and (min-device-width: 428.1px)
-  and (max-device-width: 767.9px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    main {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-    }
-    main {
-      width: 100%;
-      height: 926px;
-    }
-    h2 {
-      font-size: 1.2rem;
-      font-weight:normal;
-      display: inline-block;
-    }
-  
-    .likely{
-      font-size: 1rem;
-      margin-top: -10px;
-      margin-bottom: 0px;
-    }
-    .responsive-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      margin: 50px auto;
-      margin-top: 40px;
-      width: 100%;
-      clear: both;
-      margin-bottom: 50px;
-    }
-    .circle {
-      font-size: large;
-      color: #FF5C02;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 1px solid gainsboro;
-      background-color: #B6C8DD;
-    }
-    .circle {
-      font-size: 90px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    #rating {
-      width: 300px;
-      height: 23px;
-      border: 1px solid gainsboro;
-      cursor: pointer;
-      border:none;
-      border-radius: 20px;
-    }
-    #rating {
-      display: block;
-      margin: 10px auto 0 auto;
-     
-    }
-    p {
-      font-size: 18px;
-    }
-  
-    .progress {
-      display: none;
-    }
-    .save {
-      margin: 30px;
-      align-self: center;
-      border-radius: 13px;
-      font-size: 1.2rem;
-    }
-  
-    textarea {
-      width: 300px;
-      align-self: center;
-      border: solid 1.5px #b6c8dd;
-      background-color: #162639;
-      border-radius: 13px;
-      color: white;
-      padding: 8px;
-    }
-  
-    textarea:focus{
-      outline: none;
-      border-color: #B6C8DD;
-      box-shadow: 0 0 2px #719ECE;
-    }
 
-  }
 /********************ipad version*************************/
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    main {
-      margin: 50px auto;
-      font-family: "Nunito", sans-serif;
-      width: 650px;
-      height: 720px;
-      padding: 0px;
-     }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  main {
+    margin: 50px auto;
+    font-family: "Nunito", sans-serif;
+    width: 600px;
+  }
 
-    h3 {
-      margin: 50px;
-      font-size: 12px;
-    }
+  /*bg-modal*/
+  .bg-modal {
+    width: 100%;
+    height: 100%;
+  }
 
-    button {
-      margin: 3px;
-      height: 40px;
-      width: 40px;
-    }
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 1.5rem;
+  }
 
-    h3,
-    p,
-    button {
-     font-size: 10px;
-    }
-    p {
-      margin: 25px;
-    }
-    .save {
-      width: 55px;
-      height: 38px;
-      border-radius: 3px;
-      margin: 50px;
-      font-family: sans-serif;
-      font-size: 0.8rem;
-    }
-   
-    textarea {
-      width: 300px;
-      padding: 5px;
-   }
+  .thanks_container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 1.5rem;
+  }
 
-  }/*it should look natural, not zoomed version also with ipad (buttons, font etc)*/
+  .square:nth-child(1) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(2) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(3) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(4) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(5) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(6) {
+    width: 45px;
+    height: 35px;
+  }
+
+  .square:nth-child(7) {
+    width: 45px;
+    height: 35px;
+  }
+  .square:nth-child(8) {
+    width: 45px;
+    height: 35px;
+  }
+
+  h3,
+  p,
+  button {
+    font-size: 13px;
+  }
+  p {
+    margin: 25px;
+  }
+  .save {
+    width: 55px;
+    height: 38px;
+    border-radius: 3px;
+    margin: 50px;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+  }
+
+  textarea {
+    width: 300px;
+    padding: 5px;
+  }
+}

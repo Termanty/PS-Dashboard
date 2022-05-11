@@ -114,7 +114,7 @@ function EnhancedTableHead(props) {
 }
 // end here
 
-const Responses = ({selection}) => {
+const Responses = ({selection, dateFrom , dateTo}) => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -139,6 +139,13 @@ const Responses = ({selection}) => {
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
   
+  if (dateFrom !== "" && dateTo !=="") {
+    responses=responses.filter(res=>{
+      return (res.created_at >= dateFrom && res.created_at <=dateTo)
+    })
+  }
+
+
     if(selection ==='Promoters'){
       responses=responses.filter(res=>(res.score>=9))
     }

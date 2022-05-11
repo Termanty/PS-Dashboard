@@ -14,15 +14,15 @@ Chart.register(ChartDataLabels);
 
 
 
-const DoughnutNPS = (props) => {
+const DoughnutNPS = ({dateFrom, dateTo}) => {
   // console.log(`dateFrom:${new Date(props.dateFrom).toDateString()}`, props.dateTo);
 
   // let dateFromValue = new Date(props.dateFrom).toDateString();
   // let dateToValue = new Date(props.dateTo).toDateString()
   // console.log(dateToValue)
 
-  let dateFromValue = moment(props.dateFrom).format('YYYY-MM-DD');
-  let dateToValue = moment(props.dateTo).format('YYYY-MM-DD');
+  let dateFromValue = moment(dateFrom).format('YYYY-MM-DD');
+  let dateToValue = moment(dateTo).format('YYYY-MM-DD');
   console.log(dateToValue)
 
   const [selection, setSelection]=useState('all');
@@ -34,7 +34,7 @@ const DoughnutNPS = (props) => {
         let promoter = 0;
         let passive = 0
         
-        if(props.dateFrom==="" || props.dateTo===""){
+        if(dateFrom==="" || dateTo===""){
           for (let i = 0; i < responses.length;  i++){
             if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
@@ -148,7 +148,7 @@ const DoughnutNPS = (props) => {
 				      </PieChart>
             </ResponsiveContainer>
           </Box>
-             <Responses selection={selection}/>
+             <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection}/>
         </Box>
        </Box> 
        );     

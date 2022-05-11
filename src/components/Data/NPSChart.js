@@ -1,10 +1,11 @@
-import { Box } from "@mui/material";
-import { Paper } from "@mui/material";
+import { Box , Paper} from "@mui/material";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
+import ResponsesChart from "./ResponsesChart";
+
 
 function reducer(accumulator, day) {
   if (!accumulator[day]) accumulator[day] = 0;
@@ -22,14 +23,15 @@ function toTime(response) {
 
 const LineChart = ({chartData, options}) => {
     return (
-        < Line data={chartData} options={options}/>
+        < Line data={chartData} options={options} />
     );
   };
 
-function NPSChart() {
+function NPSChart({dateFrom , dateTo}) {
+  
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchResponses()), []);
-  const responses = useSelector((state) => state.responses);
+ let responses = useSelector((state) => state.responses);
 
   const responsesPerDay = responses.map(toTime).reduce(reducer, {});
   const detractorsPerDay = responses
@@ -134,8 +136,8 @@ const data = {
         },
           offset: true,
           ticks: {
-            maxRotation: 30,
-            minRotation: 30,
+            maxRotation: 35,
+            minRotation: 35,
             font: {
               size: 15,
           },
@@ -161,28 +163,36 @@ const data = {
           beginAtZero: true,
           ticks: {
             font: {
-              size: 15,
+              size: 20,
           },
         },
       }
     },
    responsive:true
   };
-
+  if (dateFrom !== "" && dateTo !=="") {
+    responses=responses.filter(res=>{
+      return (res.created_at >= dateFrom && res.created_at <= dateTo)
+    })
+  }
   return (
-   <Paper elevation={0} sx={{ width: '40%',  marginLeft:"80px" }}>
-        <Box sx={{ 
-          boxShadow: 10,
-          width:700, 
-          border: "solid 1px #282c34",
-          borderRadius:2,
-          margin:10}}>
-          <LineChart 
+    <Box sx={{ 
+        boxShadow: 10,
+        width:'80%', 
+        border: "solid 1px #282c34",
+        borderRadius:2,
+        margin:5,
+    }}>
+        <LineChart 
           chartData={data}
           options={options}
-          />
-        </Box>
-    </Paper>
+          dateFrom={dateFrom} dateTo={dateTo}
+        />
+    </Box>
+
+     
+   
+  
   );
 }
 

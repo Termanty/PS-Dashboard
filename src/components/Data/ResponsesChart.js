@@ -27,16 +27,16 @@ const BarChart = ({chartData, options}) => {
     );
   }; 
 
-function ResponsesChart(props) {
-  console.log(`dateFrom:${(props.dateFrom)}`, props.dateTo);
+function ResponsesChart({ dateFrom , dateTo}) {
+  // console.log(`dateFrom:${(props.dateFrom)}`, props.dateTo);
 
-  let dateFromValue = (props.dateFrom);
-  let dateToValue = (props.dateTo)
-  console.log(dateToValue)
+  // let dateFromValue = (props.dateFrom);
+  // let dateToValue = (props.dateTo)
+  // console.log(dateToValue)
 
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchResponses()), []);
-  const responses = useSelector((state) => state.responses);
+  let responses = useSelector((state) => state.responses);
 
   const responsesPerDay = responses.map(toTime).reduce(reducer, {});
   const detractorsPerDay = responses
@@ -52,6 +52,12 @@ function ResponsesChart(props) {
     .filter((r) => r.score >= 9)
     .map(toTime)
     .reduce(reducer, {});
+
+    if (dateFrom !== "" && dateTo !=="") {
+      responses=responses.filter(res=>{
+        return (res.created_at >= dateFrom && res.created_at <= dateTo)
+      })
+    }
 
   const data = {
     labels: "",
@@ -154,14 +160,14 @@ function ResponsesChart(props) {
             display: true,
             text: 'Response',
             font: {
-              size: 15,
+              size: 20,
           },
           },
           stacked: true,
           beginAtZero: true,
           ticks: {
             font: {
-              size: 10,
+              size: 20,
           },
         },
       }
@@ -170,23 +176,19 @@ function ResponsesChart(props) {
   };
 
   return (
-   <Paper elevation={0} sx={{ width: '40%',  marginLeft:"80px" }}>
-        <Box sx={{ 
-          boxShadow: 10,
-          width:700, 
-          border: "solid 1px #162639",
-          borderRadius:1,
-          margin:10}}>
-        <Box>
-        <Box>
-          <BarChart 
+    <Box sx={{ 
+        boxShadow: 10,
+        width:'80%', 
+        border: "solid 1px #162639",
+        borderRadius:1,
+        margin:5}}>
+        <BarChart 
           chartData={data}
           options={options}
-          />
-        </Box>
-          </Box>
-        </Box>
-    </Paper>
+          dateTo={dateTo} 
+          dateFrom={dateFrom}
+        />
+    </Box>
   );
 }
 export default ResponsesChart;

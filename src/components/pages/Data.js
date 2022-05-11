@@ -11,10 +11,10 @@ function Data(props) {
   const [dateTo, setDateTo] = useState("");
 
   return (
-    <Paper elevation={0}>
+   <>
       <Box>
-        <Grid item container xs={10} alignItems="flex-end" direction="column" sx={{marginTop:5}}>
-            <Grid  sx={{margin: 0, display: "inline-flex", columnGap: 0}}>
+        <Grid  container xs={8} alignItems="flex-end" direction="column" sx={{marginTop:5}}>
+            <Grid  sx={{margin: 0, display: "inline-flex", columnGap: 1}}>
               <input placeholder="Start Date" type="date" id="dateFrom" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
               <input type="date" id="dateTo" value={dateTo} onChange={(e) =>
               setDateTo(e.target.value)}
@@ -24,9 +24,13 @@ function Data(props) {
 
       </Box>
       <Doughnut dateFrom={dateFrom} dateTo={dateTo}/>
-      <NPSChart dateFrom={dateFrom} dateTo={dateTo}/> 
-      <ResponsesChart dateTo={dateTo} dateFrom={dateFrom}/>
-  </Paper>
+      <Box>
+       <NPSChart dateFrom={dateFrom} dateTo={dateTo}/> 
+      </Box>
+      <Box>
+      <ResponsesChart dateFrom={dateFrom} dateTo={dateTo}/>
+      </Box>
+      </>
   );
 }
 

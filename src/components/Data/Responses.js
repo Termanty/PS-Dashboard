@@ -11,25 +11,30 @@ import TablePagination from '@mui/material/TablePagination';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from '../../store/responses/reducer';
+import { Typography } from '@mui/material';
 import 'chartjs-adapter-date-fns';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.text.disabled,
-      color: theme.palette.common.white,
-      fontSize:20
-    },
+    // [`&.${tableCellClasses.head}`]: {
+    //   backgroundColor: theme.palette.text.disabled,
+    //   color: theme.palette.common.white,
+    //   fontSize:20
+    // },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 15,
+      color:"#000000"
     },
   }));
   
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
+      // backgroundColor: theme.palette.action.hover,
+      backgroundColor:"gray",
+      
     },
     '&:last-child td, &:last-child th': {
-      border: 0,
+      border: 5,
+    
     },
   }));
 
@@ -93,14 +98,12 @@ function EnhancedTableHead(props) {
         
         {headCells.map((headCell) => (
           <TableCell
-          sx={{backgroundColor:'gray', fontSize:25}}
+          sx={{backgroundColor:'#25384F', fontSize:25, color:"white"}}
           align="center"
           key={headCell.id}
           >
           
-            <TableSortLabel 
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'desc'}
+          <TableSortLabel 
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
@@ -119,8 +122,8 @@ const Responses = ({selection, dateFrom , dateTo}) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('created_at');
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('created_at');
     
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -141,7 +144,7 @@ const Responses = ({selection, dateFrom , dateTo}) => {
   
   if (dateFrom !== "" && dateTo !=="") {
     responses=responses.filter(res=>{
-      return (res.created_at >= dateFrom && res.created_at <=dateTo)
+      return (res.created_at >= dateFrom && res.created_at <= dateTo)
     })
   }
 
@@ -156,7 +159,9 @@ const Responses = ({selection, dateFrom , dateTo}) => {
       responses=responses.filter(res=>(res.score<=6))
     }
     return (
-        <Paper sx={{ width: '40%', overflow: 'hidden', marginTop:"20px", marginLeft:"-80px" }}>
+      
+        <Paper sx={{ width: '60%', overflow: 'hidden', marginTop:"10px",  }}>
+          <Typography sx={{m:2}}>Click on each arc to view the results</Typography>
             <TableContainer>
             <Table >
                 <EnhancedTableHead
@@ -188,7 +193,9 @@ const Responses = ({selection, dateFrom , dateTo}) => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
         />
-    </Paper>);
+      
+   </Paper>
+    );
 };
 
 export default Responses;

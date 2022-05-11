@@ -11,9 +11,8 @@ import Button from '@mui/material/Button';
 import { PagesStyle } from './Pages.style.js';
 import moment from "moment";
 import OutlinedInput from '@mui/material/OutlinedInput';
-import Paper from "@mui/material/Paper";
-import SearchIcon from '@mui/icons-material/Search';
-import InputAdornment from "@mui/material/InputAdornment";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 
 function Dashboard() {
   const [searchedSurvey, setSearchedSurvey] = useState("");
@@ -23,7 +22,6 @@ function Dashboard() {
   dispatch(fetchSurveys()), []);
 
   const surveys = useSelector((state) => state.surveys);
-  
 
   const surveysList = surveys.map((survey) => {
     return (
@@ -36,18 +34,16 @@ function Dashboard() {
 
   return (
     <>
-    <Paper sx={{height: 100, justifyContent: "center", textAlign: "center", paddingTop: 3}}>
-      <>
+   <Box sx={{padding: 5}}>
     <OutlinedInput
       type = "text"
        placeholder = "Search survey name..."
-       sx = {{ width: 500, height: 55, backgroundColor: "#F3F6F9", borderRadius: 5 }}
+       sx = {{ width: 400, height: 62, backgroundColor: "#F3F6F9", borderRadius: 5 }}
        onChange = {(e)=>setSearchedSurvey(e.target.value)}
       />
-      </>
-      </Paper>
-      <Paper>
-    <TableContainer sx={{marginTop:10}}>
+      </Box>
+      <Divider />
+    <TableContainer sx={{marginTop:5}}>
       <Table sx={{minWidth: 650}}>
       <TableHead>
         <TableRow>
@@ -124,7 +120,6 @@ function Dashboard() {
         </TableBody>
       </Table>
     </TableContainer>
-    </Paper>
     </>
   );
 }

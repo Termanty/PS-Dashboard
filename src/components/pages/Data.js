@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Box, Grid, TextField} from "@mui/material";
 
 
-function Data(props) {
+function Data() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
 
@@ -28,8 +28,8 @@ function Data(props) {
                 color="success" 
                 helperText="select end Date"  
                 type="date" 
-                id="dateTo" v
-                alue={dateTo} onChange={(e) =>
+                id="dateTo" 
+                value={dateTo} onChange={(e) =>
                 setDateTo(e.target.value)}
               />
             </Grid>

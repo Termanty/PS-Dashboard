@@ -22,26 +22,25 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 15,
-      color:"#000000"
+      border: "solid 1px #ED6930",
+      borderRight: 0
     },
   }));
   
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-      // backgroundColor: theme.palette.action.hover,
-      backgroundColor:"gray",
-      color:"#FFFFFF"
-      
+     backgroundColor: theme.palette.action.hover,
+      border:3,
+      borderColor:theme.palette.common.primary
     },
     '&:nth-of-type(even)': {
-      // backgroundColor: theme.palette.action.hover,
-      backgroundColor:"white",
-      color:"#FFFFFF"
-      
+      backgroundColor: theme.palette.common.gray,
+      color: theme.palette.common.white,
     },
     '&:last-child td, &:last-child th': {
-      border: 5,
-    
+      border: "solid 1px #ED6930",
+      borderRight: 0
+
     },
   }));
 
@@ -105,7 +104,7 @@ function EnhancedTableHead(props) {
         
         {headCells.map((headCell) => (
           <TableCell
-          sx={{backgroundColor:'#25384F', fontSize:25, color:"white"}}
+          sx={{ fontSize:25,  borderColor:"#ED6930",}}
           align="center"
           key={headCell.id}
           >
@@ -166,18 +165,19 @@ const Responses = ({selection, dateFrom , dateTo}) => {
       responses=responses.filter(res=>(res.score<=6))
     }
     return (
-      
-        <Paper sx={{ width: '60%', overflow: 'hidden', marginTop:"10px" }}>
-          <Typography sx={{m:2, bgcolor:"white"}}>Click on each arc to view the results</Typography>
+      <Paper sx={{ width: '60%', overflow: 'hidden', marginTop:"10px",  border: "solid 2px #ED6930", borderRadius:3}}>
+       
+          <Typography sx={{m:2, bgcolor:"white",}}>Click on each arc to view the results</Typography>
+          <Paper sx={{ margin:"0px",  borderTop: "solid 1px #ED6930", borderRadius:"0px"}}>
             <TableContainer>
-            <Table >
+            <Table>
                 <EnhancedTableHead
                   order={order}
                   orderBy={orderBy}
                   onRequestSort={handleRequestSort}
                 />
                 
-                <TableBody >
+                <TableBody sx={{ }}>
                 {stableSort(responses, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((response) => (
                     <StyledTableRow key={response.id} >
                     <StyledTableCell align="center">
@@ -200,7 +200,7 @@ const Responses = ({selection, dateFrom , dateTo}) => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      
+      </Paper>
    </Paper>
     );
 };

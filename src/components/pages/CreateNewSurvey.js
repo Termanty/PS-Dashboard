@@ -4,6 +4,7 @@ function CreateNewSurvey() {
   return (
     <div>
       This is new survey...
+      
     </div>
   )
 }

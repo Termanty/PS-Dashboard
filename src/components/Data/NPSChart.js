@@ -33,6 +33,11 @@ function NPSChart({dateFrom , dateTo}) {
   useEffect(() => dispatch(fetchResponses()), []);
  let responses = useSelector((state) => state.responses);
 
+ if (dateFrom !== "" && dateTo !=="") {
+  responses=responses.filter(res=>{
+    return (res.created_at >= dateFrom && res.created_at <= dateTo)
+  })
+}
   const responsesPerDay = responses.map(toTime).reduce(reducer, {});
   const detractorsPerDay = responses
     .filter((r) => (r.score <=6 )) 
@@ -170,11 +175,7 @@ const data = {
     },
    responsive:true
   };
-  // if (dateFrom !== "" && dateTo !=="") {
-  //   responses=responses.filter(res=>{
-  //     return (res.created_at >= dateFrom && res.created_at <= dateTo)
-  //   })
-  // }
+
   return (
     <Box sx={{ 
         boxShadow: 10,
@@ -186,7 +187,7 @@ const data = {
         <LineChart 
           chartData={data}
           options={options}
-          // dateFrom={dateFrom} dateTo={dateTo}
+          dateFrom={dateFrom} dateTo={dateTo}
         />
     </Box>
 

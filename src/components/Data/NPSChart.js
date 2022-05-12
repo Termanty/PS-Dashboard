@@ -4,7 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import ResponsesChart from "./ResponsesChart";
+
 
 
 function reducer(accumulator, day) {
@@ -170,11 +170,11 @@ const data = {
     },
    responsive:true
   };
-  if (dateFrom !== "" && dateTo !=="") {
-    responses=responses.filter(res=>{
-      return (res.created_at >= dateFrom && res.created_at <= dateTo)
-    })
-  }
+  // if (dateFrom !== "" && dateTo !=="") {
+  //   responses=responses.filter(res=>{
+  //     return (res.created_at >= dateFrom && res.created_at <= dateTo)
+  //   })
+  // }
   return (
     <Box sx={{ 
         boxShadow: 10,
@@ -186,7 +186,7 @@ const data = {
         <LineChart 
           chartData={data}
           options={options}
-          dateFrom={dateFrom} dateTo={dateTo}
+          // dateFrom={dateFrom} dateTo={dateTo}
         />
     </Box>
 

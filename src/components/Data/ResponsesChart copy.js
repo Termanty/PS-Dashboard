@@ -5,21 +5,14 @@ import { Bar } from "react-chartjs-2";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-// import 'chartjs-adapter-date-fns';
-import moment from "moment";
+import 'chartjs-adapter-date-fns';
 
 function reducer(accumulator, day) {
-  if (!accumulator[moment(day).format('YYYY-MM-DD')]) accumulator[moment(day).format('YYYY-MM-DD')] = 0;
-  accumulator[moment(day).format('YYYY-MM-DD')]++;
+  if (!accumulator[day]) accumulator[day] = 0;
+  accumulator[day]++;
   return accumulator;
 }
 
-
-// function reducer(accumulator, day) {
-//   if (!accumulator[day]) accumulator[day] = 0;
-//   accumulator[day]++;
-//   return accumulator;
-// }
 function toTime(response) {
   const time = response.created_at
   const parts = time.slice(0, -1).split('T');
@@ -28,7 +21,7 @@ function toTime(response) {
 
 }
 
-const BarChart = ({chartData, options,}) => {
+const BarChart = ({chartData, options}) => {
     return (
         < Bar data={chartData} options={options}/>
     );
@@ -59,7 +52,13 @@ function ResponsesChart({ dateFrom , dateTo}) {
     .filter((r) => r.score >= 9)
     .map(toTime)
     .reduce(reducer, {});
-    
+
+    if (dateFrom !== "" && dateTo !=="") {
+      responses=responses.filter(res=>{
+        return (res.created_at >= dateFrom && res.created_at <= dateTo)
+      })
+    }
+
   const data = {
     labels: "",
     datasets: [
@@ -176,11 +175,6 @@ function ResponsesChart({ dateFrom , dateTo}) {
    responsive:true
   };
 
-  if (dateFrom !== "" && dateTo !=="") {
-    responses=responses.filter(res=>{
-      return ((new Date(res.created_at).toDateString()) >= dateFrom && (new Date(res.created_at).toDateString() <= dateTo))
-    })
-  }
   return (
     <Box sx={{ 
         boxShadow: 10,

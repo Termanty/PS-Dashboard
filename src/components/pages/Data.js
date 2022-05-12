@@ -2,8 +2,7 @@ import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
 import NPSChart from "../Data/NPSChart";
 import React, { useState } from "react";
-import { Box, Grid} from "@mui/material";
-import { Paper } from "@mui/material";
+import { Box, Grid, TextField} from "@mui/material";
 
 
 function Data(props) {
@@ -13,11 +12,25 @@ function Data(props) {
   return (
    <>
       <Box>
-        <Grid  container xs={8} alignItems="flex-end" direction="column" sx={{marginTop:5}}>
-            <Grid  sx={{margin: 0, display: "inline-flex", columnGap: 1}}>
-              <input placeholder="Start Date" type="date" id="dateFrom" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
-              <input type="date" id="dateTo" value={dateTo} onChange={(e) =>
-              setDateTo(e.target.value)}
+        <Grid  container  alignItems="flex-end" direction="column" sx={{marginTop:5, marginLeft:-32}}>
+            <Grid sx={{margin: 0, display: "inline-flex", columnGap: 1}}>
+              <TextField 
+                inputProps={{style: {fontSize: 20}}}  
+                helperText="select start Date" 
+                color="success" 
+                sx={{ m: 1, width: '200px' }} 
+                type="date"  
+                id="dateFrom" 
+                value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
+              <TextField 
+                inputProps={{style: {fontSize: 20}}} 
+                sx={{ m: 1, width: '200px' }} 
+                color="success" 
+                helperText="select end Date"  
+                type="date" 
+                id="dateTo" v
+                alue={dateTo} onChange={(e) =>
+                setDateTo(e.target.value)}
               />
             </Grid>
         </Grid>

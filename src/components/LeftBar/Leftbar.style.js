@@ -10,6 +10,10 @@ export const leftbarStyle = makeStyles({
     height: "55px",
     borderRadius: "3px",
     marginLeft: "20px",
+    '&:hover': {
+      backgroundColor:"sandybrown",
+      opacity: [0.4, 0.5, 0.7],
+    }
   },
   logoutButton: {
     backgroundColor: "#D66434",
@@ -18,6 +22,10 @@ export const leftbarStyle = makeStyles({
     height: "55px",
     borderRadius: "3px",
     marginLeft: "20px",
+    '&:hover': {
+      backgroundColor: "sandybrown",
+      opacity: [0.4, 0.5, 0,7],
+    }
   },
   headerIndex: {
     overflow: "scoll"

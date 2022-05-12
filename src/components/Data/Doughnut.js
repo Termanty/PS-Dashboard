@@ -1,4 +1,4 @@
-import {Box, Card} from '@mui/material';
+import {Box, Card, Paper} from '@mui/material';
 import {Typography} from '@mui/material';
 import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ Chart.register(ChartDataLabels);
 const DoughnutNPS = ({dateFrom, dateTo}) => {
 
   let dateFromValue = moment(dateFrom).format("");
-  let dateToValue = moment.utc(dateTo).format();
+  let dateToValue = moment.utc(dateTo).format('');
 
   const [selection, setSelection]=useState('all');
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
         }
            else {
             for (let i = 0; i < responses.length;  i++){
-            let respDate=moment(responses[i].created_at).format();
+            let respDate=moment(responses[i].created_at).format('');
             if(respDate >= dateFromValue && respDate <= dateToValue){
               if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
@@ -170,6 +170,7 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
              <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection}/>
         </Box>
        </Box> 
+     
        );     
 };
 export default DoughnutNPS;

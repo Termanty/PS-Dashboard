@@ -16,7 +16,6 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
 
   let dateFromValue = moment(dateFrom).format('YYYY-MM-DD');
   let dateToValue = moment(dateTo).format('YYYY-MM-DD');
-  console.log(dateToValue)
 
   const [selection, setSelection]=useState('all');
     const dispatch = useDispatch();
@@ -38,7 +37,6 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
             for (let i = 0; i < responses.length;  i++){
             let respDate=moment(responses[i].created_at).format('YYYY-MM-DD');
             if(respDate >= dateFromValue && respDate <= dateToValue){
-              console.log(respDate)
               if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;
             if(responses[i].score <=6) detractor++;
@@ -51,7 +49,6 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
         let PA = passive++
         const All = PR+DE+PA
         const NPScore= Math.round((PR-DE)/All * 100)
-        console.log(All)
         
         const NPS = Math.min(Math.max(parseInt(NPScore),-100),100);
         
@@ -88,8 +85,10 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
        };
       return (
           <Box width='85%'
-          sx={{ boxShadow: 10,
-          margin:1}}>
+          sx={{ 
+            boxShadow: 10,
+            margin:1,
+            }}>
               <Box  sx={{ marginLeft: 40}}>
                   <Typography  
                     variant="h4" 
@@ -99,7 +98,7 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
                   </Typography>
                   <Box  sx={{ marginLeft: -30, marginBottom:-5}}>
                     <Card sx={{ maxWidth: 230,   
-                          background:"#E5E5E5", 
+                          background:"#ffffff", 
                           '&:hover': {
                           backgroundColor: 'white'},
                         }} 
@@ -116,7 +115,8 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'row'}}>
                 <Box 
-                  sx={{color:"black", 
+                  sx={{
+                  color:"black",
                   width:400, 
                   marginTop:0,
                   // marginLeft:5,
@@ -134,7 +134,7 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
                   labelLine={false}
                   label={renderCustomizedLabel}
                   innerRadius={80}
-                  outerRadius={160}
+                  outerRadius={150}
                   paddingAngle={5}
                   dataKey="value"
                 >
@@ -153,7 +153,7 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
                     fontFamily="Rubik"
                     fontWeight={300}
                     fontSize='40' 
-                    fill="#2E282A"
+                    fill="#555555"
                     onClick={() => setSelection(data2[index].name)}
                   />))}
                   

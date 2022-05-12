@@ -15,11 +15,11 @@ import { Typography } from '@mui/material';
 import 'chartjs-adapter-date-fns';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    // [`&.${tableCellClasses.head}`]: {
-    //   backgroundColor: theme.palette.text.disabled,
-    //   color: theme.palette.common.white,
-    //   fontSize:20
-    // },
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.text.disabled,
+      color: theme.palette.common.white,
+      fontSize:30,
+    },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 15,
       color:"#000000"
@@ -30,6 +30,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     '&:nth-of-type(odd)': {
       // backgroundColor: theme.palette.action.hover,
       backgroundColor:"gray",
+      color:"#FFFFFF"
+      
+    },
+    '&:nth-of-type(even)': {
+      // backgroundColor: theme.palette.action.hover,
+      backgroundColor:"white",
+      color:"#FFFFFF"
       
     },
     '&:last-child td, &:last-child th': {
@@ -160,8 +167,8 @@ const Responses = ({selection, dateFrom , dateTo}) => {
     }
     return (
       
-        <Paper sx={{ width: '60%', overflow: 'hidden', marginTop:"10px",  }}>
-          <Typography sx={{m:2}}>Click on each arc to view the results</Typography>
+        <Paper sx={{ width: '60%', overflow: 'hidden', marginTop:"10px" }}>
+          <Typography sx={{m:2, bgcolor:"white"}}>Click on each arc to view the results</Typography>
             <TableContainer>
             <Table >
                 <EnhancedTableHead

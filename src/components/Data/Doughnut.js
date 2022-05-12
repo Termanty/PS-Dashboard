@@ -14,8 +14,8 @@ Chart.register(ChartDataLabels);
 
 const DoughnutNPS = ({dateFrom, dateTo}) => {
 
-  let dateFromValue = moment(dateFrom).format('YYYY-MM-DD');
-  let dateToValue = moment(dateTo).format('YYYY-MM-DD');
+  let dateFromValue = moment(dateFrom).format("");
+  let dateToValue = moment.utc(dateTo).format();
 
   const [selection, setSelection]=useState('all');
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const DoughnutNPS = ({dateFrom, dateTo}) => {
         }
            else {
             for (let i = 0; i < responses.length;  i++){
-            let respDate=moment(responses[i].created_at).format('YYYY-MM-DD');
+            let respDate=moment(responses[i].created_at).format();
             if(respDate >= dateFromValue && respDate <= dateToValue){
               if (responses[i].score>=9) promoter++;
             if (responses[i].score>=7 && responses[i].score <=8) ++ passive;

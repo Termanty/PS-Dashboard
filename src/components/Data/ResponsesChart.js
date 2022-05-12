@@ -5,21 +5,14 @@ import { Bar } from "react-chartjs-2";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-// import 'chartjs-adapter-date-fns';
+import 'chartjs-adapter-date-fns';
 import moment from "moment";
 
 function reducer(accumulator, day) {
-  if (!accumulator[moment(day).format('YYYY-MM-DD')]) accumulator[moment(day).format('YYYY-MM-DD')] = 0;
-  accumulator[moment(day).format('YYYY-MM-DD')]++;
+  if (!accumulator[moment(day).format()]) accumulator[moment(day).format()] = 0;
+  accumulator[moment(day).format()]++;
   return accumulator;
 }
-
-
-// function reducer(accumulator, day) {
-//   if (!accumulator[day]) accumulator[day] = 0;
-//   accumulator[day]++;
-//   return accumulator;
-// }
 function toTime(response) {
   const time = response.created_at
   const parts = time.slice(0, -1).split('T');
@@ -69,9 +62,9 @@ function ResponsesChart({ dateFrom , dateTo}) {
         backgroundColor: [
           '#E26060',
         ],
-        categoryPercentage: 0.8,
-        barPercentage: 0.8,
-
+        categoryPercentage: 0.5,
+        barPercentage: 0.5,
+            
       },
       {
         label: "Passives",
@@ -79,8 +72,8 @@ function ResponsesChart({ dateFrom , dateTo}) {
         backgroundColor: [
           '#F3C934',
         ],
-        categoryPercentage: 0.8,
-        barPercentage: 0.8,
+        categoryPercentage: 0.5,
+        barPercentage: 0.5,
       },
       {
         label: "Promoters",
@@ -88,11 +81,11 @@ function ResponsesChart({ dateFrom , dateTo}) {
         backgroundColor: [
           '#52A569',
         ],
-        categoryPercentage: 0.8,
-        barPercentage: 0.8,
+        categoryPercentage: 0.5,
+        barPercentage: 0.5,
       },
       {
-        label: "Total Response",
+        label: "Total Responses",
         data: responsesPerDay,
         backgroundColor: [
           '#162639',
@@ -112,7 +105,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
       plugins: {
         tooltip:{yAlign:'bottom'},
         legend: {
-          position: 'bottom',
+          position: 'top',
           display: true,
           labels:{
             font:{
@@ -128,10 +121,10 @@ function ResponsesChart({ dateFrom , dateTo}) {
           text: 'Response volume',
           align:'center',
           padding:{
-            bottom:20
+            bottom:30
           },
           font:{
-            size:0
+            size:20
           }
         }
     },
@@ -159,7 +152,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
         y: {
           title: {
             display: true,
-            text: 'Response',
+            text: 'Responses',
             font: {
               size: 20,
           },
@@ -176,11 +169,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
    responsive:true
   };
 
-  if (dateFrom !== "" && dateTo !=="") {
-    responses=responses.filter(res=>{
-      return ((new Date(res.created_at).toDateString()) >= dateFrom && (new Date(res.created_at).toDateString() <= dateTo))
-    })
-  }
+ 
   return (
     <Box sx={{
         boxShadow: 10,

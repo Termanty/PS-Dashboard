@@ -32,18 +32,18 @@ const BarChart = ({chartData, options,}) => {
     return (
         < Bar data={chartData} options={options}/>
     );
-  }; 
+  };
 
 function ResponsesChart({ dateFrom , dateTo}) {
-  // console.log(`dateFrom:${(props.dateFrom)}`, props.dateTo);
-
-  // let dateFromValue = (props.dateFrom);
-  // let dateToValue = (props.dateTo)
-  // console.log(dateToValue)
-
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
+
+  if (dateFrom !== "" && dateTo !=="") {
+    responses=responses.filter(res=>{
+      return (res.created_at >= dateFrom && res.created_at <= dateTo)
+    })
+  }
 
   const responsesPerDay = responses.map(toTime).reduce(reducer, {});
   const detractorsPerDay = responses
@@ -59,7 +59,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
     .filter((r) => r.score >= 9)
     .map(toTime)
     .reduce(reducer, {});
-    
+
   const data = {
     labels: "",
     datasets: [
@@ -71,7 +71,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
         ],
         categoryPercentage: 0.8,
         barPercentage: 0.8,
-            
+
       },
       {
         label: "Passives",
@@ -101,8 +101,8 @@ function ResponsesChart({ dateFrom , dateTo}) {
         order: 1,
         tension:0.5
       },
-       
-       
+
+
     ],
     }
     const options = {
@@ -120,7 +120,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
             },
             usePointStyle:true,
             pointStyle: 'circle',
-              
+
           }
         },
         title: {
@@ -135,7 +135,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
           }
         }
     },
-  
+
       scales: {
         x: {
         type: 'time',
@@ -154,7 +154,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
               size: 15,
           },
         },
-      
+
         },
         y: {
           title: {
@@ -182,16 +182,16 @@ function ResponsesChart({ dateFrom , dateTo}) {
     })
   }
   return (
-    <Box sx={{ 
+    <Box sx={{
         boxShadow: 10,
-        width:'80%', 
+        width:'80%',
         border: "solid 1px #162639",
         borderRadius:1,
         margin:5}}>
-        <BarChart 
+        <BarChart
           chartData={data}
           options={options}
-          dateTo={dateTo} 
+          dateTo={dateTo}
           dateFrom={dateFrom}
         />
     </Box>

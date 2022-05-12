@@ -9,8 +9,8 @@ import 'chartjs-adapter-date-fns';
 import moment from "moment";
 
 function reducer(accumulator, day) {
-  if (!accumulator[moment(day).format()]) accumulator[moment(day).format()] = 0;
-  accumulator[moment(day).format()]++;
+  if (!accumulator[moment(day).format('')]) accumulator[moment(day).format('')] = 0;
+  accumulator[moment(day).format('')]++;
   return accumulator;
 }
 function toTime(response) {
@@ -171,11 +171,12 @@ function ResponsesChart({ dateFrom , dateTo}) {
 
  
   return (
-    <Box sx={{
+    <Paper sx={{
         boxShadow: 10,
         width:'80%',
         border: "solid 1px #162639",
         borderRadius:1,
+        bgcolor:"white",
         margin:5}}>
         <BarChart
           chartData={data}
@@ -183,7 +184,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
           dateTo={dateTo}
           dateFrom={dateFrom}
         />
-    </Box>
+    </Paper>
   );
 }
 export default ResponsesChart;

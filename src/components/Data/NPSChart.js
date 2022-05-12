@@ -177,23 +177,20 @@ const data = {
   };
 
   return (
-    <Box sx={{ 
+    <Paper sx={{ 
         boxShadow: 10,
         width:'80%', 
         border: "solid 1px #282c34",
         borderRadius:2,
         margin:5,
+        bgcolor:"white"
     }}>
         <LineChart 
           chartData={data}
           options={options}
           dateFrom={dateFrom} dateTo={dateTo}
         />
-    </Box>
-
-     
-   
-  
+    </Paper>
   );
 }
 

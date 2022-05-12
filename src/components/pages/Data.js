@@ -2,7 +2,7 @@ import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
 import NPSChart from "../Data/NPSChart";
 import React, { useState } from "react";
-import { Box, Grid, TextField} from "@mui/material";
+import { Box, Grid, TextField, Paper} from "@mui/material";
 
 
 function Data() {
@@ -10,9 +10,9 @@ function Data() {
   const [dateTo, setDateTo] = useState("");
 
   return (
-   <>
+   <> 
       <Box>
-        <Grid  container  alignItems="flex-end" direction="column" sx={{marginTop:5, marginLeft:-32}}>
+        <Grid container  alignItems="flex-end" direction="column" sx={{marginTop:5, marginLeft:-32}}>
             <Grid sx={{margin: 0, display: "inline-flex", columnGap: 1}}>
               <TextField 
                 inputProps={{style: {fontSize: 20}}}  

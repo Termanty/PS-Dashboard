@@ -25,7 +25,7 @@ const BarChart = ({chartData, options,}) => {
     return (
         < Bar data={chartData} options={options}/>
     );
-  }; 
+  };
 
 function ResponsesChart({ dateFrom , dateTo}) {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
     .filter((r) => r.score >= 9)
     .map(toTime)
     .reduce(reducer, {});
-    
+
   const data = {
     labels: "",
     datasets: [
@@ -94,8 +94,8 @@ function ResponsesChart({ dateFrom , dateTo}) {
         order: 1,
         tension:0.5
       },
-       
-       
+
+
     ],
     }
     const options = {
@@ -113,7 +113,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
             },
             usePointStyle:true,
             pointStyle: 'circle',
-              
+
           }
         },
         title: {
@@ -128,7 +128,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
           }
         }
     },
-  
+
       scales: {
         x: {
         type: 'time',
@@ -147,7 +147,7 @@ function ResponsesChart({ dateFrom , dateTo}) {
               size: 15,
           },
         },
-      
+
         },
         y: {
           title: {
@@ -171,16 +171,16 @@ function ResponsesChart({ dateFrom , dateTo}) {
 
  
   return (
-    <Box sx={{ 
+    <Box sx={{
         boxShadow: 10,
-        width:'80%', 
+        width:'80%',
         border: "solid 1px #162639",
         borderRadius:1,
         margin:5}}>
-        <BarChart 
+        <BarChart
           chartData={data}
           options={options}
-          dateTo={dateTo} 
+          dateTo={dateTo}
           dateFrom={dateFrom}
         />
     </Box>

@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="survey.css" />
+    <title>survey</title>
+  </head>
+  <body>
+    <div class="body_wrapper">
+      <div class="main_wrapper">
+        <main id="main">
+          <div id="close">+</div>
+          <h2 class="question-header">
+            How likely are you recommend us to a friend or colleagues?
+          </h2>
+          <p class="likely">(0 = Not Likely, 10 = Very Likely)</p>
+          <div class="progress">
+            <button class="btn bt0" onclick="clearEmoji()">0</button>
+            <button class="btn bt1" onclick="clearEmoji()">1</button>
+            <button class="btn bt2" onclick="clearEmoji()">2</button>
+            <button class="btn bt3" onclick="clearEmoji()">3</button>
+            <button class="btn bt4" onclick="clearEmoji()">4</button>
+            <button class="btn bt5" onclick="clearEmoji()">5</button>
+            <button class="btn bt6" onclick="clearEmoji()">6</button>
+            <button class="btn bt7" onclick="clearEmoji()">7</button>
+            <button class="btn bt8" onclick="clearEmoji()">8</button>
+            <button class="btn bt9" onclick="clearEmoji()">9</button>
+            <button class="btn bt10" onclick="animation()">
+              10
+              <div id="emoji"></div>
+            </button>
+          </div>
+          <div class="responsive-section">
+            <input type="text" id="ratingValue" value="1" class="circle" />
+            <div id="rating" value=".1" max="1"></div>
+          </div>
+          <p>Please provide any comments to help explain your selection.</p>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea
+          ><br />
+          <button class="save" id="save" type="submit">Save</button>
+        </main>
+        <div class="bg-modal">
+          <div class="modal-content">
+            <div id="thanks_close">+</div>
+            <div class="thanks_container">
+              <div class="hearts_container">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="survey.css">
-  <title>survey</title>
-</head>
-<body>
-<div class="body_wrapper">
- <div class="main_wrapper">
-  <main>
-    <h2 class="question-header">How likely are you recommend us to a friend or colleagues?</h2>
-    <p class="likely">(0 = Not Likely, 10 = Very Likely)</p>
-    <div class="progress" >
-      <button class="bt0" onclick="clearEmoji()">0</button>
-      <button class="bt1" onclick="clearEmoji()">1</button>
-      <button class="bt2" onclick="clearEmoji()">2</button>
-      <button class="bt3" onclick="clearEmoji()">3</button>
-      <button class="bt4" onclick="clearEmoji()">4</button>
-      <button class="bt5" onclick="clearEmoji()">5</button>
-      <button class="bt6" onclick="clearEmoji()">6</button>
-      <button class="bt7" onclick="clearEmoji()">7</button>
-      <button class="bt8" onclick="clearEmoji()">8</button>
-      <button class="bt9" onclick="clearEmoji()">9</button>
-      <button class="bt10" onclick="animation()">10<div id="emoji"></div></button>
+                <div class="text">Thank you for your feedback 😊</div>
+              </div>
+
+              <!-- <p>Thank you for your feedback 😊</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="responsive-section">
-      <input type="text" id="ratingValue" value="1" class="circle" />
-      <div id="rating" value=".1" max="1" ></div>
-    </div>
-    <p>Please provide any comments to help explain your selection.</p>
-    <textarea name="message" id="message" cols="30" rows="10"></textarea><br>
-    <button class="save">Save</button>
-  </main>
- </div>
-</div>
-  <script type="text/javascript" src="survey.js"></script>
-</body>
+    <script type="text/javascript" src="survey.js"></script>
+  </body>
 </html>

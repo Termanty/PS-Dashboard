@@ -1,4 +1,6 @@
 import { makeStyles } from "@mui/styles";
+import { createTheme } from "@mui/material";
+import { amber, deepOrange, grey } from '@mui/material/colors';
 
 export const leftbarStyle = makeStyles({
   addButton: {
@@ -8,6 +10,10 @@ export const leftbarStyle = makeStyles({
     height: "55px",
     borderRadius: "3px",
     marginLeft: "20px",
+    '&:hover': {
+      backgroundColor:"sandybrown",
+      opacity: [0.4, 0.5, 0.7],
+    }
   },
   logoutButton: {
     backgroundColor: "#D66434",
@@ -16,8 +22,37 @@ export const leftbarStyle = makeStyles({
     height: "55px",
     borderRadius: "3px",
     marginLeft: "20px",
+    '&:hover': {
+      backgroundColor: "sandybrown",
+      opacity: [0.4, 0.5, 0,7],
+    }
   },
   headerIndex: {
     overflow: "scoll"
   }
+});
+
+export const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    background: {
+      paper: "#ffffff",
+    },
+    text: {
+      primary: "#111111",
+    },
+  },
+});
+
+export const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    background: {
+      paper: "#222",
+    },
+    text: {
+      primary: '#fff',
+            secondary: grey[500],
+    },
+  },
 });

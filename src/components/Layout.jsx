@@ -6,8 +6,16 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 
+import { useSelector } from "react-redux";
+import { ThemeProvider } from "@mui/material/styles";
+import { darkTheme, lightTheme } from "./LeftBar/Leftbar.style";
+
+
 function Layout({ children }) {
+  const theme = useSelector((state) => state.theme);
+
   return (
+    <ThemeProvider theme={theme.darkTheme ? darkTheme : lightTheme}>
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Header />
@@ -20,6 +28,7 @@ function Layout({ children }) {
         <Main>{children}</Main>
       </Box>
     </Box>
+    </ThemeProvider>
   );
 }
 

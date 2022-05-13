@@ -1,14 +1,15 @@
-import React,{useState} from "react";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import {Switch, Stack} from '@mui/material';
-import {Box, FormControlLabel} from "@mui/material";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import NotificationBell from "./Notification/NotificationBell";
-import { useDispatch } from "react-redux";
 import { toggleTheme } from "../store/theme/themeSlice";
 
 function Header() {

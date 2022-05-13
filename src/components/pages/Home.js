@@ -1,9 +1,9 @@
 import React from "react";
-import HomeCard from "./homePage/HomeCard";
-import { items } from "./homePage/HomePageData";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import HomeCard from "./homePage/HomeCard";
+import { items } from "./homePage/HomePageData";
 
 function Home() {
   return (

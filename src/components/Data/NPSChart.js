@@ -60,9 +60,10 @@ function NPSChart({ dateFrom, dateTo }) {
         showLine: true,
         type: "line",
         order: 0,
-        borderColor: " #532469",
+        borderColor: " #ED6930",
         tension: 0.2,
         hoverPointRadius: 1,
+        backgroundColor: ["#ED6930"],
       },
       {
         label: "Responses",

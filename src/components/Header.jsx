@@ -1,14 +1,16 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import {
+  AppBar,
+  Box,
+  FormControlLabel,
+  Grid,
+  Switch,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import NotificationBell from "./Notification/NotificationBell";
 import { toggleTheme } from "../store/theme/themeSlice";
 
@@ -22,23 +24,22 @@ function Header() {
     const theme = useSelector((state) => state.theme);
     const dispatch = useDispatch();
     return (
-        <Box sx={{ marginLeft:"50%", marginTop:-5}}>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <FormControlLabel
-          control={
-            <Switch
-              onChange={() => dispatch(toggleTheme())}
-              aria-label="login switch"
-            />
-          }
-          label={theme.darkTheme ? 'ligh' : 'dark'}
-        />
-          </Stack>
+      <Box sx={{ marginLeft: "50%", marginTop: -5 }}>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <FormControlLabel
+            control={
+              <Switch
+                onChange={() => dispatch(toggleTheme())}
+                aria-label="login switch"
+              />
+            }
+            label={theme.darkTheme ? "ligh" : "dark"}
+          />
+        </Stack>
       </Box>
     );
-   
   };
-  
+
   return (
     <AppBar
       position="fixed"
@@ -47,7 +48,7 @@ function Header() {
         ml: `${drawerWidth}px`,
         height: "92px",
         // backgroundColor: "white",
-        border:" 1px solid #F3F6F9",
+        border: " 1px solid #F3F6F9",
         // zIndex: 1100,
       }}
     >
@@ -81,7 +82,6 @@ function Header() {
         </Grid>
       </Toolbar>
     </AppBar>
-
   );
 }
 

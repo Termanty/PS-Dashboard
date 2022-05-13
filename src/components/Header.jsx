@@ -1,17 +1,14 @@
-import React from "react";
+import React,{useState} from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import {Switch, Stack} from '@mui/material';
+import {Box, FormControlLabel} from "@mui/material";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import NotificationBell from "./Notification/NotificationBell";
-
 import { useDispatch } from "react-redux";
-import { Box } from "@mui/material";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import IconButton from "@mui/material/IconButton";
 import { toggleTheme } from "../store/theme/themeSlice";
 
 function Header() {
@@ -20,28 +17,27 @@ function Header() {
   const location = useLocation();
   const locationPath = location.pathname;
 
-  //
-  const theme = useSelector((state) => state.theme);
-  const dispatch = useDispatch();
   const ToggleSwitch = () => {
+    const theme = useSelector((state) => state.theme);
+    const dispatch = useDispatch();
     return (
-      <Box sx={{ marginLeft: "50%", marginTop: -5 }}>
-        {theme.darkTheme}
-        <IconButton
-          sx={{ ml: 1 }}
-          onClick={() => dispatch(toggleTheme())}
-          color="default"
-        >
-          {theme.darkTheme === "dark" ? (
-            <Brightness7Icon />
-          ) : (
-            <Brightness4Icon />
-          )}
-        </IconButton>
+        <Box sx={{ marginLeft:"50%", marginTop:-5}}>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <FormControlLabel
+          control={
+            <Switch
+              onChange={() => dispatch(toggleTheme())}
+              aria-label="login switch"
+            />
+          }
+          label={theme.darkTheme ? 'ligh' : 'dark'}
+        />
+          </Stack>
       </Box>
     );
+   
   };
-  //
+  
   return (
     <AppBar
       position="fixed"
@@ -50,8 +46,8 @@ function Header() {
         ml: `${drawerWidth}px`,
         height: "92px",
         // backgroundColor: "white",
-        border: " 1px solid #F3F6F9",
-        zIndex: 1100,
+        border:" 1px solid #F3F6F9",
+        // zIndex: 1100,
       }}
     >
       <Toolbar sx={{ marginTop: 2 }}>
@@ -84,6 +80,7 @@ function Header() {
         </Grid>
       </Toolbar>
     </AppBar>
+
   );
 }
 

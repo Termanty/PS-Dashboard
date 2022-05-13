@@ -142,6 +142,7 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
       return res.created_at >= dateFrom && res.created_at <= dateTo;
     });
   }
+console.log(dateTo)
 
   if (selection === "Promoters") {
     responses = responses.filter((res) => res.score >= 9);
@@ -179,7 +180,6 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
             />
-
             <TableBody sx={{}}>
               {stableSort(responses, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

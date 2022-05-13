@@ -153,7 +153,7 @@ const Responses = ({selection, dateFrom , dateTo}) => {
       return (res.created_at >= dateFrom && res.created_at <= dateTo)
     })
   }
-
+console.log(dateTo)
 
     if(selection ==='Promoters'){
       responses=responses.filter(res=>(res.score>=9))

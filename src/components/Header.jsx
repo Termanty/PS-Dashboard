@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import {Switch, Stack} from '@mui/material';
 import {Box, FormControlLabel} from "@mui/material";
 import { useSelector } from "react-redux";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import NotificationBell from "./Notification/NotificationBell";
 import { useDispatch } from "react-redux";
@@ -39,7 +39,7 @@ function Header() {
   };
   
   return (
-  <AppBar
+    <AppBar
       position="fixed"
       sx={{
         width: `calc(100% - ${drawerWidth}px)`,
@@ -50,24 +50,36 @@ function Header() {
         // zIndex: 1100,
       }}
     >
-    <Toolbar sx = {{ marginTop: 2 }}>
-      { locationPath === "/MySurveys" &&
-      <Toolbar>
-      <Typography variant = "h6" noWrap component = "div" color = "black" position = "relative" marginRight = "50">
-      My Surveys
-      </Typography>
+      <Toolbar sx={{ marginTop: 2 }}>
+        {locationPath === "/MySurveys" && (
+          <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              color="black"
+              position="relative"
+              marginRight="50"
+            >
+              My Surveys
+            </Typography>
+          </Toolbar>
+        )}
+        <ToggleSwitch />
+        <Grid container justifyContent="flex-end">
+          <NotificationBell badgeContent={4} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            color="black"
+            marginLeft="20px"
+          >
+            Logged as {user.name}
+          </Typography>
+        </Grid>
       </Toolbar>
-      }
-    <ToggleSwitch/>
-      <Grid container justifyContent = "flex-end">
-      <NotificationBell badgeContent = {4}/>
-       <Typography variant = "h6" noWrap component = "div" color = "black" marginLeft = "20px">
-         Logged as {user.name}
-       </Typography>
-       </Grid>
-    </Toolbar>
-   </AppBar>
-
+    </AppBar>
 
   );
 }

@@ -1,9 +1,8 @@
 import { makeStyles } from "@mui/styles";
-import { borderRadius } from "@mui/system";
 
 export const PagesStyle = makeStyles({
   mySurvey: {
-    fontSize: "16px"
+    fontSize: "16px",
   },
   openButton: {
     width: "120px",
@@ -17,6 +16,6 @@ export const PagesStyle = makeStyles({
     borderRadius: "50%",
     backgroundColor: "green",
     marginLeft: "10px",
-    marginTop:"5px"
-  }
-})
+    marginTop: "5px",
+  },
+});

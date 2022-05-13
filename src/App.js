@@ -10,6 +10,7 @@ const CreateNewSurvey = lazy(() =>
   import("./components/pages/CreateNewSurvey")
 );
 const Data = lazy(() => import("./components/pages/Data"));
+const Embed = lazy(() => import("./components/pages/Embed"));
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/MySurveys" element={<MySurveys />} />
               <Route path="/:name" element={<Data />} />
+              <Route path="/Embed" element={<Embed />}/>
               <Route path="/CreateNewSurvey" element={<CreateNewSurvey />} />
               <Route path="/Data" element={<Data />} />
               <Route  path="login" element={<Login/>} />

@@ -15,6 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import { leftbarStyle } from "./Leftbar.style.js";
 import HomeIcon from "./HomeIcon";
+import CodeIcon from '@mui/icons-material/Code';
 
 const drawerWidth = 260;
 
@@ -76,6 +77,13 @@ function Leftbar() {
             />
           </ListItemIcon>
           <ListItemText primary="Data" />
+        </ListItem>
+
+        <ListItem button key="Embed" component={Link} to="/Embed">
+          <ListItemIcon>
+            <CodeIcon sx={{color: "white", fontSize: 30}} />
+          </ListItemIcon>
+          <ListItemText primary="Embed" />
         </ListItem>
 
         <ListItem

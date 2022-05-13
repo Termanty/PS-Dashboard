@@ -1,5 +1,4 @@
 import React from "react";
-import { Typography } from "@mui/material";
 import HomeCard from "./homePage/HomeCard";
 import { items } from "./homePage/HomePageData";
 import Grid from "@mui/material/Grid";

@@ -1,5 +1,5 @@
 import { Paper } from "@mui/material";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar} from "react-chartjs-2";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
@@ -21,9 +21,6 @@ function toTime(response) {
 
 const BarChart = ({ chartData, options }) => {
   return <Bar data={chartData} options={options} />;
-};
-const LineChart = ({ chartData, options }) => {
-  return <Line data={chartData} options={options} />;
 };
 
 function ResponsesChart({ dateFrom, dateTo }) {
@@ -107,7 +104,9 @@ function ResponsesChart({ dateFrom, dateTo }) {
       {
         label: "Total Responses",
         data: responsesPerDay,
-        backgroundColor: ["#162639"],
+        backgroundColor: ["#162667"],
+        borderColor: " #ffffff",
+        borderWidth: 1,
         order: 1,
         showLine: false,
         pointRadius: 4,

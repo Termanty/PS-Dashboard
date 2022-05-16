@@ -21,6 +21,11 @@ function Dashboard() {
   useEffect(() => dispatch(fetchSurveys()), []);
 
   const surveys = useSelector((state) => state.surveys);
+  const theme = useSelector((state) => state.theme);
+
+  const colorToggle= (theme) =>{
+    return theme.darkTheme ? "black" : "#F3F6F9"
+  }
 
   return (
     <>
@@ -31,7 +36,7 @@ function Dashboard() {
           sx={{
             width: 400,
             height: 62,
-            backgroundColor: "#F3F6F9",
+            backgroundColor: colorToggle(theme),
             borderRadius: 5,
           }}
           onChange={(e) => setSearchedSurvey(e.target.value)}

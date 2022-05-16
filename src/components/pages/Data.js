@@ -1,10 +1,9 @@
+import React, { useState } from "react";
 import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
 import NPSChart from "../Data/NPSChart";
 import Responses from "../Data/Responses";
-import React, { useState } from "react";
 import { Box, Grid, TextField, styled, Paper} from "@mui/material";
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -34,6 +33,9 @@ function Data({selection}) {
                 helperText="select start Date"
                 color="success"
                 sx={{ m: 1, width: "200px", }}
+                [`& fieldset`]: {
+                borderRadius: "20px"
+              }
                 type="date"
                 id="dateFrom"
                 value={dateFrom}
@@ -42,6 +44,9 @@ function Data({selection}) {
               <TextField
                 inputProps={{ style: { fontSize: 20 } }}
                 sx={{ m: 1, width: "200px" }}
+                [`& fieldset`]: {
+                borderRadius: "20px"
+              }
                 color="success"
                 helperText="select end Date"
                 type="date"

@@ -49,7 +49,6 @@ function Header() {
   return (
     <AppBar
       position="fixed"
-      backgroundColor= "white"
       sx={{
         width: `calc(100% - ${drawerWidth}px)`,
         ml: `${drawerWidth}px`,

@@ -4,6 +4,7 @@ import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
 import NPSChart from "../Data/NPSChart";
 
+
 function Data() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
@@ -22,7 +23,13 @@ function Data() {
               inputProps={{ style: { fontSize: 20 } }}
               helperText="select start Date"
               color="success"
-              sx={{ m: 1, width: "200px" }}
+              sx={{
+              m: 1,
+              width: "200px",
+              [`& fieldset`]: {
+                borderRadius: "20px"
+              }
+            }}
               type="date"
               id="dateFrom"
               value={dateFrom}
@@ -30,7 +37,13 @@ function Data() {
             />
             <TextField
               inputProps={{ style: { fontSize: 20 } }}
-              sx={{ m: 1, width: "200px" }}
+              sx={{
+                m: 1,
+                width: "200px",
+                [`& fieldset`]: {
+                borderRadius: "20px"
+            }
+            }}
               color="success"
               helperText="select end Date"
               type="date"

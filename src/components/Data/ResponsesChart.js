@@ -1,5 +1,5 @@
 import { Paper } from "@mui/material";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
@@ -21,6 +21,9 @@ function toTime(response) {
 
 const BarChart = ({ chartData, options }) => {
   return <Bar data={chartData} options={options} />;
+};
+const LineChart = ({ chartData, options }) => {
+  return <Line data={chartData} options={options} />;
 };
 
 function ResponsesChart({ dateFrom, dateTo }) {
@@ -49,15 +52,39 @@ function ResponsesChart({ dateFrom, dateTo }) {
     .map(toTime)
     .reduce(reducer, {});
 
+  const NPSPerDay = {};
+    Object.keys(responsesPerDay).forEach((day) => {
+      const promoters = promotersPerDay[day] || 0;
+      const detractors = detractorsPerDay[day] || 0;
+      const all = responsesPerDay[day];
+      const NPS = Math.round(((promoters - detractors) / all) * 100);
+      NPSPerDay[day] = Math.min(Math.max(parseInt(NPS), -100), 100);
+  });
+
+
   const data = {
     labels: "",
     datasets: [
+      {
+        label: `NPS`,
+        data: NPSPerDay,
+        showLine: true,
+        type: "line",
+        order: 0,
+        borderColor: " #ED6930",
+        tension: 0.2,
+        hoverPointRadius: 1,
+        backgroundColor: ["#ED6930"],
+        yAxisID: 'NPS',
+      },
       {
         label: "Detractors",
         data: detractorsPerDay,
         backgroundColor: ["#E26060"],
         categoryPercentage: 1,
         barPercentage: 0.8,
+        yAxisID: 'y',
+        type: 'bar',
       },
       {
         label: "Passives",
@@ -65,6 +92,8 @@ function ResponsesChart({ dateFrom, dateTo }) {
         backgroundColor: ["#F3C934"],
         categoryPercentage: 1,
         barPercentage: 0.8,
+        yAxisID: 'y',
+        type: 'bar',
       },
       {
         label: "Promoters",
@@ -72,20 +101,29 @@ function ResponsesChart({ dateFrom, dateTo }) {
         backgroundColor: ["#52A569"],
         categoryPercentage: 1,
         barPercentage: 0.8,
+        yAxisID: 'y',
+        type: 'bar',
       },
       {
         label: "Total Responses",
         data: responsesPerDay,
         backgroundColor: ["#162639"],
-        type: "line",
         order: 1,
-        tension: 0.5,
+        showLine: false,
+        pointRadius: 4,
+        tension: 0.7,
+        yAxisID: 'y',
+        type: "line",
       },
+      
+      
     ],
   };
+  
   const options = {
+    maintainAspectRatio: false,
     layout: {
-      padding: 20,
+      padding: 30,
     },
     plugins: {
       tooltip: { yAlign: "bottom" },
@@ -105,10 +143,10 @@ function ResponsesChart({ dateFrom, dateTo }) {
         text: "Response volume",
         align: "center",
         padding: {
-          bottom: 30,
+          bottom: 10,
         },
         font: {
-          size: 20,
+          size: 15,
         },
       },
     },
@@ -135,16 +173,40 @@ function ResponsesChart({ dateFrom, dateTo }) {
       y: {
         title: {
           display: true,
-          text: "Responses",
+          text: "Responses/day",
           font: {
-            size: 20,
+            size: 15,
           },
         },
         stacked: true,
         beginAtZero: true,
+        type:'linear',
+        position:'left',
+        
         ticks: {
           font: {
-            size: 20,
+            size: 15,
+          },
+        },
+      },
+      NPS: {
+        title: {
+          display: true,
+          text: "NPS Score/day ",
+          font: {
+            size: 15,
+          },
+        },
+        stacked: true,
+        beginAtZero: true,
+        type:'linear',
+        position:'right',
+        grid:{
+          drawOnChartArea:false,
+        },
+        ticks: {
+          font: {
+            size: 15,
           },
         },
       },
@@ -154,14 +216,15 @@ function ResponsesChart({ dateFrom, dateTo }) {
 
   return (
     <Paper
+      elevation={0}
       sx={{
-        boxShadow: 10,
-        width: "100%",
-        border: "solid 1px #162639",
+        borderColor:"#F6F7F9",
+        boxShadow: 2,
+        width: "100%",     
         borderRadius: 1,
-        bgcolor: "white",
-        margin: 5,
-        height: '100%'
+        margin: 6,
+        height: '80%',
+        
       }}
     >
       <BarChart

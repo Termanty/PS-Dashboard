@@ -11,7 +11,6 @@ import TablePagination from "@mui/material/TablePagination";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import { Typography } from "@mui/material";
 import "chartjs-adapter-date-fns";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -24,6 +23,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 15,
     border: "solid 1px #ED6930",
     borderRight: 0,
+    fontFamily:'sans-serif'
   },
 }));
 
@@ -92,11 +92,11 @@ function EnhancedTableHead({ onRequestSort }) {
   };
 
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead >
+      <TableRow stickyHeader aria-label="sticky table">
         {headCells.map((headCell) => (
           <TableCell
-            sx={{ fontSize: 25, borderColor: "#ED6930" }}
+            sx={{ fontSize: 25, borderColor: "#ED6930", fontFamily:'sans-serif'}}
             align="center"
             key={headCell.id}
           >
@@ -141,7 +141,6 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
       return res.created_at >= dateFrom && res.created_at <= dateTo;
     });
   }
-console.log(dateTo)
 
   if (selection === "Promoters") {
     responses = responses.filter((res) => res.score >= 9);
@@ -160,10 +159,11 @@ console.log(dateTo)
         marginTop: "10px",
         border: "solid 2px #ED6930",
         borderRadius: 3,
+        maxHeight:400
       }}
     >
-        <TableContainer>
-          <Table>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table >
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
@@ -189,7 +189,7 @@ console.log(dateTo)
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 50, 100]}
+          rowsPerPageOptions={[4, 10, 25, 50, 100]}
           component="div"
           count={responses.length}
           rowsPerPage={rowsPerPage}

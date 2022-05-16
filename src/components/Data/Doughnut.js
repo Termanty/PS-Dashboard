@@ -14,7 +14,6 @@ import {
   Label,
   Tooltip,
   Cell,
-  ResponsiveContainer,
   Legend,
 } from "recharts";
 import { Chart } from "chart.js";
@@ -102,28 +101,30 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
     );
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-    {/* // <Box display="grid" gridTemplateColumns="repeat(1, 2fr)" gap={2}> */}
-    <Grid container spacing={0}>
- 
-    <Grid item xs={3} md={5}>
-    <Typography variant="h5" component="div" sx={{ marginLeft:10, marginBottom:-8}}>
+    <Box  sx={{ flexGrow: 1 }}>
+      <Grid container spacing={-3}>
+        <Grid item xs={3} md={5}>
+          <Typography 
+            variant="h5" 
+            component="div" 
+            sx={{ marginLeft:10, 
+            marginBottom:-10
+            }}>
               Total Responses {All}
-            </Typography>
-            <ResponsiveContainer  width={400} height={400}>
-              
-            <PieChart >
-              <Pie
+          </Typography> 
+          <Grid sx={{marginTop:0, marginLeft:-10}}>
+          <PieChart width={600} height={500} >
+            <Pie
                 data={data}
-                cx="50%"
+                cx="45%"
                 cy="60%"
                 labelLine={false}
                 label={renderCustomizedLabel}
-                innerRadius={80}
-                outerRadius={150}
-                paddingAngle={5}
+                innerRadius={60}
+                outerRadius={120}
+                paddingAngle={1}
                 dataKey="value"
-              >
+            >
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
@@ -131,33 +132,29 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
                     onClick={() => setSelection(data[index].name)}
                   />
                 ))}
-
                 {data2.map((entry, index) => (
                   <Label
                     key={`cell-${index}`}
                     value={`NPS ${NPS}`}
                     position="center"
-                    fontFamily="Rubik"
-                    fontWeight={300}
-                    fontSize="40"
+                    fontFamily='sans-serif'
+                    fontWeight={400}
+                    fontSize="30"
                     fill="#555555"
                     onClick={() => setSelection(data2[index].name)}
                   />
-                ))}
-              </Pie>
+                  ))}
+            </Pie>
               <Tooltip />
-              <Legend height={10} iconType="circle" align="center" />
-            </PieChart>
-            </ResponsiveContainer>
-           
-            </Grid>
-            <Grid item xs={4} md={6} sx={{marginTop:10, marginLeft:3}}>
-  
-            <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection} /> 
-            </Grid>
+              <Legend height={100} iconType="circle" align="center" fontFamily='sans-serif'/>
+          </PieChart>
+          </Grid> 
         </Grid>
-
-        </Box>
+          <Grid item xs={4} md={6} sx={{marginTop:10, marginLeft:-6}}>
+            <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection} /> 
+          </Grid>
+      </Grid>
+    </Box>
   );
 };
 export default DoughnutNPS;

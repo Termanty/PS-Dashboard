@@ -1,10 +1,9 @@
-import { Box, styled, Grid, Paper } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import Responses from "./Responses";
-import ResponsesChart from "./ResponsesChart";
 import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import moment from "moment";
@@ -20,14 +19,6 @@ import {
 import { Chart } from "chart.js";
 import "chartjs-adapter-date-fns";
 Chart.register(ChartDataLabels);
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 const DoughnutNPS = ({ dateFrom, dateTo }) => {
   let dateFromValue = moment(dateFrom).format("");
@@ -102,17 +93,47 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
     );
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-    {/* // <Box display="grid" gridTemplateColumns="repeat(1, 2fr)" gap={2}> */}
-    <Grid container spacing={0}>
- 
-    <Grid item xs={3} md={5}>
-    <Typography variant="h5" component="div" sx={{ marginLeft:10, marginBottom:-8}}>
+    <Box
+      width="85%"
+      sx={{
+        boxShadow: 10,
+        margin: 1,
+      }}
+    >
+      <Box sx={{ marginLeft: 40 }}>
+        <Typography variant="h4" component="div" sx={{ paddingTop: 2 }}>
+          NET PROMOTER SCORE
+        </Typography>
+        <Box sx={{ marginLeft: -30, marginBottom: -5 }}>
+          <Card
+            sx={{
+              maxWidth: 230,
+              background: "#ffffff",
+              "&:hover": {
+                backgroundColor: "white",
+              },
+            }}
+          >
+            <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Total Responses {All}
             </Typography>
-            <ResponsiveContainer  width={400} height={400}>
-              
-            <PieChart >
+          </Card>
+        </Box>
+      </Box>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box
+          sx={{
+            color: "black",
+            width: 400,
+            marginTop: 0,
+            // marginLeft:5,
+          }}
+          align="center"
+          variant="h3"
+          component="div"
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
               <Pie
                 data={data}
                 cx="50%"
@@ -146,18 +167,13 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend height={10} iconType="circle" align="center" />
+              <Legend height={60} iconType="circle" align="center" />
             </PieChart>
-            </ResponsiveContainer>
-           
-            </Grid>
-            <Grid item xs={4} md={6} sx={{marginTop:10, marginLeft:3}}>
-  
-            <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection} /> 
-            </Grid>
-        </Grid>
-
+          </ResponsiveContainer>
         </Box>
+        <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection} />
+      </Box>
+    </Box>
   );
 };
 export default DoughnutNPS;

@@ -1,21 +1,33 @@
 import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
 import NPSChart from "../Data/NPSChart";
+import Responses from "../Data/Responses";
 import React, { useState } from "react";
-import { Box, Grid, TextField } from "@mui/material";
+import { Box, Grid, TextField, styled, Paper} from "@mui/material";
 
-function Data() {
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+function Data({selection}) {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
+  // const [selection, setSelection] = useState("all");
 
   return (
     <>
-      <Box>
+      <Paper elevation={0} sx={{ marginLeft:5}} >
+      <Box sx={{ marginTop:5}}>
         <Grid
           container
           alignItems="flex-end"
           direction="column"
-          sx={{ marginTop: 5, marginLeft: -32 }}
+          sx={{ marginBottom:-10, marginLeft: -20 }}
         >
           <Grid sx={{ margin: 0, display: "inline-flex", columnGap: 1 }}>
             <TextField
@@ -40,14 +52,22 @@ function Data() {
             />
           </Grid>
         </Grid>
+    
       </Box>
-      <Doughnut dateFrom={dateFrom} dateTo={dateTo} />
-      <Box>
+      <Doughnut dateFrom={dateFrom} dateTo={dateTo}/>
+
+      <Grid container spacing={-3}>
+ 
+      <Grid item xs={3} md={10} sx={{marginTop:-1,  marginLeft:-10}}>
+      <ResponsesChart dateFrom={dateFrom} dateTo={dateTo} />
+        
+        </Grid>
+       
+        {/* <Grid  item xs={3} md={6} sx={{marginTop:-1,  marginLeft:10}}>
         <NPSChart dateFrom={dateFrom} dateTo={dateTo} />
-      </Box>
-      <Box>
-        <ResponsesChart dateFrom={dateFrom} dateTo={dateTo} />
-      </Box>
+        </Grid> */}
+        </Grid>
+        </Paper>
     </>
   );
 }

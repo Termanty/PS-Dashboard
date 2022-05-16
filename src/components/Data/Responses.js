@@ -30,7 +30,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
-    border: 3,
+    border: 1,
     borderColor: theme.palette.common.primary,
   },
   "&:nth-of-type(even)": {
@@ -38,7 +38,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   "&:last-child td, &:last-child th": {
-    border: "solid 1px #ED6930",
     borderRight: 0,
   },
 }));
@@ -115,7 +114,7 @@ function EnhancedTableHead({ onRequestSort }) {
 const Responses = ({ selection, dateFrom, dateTo }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(4);
 
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("created_at");
@@ -156,23 +155,13 @@ console.log(dateTo)
   return (
     <Paper
       sx={{
-        width: "60%",
+        width: "100%",
         overflow: "hidden",
         marginTop: "10px",
         border: "solid 2px #ED6930",
         borderRadius: 3,
       }}
     >
-      <Typography sx={{ m: 2, bgcolor: "white" }}>
-        Click on each arc to view the results
-      </Typography>
-      <Paper
-        sx={{
-          margin: "0px",
-          borderTop: "solid 1px #ED6930",
-          borderRadius: "0px",
-        }}
-      >
         <TableContainer>
           <Table>
             <EnhancedTableHead
@@ -209,7 +198,6 @@ console.log(dateTo)
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </Paper>
   );
 };
 

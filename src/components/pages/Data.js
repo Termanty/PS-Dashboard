@@ -4,6 +4,7 @@ import ResponsesChart from "../Data/ResponsesChart";
 import NPSChart from "../Data/NPSChart";
 import Responses from "../Data/Responses";
 import { Box, Grid, TextField, styled, Paper} from "@mui/material";
+import { color } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,13 +30,19 @@ function Data({selection}) {
           >
             <Grid sx={{ margin: 0, display: "inline-flex", columnGap: 1,}}>
               <TextField
-                inputProps={{ style: { fontSize: 20 } }}
+                inputProps={{style:{fontSize: 20}}}
                 helperText="select start Date"
                 color="success"
-                sx={{ m: 1, width: "200px", }}
-                [`& fieldset`]: {
-                borderRadius: "20px"
-              }
+                sx={{ m: 1, 
+                  width: "180px", 
+                  [`& fieldset`]: {
+                    borderRadius: "30px",
+                    backgroundColor:'rgba(184, 179, 179, 0.781)',
+                    height:"60px",
+                    marginTop:'3px'
+                  }
+                }}
+                
                 type="date"
                 id="dateFrom"
                 value={dateFrom}
@@ -43,10 +50,15 @@ function Data({selection}) {
               />
               <TextField
                 inputProps={{ style: { fontSize: 20 } }}
-                sx={{ m: 1, width: "200px" }}
-                [`& fieldset`]: {
-                borderRadius: "20px"
-              }
+                sx={{ m: 1, 
+                  width: "180px",
+                  [`& fieldset`]: {
+                    borderRadius: "30px",
+                    borderColor:'rgba(184, 179, 179, 0.781)',
+                    backgroundColor:'rgba(184, 179, 179, 0.781)',
+                    height:"60px",
+                    marginTop:'3px'
+                  } }}
                 color="success"
                 helperText="select end Date"
                 type="date"

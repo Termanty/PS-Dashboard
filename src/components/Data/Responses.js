@@ -11,7 +11,6 @@ import TablePagination from "@mui/material/TablePagination";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import { Typography } from "@mui/material";
 import "chartjs-adapter-date-fns";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -24,13 +23,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 15,
     border: "solid 1px #ED6930",
     borderRight: 0,
+    fontFamily:'sans-serif'
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
-    border: 3,
+    border: 1,
     borderColor: theme.palette.common.primary,
   },
   "&:nth-of-type(even)": {
@@ -38,7 +38,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   "&:last-child td, &:last-child th": {
-    border: "solid 1px #ED6930",
     borderRight: 0,
   },
 }));
@@ -93,11 +92,11 @@ function EnhancedTableHead({ onRequestSort }) {
   };
 
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead >
+      <TableRow stickyHeader aria-label="sticky table">
         {headCells.map((headCell) => (
           <TableCell
-            sx={{ fontSize: 25, borderColor: "#ED6930" }}
+            sx={{ fontSize: 25, borderColor: "#ED6930", fontFamily:'sans-serif'}}
             align="center"
             key={headCell.id}
           >
@@ -115,7 +114,7 @@ function EnhancedTableHead({ onRequestSort }) {
 const Responses = ({ selection, dateFrom, dateTo }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(4);
 
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("created_at");
@@ -142,7 +141,6 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
       return res.created_at >= dateFrom && res.created_at <= dateTo;
     });
   }
-console.log(dateTo)
 
   if (selection === "Promoters") {
     responses = responses.filter((res) => res.score >= 9);
@@ -156,25 +154,16 @@ console.log(dateTo)
   return (
     <Paper
       sx={{
-        width: "60%",
+        width: "100%",
         overflow: "hidden",
         marginTop: "10px",
         border: "solid 2px #ED6930",
         borderRadius: 3,
+        maxHeight:400
       }}
     >
-      <Typography sx={{ m: 2, bgcolor: "white" }}>
-        Click on each arc to view the results
-      </Typography>
-      <Paper
-        sx={{
-          margin: "0px",
-          borderTop: "solid 1px #ED6930",
-          borderRadius: "0px",
-        }}
-      >
-        <TableContainer>
-          <Table>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table >
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
@@ -200,7 +189,7 @@ console.log(dateTo)
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 50, 100]}
+          rowsPerPageOptions={[4, 10, 25, 50, 100]}
           component="div"
           count={responses.length}
           rowsPerPage={rowsPerPage}
@@ -209,7 +198,6 @@ console.log(dateTo)
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </Paper>
   );
 };
 

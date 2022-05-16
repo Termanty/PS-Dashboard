@@ -171,11 +171,12 @@ function NPSChart({ dateFrom, dateTo }) {
     <Paper
       sx={{
         boxShadow: 10,
-        width: "80%",
+        width: "100%",
         border: "solid 1px #282c34",
         borderRadius: 2,
         margin: 5,
         bgcolor: "white",
+        height: '100%'
       }}
     >
       <LineChart

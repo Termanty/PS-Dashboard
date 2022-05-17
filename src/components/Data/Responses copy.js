@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import TableSortLabel from "@mui/material/TableSortLabel";
 import TablePagination from "@mui/material/TablePagination";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -74,22 +75,40 @@ const headCells = [
   {
     id: "created_at",
     label: "Date Created",
-    minWidth: 170,
-    align: 'right',
   },
   {
     id: "score",
     label: "Score",
-    minWidth: 170,
-    align: 'right',
   },
   {
     id: "comment",
     label: "Comments",
-    minWidth: 170,
-    align: 'right',
   },
 ];
+
+function EnhancedTableHead({ onRequestSort }) {
+  const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+  };
+
+  return (
+    <TableHead >
+      <TableRow stickyHeader aria-label="sticky table">
+        {headCells.map((headCell) => (
+          <TableCell
+            sx={{ fontSize: 25, borderColor: "#ED6930", fontFamily:'sans-serif'}}
+            align="center"
+            key={headCell.id}
+          >
+            <TableSortLabel onClick={createSortHandler(headCell.id)}>
+              {headCell.label}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+}
 // end here
 
 const Responses = ({ selection, dateFrom, dateTo }) => {
@@ -97,8 +116,8 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(4);
 
-  const [order] = useState("asc");
-  const [orderBy] = useState("created_at");
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("created_at");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -107,6 +126,11 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === "desc";
+    setOrder(isAsc ? "asc" : "desc");
+    setOrderBy(property);
   };
 
   useEffect(() => dispatch(fetchResponses()), []);
@@ -131,27 +155,21 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
     <Paper
       sx={{
         width: "100%",
+        overflow: "hidden",
+        marginTop: "10px",
         border: "solid 2px #ED6930",
+        borderRadius: 3,
+        maxHeight:400
       }}
     >
-        <TableContainer sx={{ maxHeight: 350 }}>
-          <Table stickyHeader aria-label="sticky table">
-             <TableHead  
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table >
+            <EnhancedTableHead
               order={order}
-              orderBy={orderBy}>
-            <TableRow>
-              {headCells.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ top: 0, minWidth: column.minWidth , fontSize: 20,}}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-            <TableBody>
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+            />
+            <TableBody sx={{}}>
               {stableSort(responses, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((response) => (

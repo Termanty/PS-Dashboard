@@ -1,11 +1,116 @@
-import React from 'react'
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {
+  Tabs,
+  Tab,
+  Box,
+  Typography,
+  Paper,
+  Button,
+  Divider
+   }from '@mui/material';
+import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
 
-function Embed() {
+function TabPanel(props){
+  const {children, value, index, ...other} = props;
   return (
-    <div>
-      Hi Embed file
+    <div
+    role="tabpanel"
+    hidden={value !== index}
+    id={`simple-tabpanel-${index}`}
+    aria-labelledby={`tab-${index}`}
+    {...other}
+      >
+        {value === index && (
+        <Box sx={{p:2}}>
+        <Typography>{children}</Typography>
+        </Box>
+        )}
     </div>
   )
 }
 
-export default Embed
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+function Embed() {
+  const [value, setValue] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const handleTabs = (e, val) => {
+    setValue(val);
+  }
+
+  return (
+    <>
+      {/* <Box sx={{ width: '100%', marginTop: '50px' }}> */}
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs
+        value={value}
+        onChange={ handleTabs }
+        aria-label="embed code"
+        >
+          <Tab label='Direct Link' { ...a11yProps(0) }
+          sx={{ marginRight: "40%", fontSize: 18, textTransform: 'none' }}/>
+          <Tab label="WordPress embed" {...a11yProps(1)}
+          sx={{ fontSize: 18,textTransform: 'none' }}
+          />
+        </Tabs>
+      </Box >
+
+      <Paper sx={{ backgroundColor: "#D7E5F0", margin:10, padding: 5, borderRadius: 5 }}>
+      <TabPanel value={value} index={0}>
+        <Box sx={{ color: "black" }}>
+          <Typography>
+            <div style={{ fontSize: 20, marginBottom: 5}}>Direct Link</div>
+            <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this link to your clipboard or share it</div>
+          </Typography>
+      <Divider />
+          <div style={{display: "inline-flex", marginTop: 60, marginBottom: 20}}>
+          <input
+          style = {{width: 900, fontSize: 20}}
+          id = "direct_link"
+          defaultValue="https://happysurvey.com/hölynpöly-666"
+          readOnly
+          />
+          <CopyToClipboard
+          text = "https://happysurvey.com/hölynpöly-666"
+          onCopy = {() => setCopied(true)}
+          >
+          <Button
+          sx={{width:100, height: 45, marginTop: 1,marginLeft:.1,
+            color: "white", backgroundColor:"rgb(22, 38, 57)"}}
+          >
+            Copy
+            <FileCopyOutlinedIcon sx={{marginLeft: 2, color: "white"}}/>
+            </Button>
+          </CopyToClipboard>
+          {copied ? <span style={{color: 'red', marginTop: 14}}>Copied.</span> : null}
+          </div>
+        </Box>
+      </TabPanel>
+
+      <TabPanel value={value} index={1}>
+      <Box sx={{ color: "black" }}>
+      <Typography>
+            <div style={{ fontSize: 20, marginBottom: 5}}>Embed the survey in WordPress</div>
+            <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>If you manage a WordPress site, you can down our plugin and install it on your website</div>
+          </Typography>
+          </Box>
+      </TabPanel>
+      </Paper>
+    {/* </Box> */}
+    </>
+  )
+}
+
+export default Embed;

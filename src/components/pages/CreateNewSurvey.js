@@ -31,7 +31,8 @@ function CreateNewSurvey() {
       <input type="text" className={classes.inputTitle} />
       <label className={classes.title}>Welcome message</label>
       <textarea rows="6" cols="50" className={classes.inputMessage}></textarea>
-      <Button className={classes.saveButton} sx={{ marginTop: 4 }}>
+      <Button className={classes.saveButton}
+      sx={{ marginTop: 4, textTransform: "none"}}>
         Save
       </Button>
     </Paper>

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
-import NPSChart from "../Data/NPSChart";
-import Responses from "../Data/Responses";
 import { Box, Grid, TextField, styled, Paper} from "@mui/material";
-import { color } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

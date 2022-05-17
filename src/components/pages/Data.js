@@ -21,7 +21,7 @@ function Data({selection}) {
   return (
     <>
       <Box elevation={0} sx={{ marginLeft:5}} maxWidth="90%">
-        <Box sx={{ marginTop:2}}>
+        <Box sx={{ marginTop:0}}>
           <Grid
             container
             alignItems="flex-end"
@@ -38,8 +38,8 @@ function Data({selection}) {
                   [`& fieldset`]: {
                     borderRadius: "30px",
                     backgroundColor:'rgba(184, 179, 179, 0.781)',
-                    height:"60px",
-                    marginTop:'3px'
+                    height:"40px",
+                    marginTop:'14px'
                   }
                 }}
                 
@@ -56,8 +56,8 @@ function Data({selection}) {
                     borderRadius: "30px",
                     borderColor:'rgba(184, 179, 179, 0.781)',
                     backgroundColor:'rgba(184, 179, 179, 0.781)',
-                    height:"60px",
-                    marginTop:'3px'
+                    height:"40px",
+                    marginTop:'14px'
                   } }}
                 color="success"
                 helperText="select end Date"

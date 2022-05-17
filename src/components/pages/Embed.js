@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
+import Paper from "@mui/material/Paper";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
 function Embed() {
-  return (
-    <div>
-      Hi Embed file
-    </div>
-  )
+  return <Paper></Paper>;
 }
 
-export default Embed
+export default Embed;

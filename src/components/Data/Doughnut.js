@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import Responses from "./Responses";
-import ResponsesChart from "./ResponsesChart";
 import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import moment from "moment";
@@ -30,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const DoughnutNPS = ({ dateFrom, dateTo }) => {
   let dateFromValue = moment(dateFrom).format("");
-  let dateToValue = moment.utc(dateTo).format("");
+  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
 
   const [selection, setSelection] = useState("all");
   const dispatch = useDispatch();

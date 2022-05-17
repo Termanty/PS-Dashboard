@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import "chartjs-adapter-date-fns";
+import moment from "moment";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,20 +43,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 // For descending and ascending order
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
+function descendingComparator(a, b, orderby) {
+  if (b[orderby] < a[orderby]) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (b[orderby] > a[orderby]) {
     return 1;
   }
   return 0;
 }
 
-function getComparator(order, orderBy) {
+function getComparator(order, orderby) {
   return order === "asc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ? (a, b) => descendingComparator(a, b, orderby)
+    : (a, b) => -descendingComparator(a, b, orderby);
 }
 
 function stableSort(array, comparator) {
@@ -98,7 +99,7 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
   const [rowsPerPage, setRowsPerPage] = useState(4);
 
   const [order] = useState("asc");
-  const [orderBy] = useState("created_at");
+  const [orderby] = useState("created_at");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -112,9 +113,11 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
 
-  if (dateFrom !== "" && dateTo !== "") {
+  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
+
+  if (dateFrom !== "" && dateToValue !== "") {
     responses = responses.filter((res) => {
-      return res.created_at >= dateFrom && res.created_at <= dateTo;
+      return res.created_at >= dateFrom && res.created_at <= dateToValue;
     });
   }
 
@@ -138,7 +141,7 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
           <Table stickyHeader aria-label="sticky table">
              <TableHead  
               order={order}
-              orderBy={orderBy}>
+              orderby={orderby}>
             <TableRow>
               {headCells.map((column) => (
                 <TableCell
@@ -152,7 +155,7 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
             </TableRow>
           </TableHead>
             <TableBody>
-              {stableSort(responses, getComparator(order, orderBy))
+              {stableSort(responses, getComparator(order, orderby))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((response) => (
                   <StyledTableRow key={response.id}>

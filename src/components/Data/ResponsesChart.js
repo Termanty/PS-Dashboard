@@ -1,6 +1,7 @@
 import { Paper } from "@mui/material";
 import { Bar} from "react-chartjs-2";
-import React, { useEffect } from "react";
+import { Chart as ChartJS } from "chart.js/auto";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import "chartjs-adapter-date-fns";
@@ -28,9 +29,10 @@ function ResponsesChart({ dateFrom, dateTo }) {
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
 
-  if (dateFrom !== "" && dateTo !== "") {
+  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
+  if (dateFrom !== "" && dateToValue !== "") {
     responses = responses.filter((res) => {
-      return res.created_at >= dateFrom && res.created_at <= dateTo;
+      return res.created_at >= dateFrom && res.created_at <= dateToValue;
     });
   }
 
@@ -220,10 +222,9 @@ function ResponsesChart({ dateFrom, dateTo }) {
         borderColor:"#F6F7F9",
         boxShadow: 2,
         width: "100%",     
-        borderRadius: 1,
+        borderRadius: 5,
         margin: 6,
-        height: '80%',
-        
+        height: '80%', 
       }}
     >
       <BarChart

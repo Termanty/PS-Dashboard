@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSurveys } from "../../store/surveys/reducer";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Button from "@mui/material/Button";
-import { PagesStyle } from "./Pages.style.js";
-import moment from "moment";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import moment from "moment";
+import { PagesStyle } from "./Pages.style.js";
 
 function Dashboard() {
   const [searchedSurvey, setSearchedSurvey] = useState("");
@@ -23,9 +23,9 @@ function Dashboard() {
   const surveys = useSelector((state) => state.surveys);
   const theme = useSelector((state) => state.theme);
 
-  const colorToggle= (theme) =>{
-    return theme.darkTheme ? "black" : "#F3F6F9"
-  }
+  const colorToggle = (theme) => {
+    return theme.darkTheme ? "black" : "#F3F6F9";
+  };
 
   return (
     <>

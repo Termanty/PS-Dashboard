@@ -72,10 +72,8 @@ function Embed() {
       <Paper sx={{ backgroundColor: "#D7E5F0", margin:10, padding: 5, borderRadius: 5 }}>
       <TabPanel value={value} index={0}>
         <Box sx={{ color: "black" }}>
-          <Typography>
-            <div style={{ fontSize: 20, marginBottom: 5}}>Direct Link</div>
-            <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this link to your clipboard or share it</div>
-          </Typography>
+            <Typography style={{ fontSize: 20, marginBottom: 5}}>Direct Link</Typography>
+            <Typography style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this link to your clipboard or share it</Typography>
       <Divider />
           <div style={{ display: "inline-flex", marginTop: 60, marginBottom: 20 }}>
           <input
@@ -108,12 +106,10 @@ function Embed() {
 
       <TabPanel value={value} index={1}>
       <Box sx={{ color: "black" }}>
-      <Typography>
-            <div style={{ fontSize: 20, marginBottom: 5}}>Embed survey to your website
-            </div>
-            <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this script and embed on your website
-            </div>
-          </Typography>
+            <Typography style={{ fontSize: 20, marginBottom: 5}}>Embed survey to your website
+            </Typography>
+            <Typography style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this script and embed on your website
+            </Typography>
           <Divider />
           <div style={{ display: "inline-flex", marginTop: 60, marginBottom: 20 }}>
           <textarea

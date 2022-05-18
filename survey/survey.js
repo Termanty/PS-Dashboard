@@ -146,7 +146,7 @@ const checkCookie = () =>{
      if (userName !== "" && userName != null) {
        setCookie("userName", userName, 30);
      }else{
-      alert("Click ok to see our policy",window.location.href = "https://gdpr.eu/cookies/" )
+      alert("Click ok to read more about cookies and the GDPR policy in EU",window.location.href = "https://gdpr.eu/cookies/" )
      }
   }
 }

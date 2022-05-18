@@ -77,9 +77,9 @@ function Embed() {
             <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this link to your clipboard or share it</div>
           </Typography>
       <Divider />
-          <div style={{display: "inline-flex", marginTop: 60, marginBottom: 20}}>
+          <div style={{ display: "inline-flex", marginTop: 60, marginBottom: 20 }}>
           <input
-          style = {{width: 900, fontSize: 20}}
+          style = {{ width: 900, fontSize: 20 }}
           id = "direct_link"
           defaultValue="https://happysurvey.com/hölynpöly-666"
           readOnly
@@ -89,7 +89,7 @@ function Embed() {
           onCopy = {() => setCopied(true)}
           >
           <Button
-          sx={{width:100, height: 45, marginTop: 1,marginLeft:.1,
+          sx={{ width:100, height: 45, marginTop: 1,marginLeft:.1,
             color: "white", backgroundColor:"rgb(22, 38, 57)",
             "&:hover": {
               backgroundColor: "rgb(80, 50, 90)",
@@ -98,10 +98,10 @@ function Embed() {
           }}
           >
             Copy
-            <FileCopyOutlinedIcon sx={{marginLeft: 2, color: "white"}}/>
+            <FileCopyOutlinedIcon sx={{ marginLeft: 2, color: "white" }}/>
             </Button>
           </CopyToClipboard>
-          {copied ? <span style={{color: 'red', marginTop: 14}}>Copied.</span> : null}
+          {copied ? <span style={{ color: 'red', marginTop: 14 }}>Copied.</span> : null}
           </div>
         </Box>
       </TabPanel>
@@ -115,12 +115,12 @@ function Embed() {
             </div>
           </Typography>
           <Divider />
-          <div style={{display: "inline-flex", marginTop: 60, marginBottom: 20}}>
+          <div style={{ display: "inline-flex", marginTop: 60, marginBottom: 20 }}>
           <textarea
-          style = {{width: 900, fontSize: 20}}
+          style = {{ width: 900, fontSize: 20 }}
           id = "embed-script"
-          rows= "5"
-          defaultValue="<div class='happy-survey-wrapper'>
+          rows = "5"
+          defaultValue ="<div class='happy-survey-wrapper'>
           <div id='hs-embeded-survey' class='hs-embeded-survey'>
           <script
             type='text/javascript'
@@ -158,3 +158,4 @@ function Embed() {
     </>
   )
 }
+export default Embed;

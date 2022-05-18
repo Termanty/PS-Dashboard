@@ -72,57 +72,15 @@ rating.addEventListener("click", function (e) {
   }
 });
 
-/* const btns = document.querySelectorAll(".btn");
-const btnContainer = document.querySelector(".progress");
-const saveBtn = document.querySelector("#save");
-const main = document.querySelector("#main");
-let selectedBtn = "";
-
-//event bubbling
-
-btnContainer.addEventListener("click", (e) => {
-  if (e.target.parentNode.classList.contains("btn")) {
-    removeActive();
-    e.target.parentNode.classList.add("active");
-    selectedBtn = e.target.nextElementSibling.innerHTML;
-  }
-});
-
-saveBtn.addEventListener("click", () => {
-  main.innerHTML = `<i class="fas fa-heart"></i>
-  <strong>Thank you! </strong>
-  <br>
-  <strong>Feedback:${selectedBtn}</strong>
-  <p>We'll use your feedback to improve our customer support</p>`;
-});
-
-function removeActive() {
-  for (let i = 0; i < btns.length; i++) {
-    btns[i].classList.remove("active");
-  }
-} */
-
-/* const save = document.getElementById("save");
-const main_wrapper = document.querySelector(".main_wrapper");
-const close = document.getElementById("#close");
-
-save.addEventListener("click", () => {
-  main_wrapper.classList.add("popup");
-});
-
-close.addEventListener("click", () => {
-  main_wrapper.classList.remove("popup");
-});
- */
-
 document.getElementById("save").addEventListener("click", function () {
   document.querySelector(".bg-modal").style.display = "flex";
 });
 
 document.querySelector("#thanks_close").addEventListener("click", function () {
-  document.querySelector(".bg-modal").style.display = "none";
+  window.close();
 });
 
 document.querySelector("#close").addEventListener("click", function () {
-  document.querySelector(".body_wrapper").style.display = "none";
+  window.open("", "_parent", "");
+  window.close();
 });

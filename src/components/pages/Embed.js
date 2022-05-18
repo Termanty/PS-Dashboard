@@ -72,12 +72,10 @@ function Embed() {
       <Paper sx={{ backgroundColor: "#D7E5F0", margin:10, padding: 5, borderRadius: 5 }}>
       <TabPanel value={value} index={0}>
         <Box sx={{ color: "black" }}>
-          <Typography>
-            <div style={{ fontSize: 20, marginBottom: 5}}>Direct Link</div>
-            <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this link to your clipboard or share it</div>
-          </Typography>
+            <Typography sx={{ fontSize: 20, marginBottom: 3 }}>Direct Link</Typography>
+            <Typography sx={{ fontSize: 18, marginBottom: 5, color: "rgb(53,126,199)" }}>Copy this link to your clipboard or share it</Typography>
       <Divider />
-          <div style={{ display: "inline-flex", marginTop: 60, marginBottom: 20 }}>
+          <Box sx={{ display: "inline-flex", marginTop: 10, marginBottom: 10 }}>
           <input
           style = {{ width: 900, fontSize: 20 }}
           id = "direct_link"
@@ -102,20 +100,18 @@ function Embed() {
             </Button>
           </CopyToClipboard>
           {copied ? <span style={{ color: 'red', marginTop: 14 }}>Copied.</span> : null}
-          </div>
+          </Box>
         </Box>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
       <Box sx={{ color: "black" }}>
-      <Typography>
-            <div style={{ fontSize: 20, marginBottom: 5}}>Embed survey to your website
-            </div>
-            <div style={{ fontSize: 18,marginBottom: 20, color: "rgb(53,126,199)" }}>Copy this script and embed on your website
-            </div>
-          </Typography>
+            <Typography sx={{ fontSize: 20, marginBottom: 3}}>Embed survey to your website
+            </Typography>
+            <Typography sx={{ fontSize: 18,marginBottom: 5, color: "rgb(53,126,199)" }}>Copy this script and embed on your website
+            </Typography>
           <Divider />
-          <div style={{ display: "inline-flex", marginTop: 60, marginBottom: 20 }}>
+          <Box sx={{ display: "inline-flex", marginTop: 10, marginBottom: 10 }}>
           <textarea
           style = {{ width: 900, fontSize: 20 }}
           id = "embed-script"
@@ -151,7 +147,7 @@ function Embed() {
             </Button>
           </CopyToClipboard>
           {scriptCopied ? <span style={{color: 'red', marginTop: 14}}>Copied.</span> : null}
-          </div>
+          </Box>
           </Box>
       </TabPanel>
       </Paper>

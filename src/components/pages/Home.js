@@ -7,7 +7,7 @@ import { items } from "./homePage/HomePageData";
 
 function Home() {
   return (
-    <>
+    <Box>
       <div
         style={{ textAlign: "center", marginBottom: "50px", marginTop: "50px" }}
       >
@@ -36,7 +36,7 @@ function Home() {
           </Box>
         </Paper>
       </Paper>
-    </>
+    </Box>
   );
 }
 

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
-import NPSChart from "../Data/NPSChart";
-import Responses from "../Data/Responses";
 import { Box, Grid, TextField, styled, Paper} from "@mui/material";
-import { color } from "@mui/system";
+import moment from "moment";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,13 +13,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Data({selection}) {
-  const [dateFrom, setDateFrom] = useState("");
-  const [dateTo, setDateTo] = useState("");
+  const [dateFrom, setDateFrom] = useState(moment(new Date()).format("2022-01-01"));
+  const [dateTo, setDateTo] = useState(moment(new Date()).format("2022-06-30"));
 
   return (
     <>
       <Box elevation={0} sx={{ marginLeft:5}} maxWidth="90%">
-        <Box sx={{ marginTop:2}}>
+        <Box sx={{ marginTop:0}}>
           <Grid
             container
             alignItems="flex-end"
@@ -38,8 +36,8 @@ function Data({selection}) {
                   [`& fieldset`]: {
                     borderRadius: "30px",
                     backgroundColor:'rgba(184, 179, 179, 0.781)',
-                    height:"60px",
-                    marginTop:'3px'
+                    height:"40px",
+                    marginTop:'14px'
                   }
                 }}
                 
@@ -56,8 +54,8 @@ function Data({selection}) {
                     borderRadius: "30px",
                     borderColor:'rgba(184, 179, 179, 0.781)',
                     backgroundColor:'rgba(184, 179, 179, 0.781)',
-                    height:"60px",
-                    marginTop:'3px'
+                    height:"40px",
+                    marginTop:'14px'
                   } }}
                 color="success"
                 helperText="select end Date"

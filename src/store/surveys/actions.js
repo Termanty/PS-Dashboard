@@ -1,12 +1,9 @@
 export const ADD_SURVEY = "ADD_SURVEY";
 export const LOAD_SURVEYS = "LOAD_SURVEYS";
 
-export const addNewSurvey = (name, question) => ({
+export const addSurvey = (survey) => ({
   type: ADD_SURVEY,
-  payload: {
-    name,
-    question,
-  },
+  payload: survey,
 });
 
 export const loadSurveys = (surveys) => ({

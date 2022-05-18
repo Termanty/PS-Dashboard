@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Doughnut from "../Data/Doughnut";
 import ResponsesChart from "../Data/ResponsesChart";
 import { Box, Grid, TextField, styled, Paper} from "@mui/material";
+import moment from "moment";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -12,8 +13,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Data({selection}) {
-  const [dateFrom, setDateFrom] = useState("");
-  const [dateTo, setDateTo] = useState("");
+  const [dateFrom, setDateFrom] = useState(moment(new Date()).format("2022-01-01"));
+  const [dateTo, setDateTo] = useState(moment(new Date()).format("2022-06-30"));
 
   return (
     <>

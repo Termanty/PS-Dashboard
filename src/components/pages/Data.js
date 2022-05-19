@@ -13,8 +13,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Data({selection}) {
-  const [dateFrom, setDateFrom] = useState(moment(new Date()).format("2022-01-01"));
-  const [dateTo, setDateTo] = useState(moment(new Date()).format("2022-06-30"));
+  const [dateFrom, setDateFrom] = useState(moment(new Date()).format("2021-12-01"));
+  const [dateTo, setDateTo] = useState(moment(new Date()).format("2022-05-31"));
 
   return (
     <>

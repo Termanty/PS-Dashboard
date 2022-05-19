@@ -1,6 +1,7 @@
 import { Paper } from "@mui/material";
-import { Bar } from "react-chartjs-2";
-import React, { useEffect } from "react";
+import { Bar} from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
 import "chartjs-adapter-date-fns";
@@ -28,9 +29,10 @@ function ResponsesChart({ dateFrom, dateTo }) {
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
 
-  if (dateFrom !== "" && dateTo !== "") {
+  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
+  if (dateFrom !== "" && dateToValue !== "") {
     responses = responses.filter((res) => {
-      return res.created_at >= dateFrom && res.created_at <= dateTo;
+      return res.created_at >= dateFrom && res.created_at <= dateToValue;
     });
   }
 
@@ -49,43 +51,80 @@ function ResponsesChart({ dateFrom, dateTo }) {
     .map(toTime)
     .reduce(reducer, {});
 
+  const NPSPerDay = {};
+    Object.keys(responsesPerDay).forEach((day) => {
+      const promoters = promotersPerDay[day] || 0;
+      const detractors = detractorsPerDay[day] || 0;
+      const all = responsesPerDay[day];
+      const NPS = Math.round(((promoters - detractors) / all) * 100);
+      NPSPerDay[day] = Math.min(Math.max(parseInt(NPS), -100), 100);
+  });
+
+
   const data = {
     labels: "",
     datasets: [
       {
+        label: `NPS`,
+        data: NPSPerDay,
+        showLine: true,
+        type: "line",
+        order: 0,
+        borderColor: " #ED6930",
+        tension: 0.2,
+        hoverPointRadius: 1,
+        backgroundColor: ["#ED6930"],
+        yAxisID: 'NPS',
+      },
+      {
         label: "Detractors",
         data: detractorsPerDay,
         backgroundColor: ["#E26060"],
-        categoryPercentage: 0.5,
-        barPercentage: 0.5,
+        categoryPercentage: 1,
+        barPercentage: 0.8,
+        yAxisID: 'y',
+        type: 'bar',
       },
       {
         label: "Passives",
         data: passivesPerDay,
         backgroundColor: ["#F3C934"],
-        categoryPercentage: 0.5,
-        barPercentage: 0.5,
+        categoryPercentage: 1,
+        barPercentage: 0.8,
+        yAxisID: 'y',
+        type: 'bar',
       },
       {
         label: "Promoters",
         data: promotersPerDay,
         backgroundColor: ["#52A569"],
-        categoryPercentage: 0.5,
-        barPercentage: 0.5,
+        categoryPercentage: 1,
+        barPercentage: 0.8,
+        yAxisID: 'y',
+        type: 'bar',
       },
       {
         label: "Total Responses",
         data: responsesPerDay,
-        backgroundColor: ["#162639"],
-        type: "line",
+        backgroundColor: ["#162667"],
+        borderColor: " #ffffff",
+        borderWidth: 1,
         order: 1,
-        tension: 0.5,
+        showLine: false,
+        pointRadius: 4,
+        tension: 0.7,
+        yAxisID: 'y',
+        type: "line",
       },
+      
+      
     ],
   };
+  
   const options = {
+    maintainAspectRatio: false,
     layout: {
-      padding: 20,
+      padding: 30,
     },
     plugins: {
       tooltip: { yAlign: "bottom" },
@@ -105,10 +144,10 @@ function ResponsesChart({ dateFrom, dateTo }) {
         text: "Response volume",
         align: "center",
         padding: {
-          bottom: 30,
+          bottom: 10,
         },
         font: {
-          size: 20,
+          size: 15,
         },
       },
     },
@@ -135,16 +174,40 @@ function ResponsesChart({ dateFrom, dateTo }) {
       y: {
         title: {
           display: true,
-          text: "Responses",
+          text: "Responses/day",
           font: {
-            size: 20,
+            size: 15,
           },
         },
         stacked: true,
         beginAtZero: true,
+        type:'linear',
+        position:'left',
+        
         ticks: {
           font: {
-            size: 20,
+            size: 15,
+          },
+        },
+      },
+      NPS: {
+        title: {
+          display: true,
+          text: "NPS Score/day ",
+          font: {
+            size: 15,
+          },
+        },
+        stacked: true,
+        beginAtZero: true,
+        type:'linear',
+        position:'right',
+        grid:{
+          drawOnChartArea:false,
+        },
+        ticks: {
+          font: {
+            size: 15,
           },
         },
       },
@@ -154,13 +217,14 @@ function ResponsesChart({ dateFrom, dateTo }) {
 
   return (
     <Paper
+      elevation={0}
       sx={{
-        boxShadow: 10,
-        width: "80%",
-        border: "solid 1px #162639",
-        borderRadius: 1,
-        bgcolor: "white",
-        margin: 5,
+        borderColor:"#F6F7F9",
+        boxShadow: 2,
+        width: "100%",     
+        borderRadius: 5,
+        margin: 6,
+        height: '80%', 
       }}
     >
       <BarChart

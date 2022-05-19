@@ -6,13 +6,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TableSortLabel from "@mui/material/TableSortLabel";
 import TablePagination from "@mui/material/TablePagination";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchResponses } from "../../store/responses/reducer";
-import { Typography } from "@mui/material";
 import "chartjs-adapter-date-fns";
+import moment from "moment";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -24,13 +23,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 15,
     border: "solid 1px #ED6930",
     borderRight: 0,
+    fontFamily:'sans-serif'
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
-    border: 3,
+    border: 1,
     borderColor: theme.palette.common.primary,
   },
   "&:nth-of-type(even)": {
@@ -38,26 +38,25 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   "&:last-child td, &:last-child th": {
-    border: "solid 1px #ED6930",
     borderRight: 0,
   },
 }));
 
 // For descending and ascending order
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
+function descendingComparator(a, b, orderby) {
+  if (b[orderby] < a[orderby]) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (b[orderby] > a[orderby]) {
     return 1;
   }
   return 0;
 }
 
-function getComparator(order, orderBy) {
+function getComparator(order, orderby) {
   return order === "asc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ? (a, b) => descendingComparator(a, b, orderby)
+    : (a, b) => -descendingComparator(a, b, orderby);
 }
 
 function stableSort(array, comparator) {
@@ -76,49 +75,31 @@ const headCells = [
   {
     id: "created_at",
     label: "Date Created",
+    minWidth: 170,
+    align: 'right',
   },
   {
     id: "score",
     label: "Score",
+    minWidth: 170,
+    align: 'right',
   },
   {
     id: "comment",
     label: "Comments",
+    minWidth: 170,
+    align: 'right',
   },
 ];
-
-function EnhancedTableHead({ onRequestSort }) {
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
-
-  return (
-    <TableHead>
-      <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            sx={{ fontSize: 25, borderColor: "#ED6930" }}
-            align="center"
-            key={headCell.id}
-          >
-            <TableSortLabel onClick={createSortHandler(headCell.id)}>
-              {headCell.label}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-}
 // end here
 
 const Responses = ({ selection, dateFrom, dateTo }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(4);
 
-  const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("created_at");
+  const [order] = useState("asc");
+  const [orderby] = useState("created_at");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -128,21 +109,17 @@ const Responses = ({ selection, dateFrom, dateTo }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "desc";
-    setOrder(isAsc ? "asc" : "desc");
-    setOrderBy(property);
-  };
 
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
 
-  if (dateFrom !== "" && dateTo !== "") {
+  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
+
+  if (dateFrom !== "" && dateToValue !== "") {
     responses = responses.filter((res) => {
-      return res.created_at >= dateFrom && res.created_at <= dateTo;
+      return res.created_at >= dateFrom && res.created_at <= dateToValue;
     });
   }
-console.log(dateTo)
 
   if (selection === "Promoters") {
     responses = responses.filter((res) => res.score >= 9);
@@ -156,32 +133,29 @@ console.log(dateTo)
   return (
     <Paper
       sx={{
-        width: "60%",
-        overflow: "hidden",
-        marginTop: "10px",
+        width: "100%",
         border: "solid 2px #ED6930",
-        borderRadius: 3,
       }}
     >
-      <Typography sx={{ m: 2, bgcolor: "white" }}>
-        Click on each arc to view the results
-      </Typography>
-      <Paper
-        sx={{
-          margin: "0px",
-          borderTop: "solid 1px #ED6930",
-          borderRadius: "0px",
-        }}
-      >
-        <TableContainer>
-          <Table>
-            <EnhancedTableHead
+        <TableContainer sx={{ maxHeight: 350 }}>
+          <Table stickyHeader aria-label="sticky table">
+             <TableHead  
               order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-            />
-            <TableBody sx={{}}>
-              {stableSort(responses, getComparator(order, orderBy))
+              orderby={orderby}>
+            <TableRow>
+              {headCells.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ top: 0, minWidth: column.minWidth , fontSize: 20,}}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+            <TableBody>
+              {stableSort(responses, getComparator(order, orderby))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((response) => (
                   <StyledTableRow key={response.id}>
@@ -200,7 +174,7 @@ console.log(dateTo)
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 50, 100]}
+          rowsPerPageOptions={[4, 10, 25, 50, 100]}
           component="div"
           count={responses.length}
           rowsPerPage={rowsPerPage}
@@ -209,7 +183,6 @@ console.log(dateTo)
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </Paper>
   );
 };
 

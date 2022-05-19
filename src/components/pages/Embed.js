@@ -169,19 +169,17 @@ function Embed() {
                 id="embed-script"
                 rows="5"
                 defaultValue="<div class='happy-survey-wrapper'>
-          <div id='hs-embeded-survey' class='hs-embeded-survey'>
-          <script
-            type='text/javascript'
-            src='./hs-emb.js'
-            id='happy-survey-script'
-            surveyId='b1e5ff6a-6337-4616-b8e0-a9a6e388c6f6'
-          ></script>
-          </div>
-        </div>"
+                <div id='hs-embeded-survey' class='hs-embeded-survey'></div>
+                <script
+                 type='text/javascript'
+                 src='./hs-emb.js'
+                id='happy-survey-script'
+                surveyId='b1e5ff6a-6337-4616-b8e0-a9a6e388c6f6'></script>
+                </div>"
                 readOnly
               />
               <CopyToClipboard
-                text="<div class='happy-survey-wrapper'><div id='hs-embeded-survey' class='hs-embeded-survey'><script type='text/javascript' src='./hs-emb.js' id='happy-survey-script' surveyId='b1e5ff6a-6337-4616-b8e0-a9a6e388c6f6'></script></div></div>"
+                text="<div class='happy-survey-wrapper'><div id='hs-embeded-survey' class='hs-embeded-survey'></div><script type='text/javascript' src='./hs-emb.js' id='happy-survey-script' surveyId='b1e5ff6a-6337-4616-b8e0-a9a6e388c6f6'></script></div>"
                 onCopy={() => setScriptCopied(true)}
               >
                 <Button

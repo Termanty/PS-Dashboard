@@ -7,29 +7,22 @@ import Responses from "./Responses";
 import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import moment from "moment";
-import {
-  PieChart,
-  Pie,
-  Label,
-  Tooltip,
-  Cell,
-  Legend,
-} from "recharts";
+import { PieChart, Pie, Label, Tooltip, Cell, Legend } from "recharts";
 import { Chart } from "chart.js";
 import "chartjs-adapter-date-fns";
 Chart.register(ChartDataLabels);
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
 const DoughnutNPS = ({ dateFrom, dateTo }) => {
   let dateFromValue = moment(dateFrom).format("");
-  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
+  let dateToValue = moment.utc(dateTo).add(1, "day").format("");
 
   const [selection, setSelection] = useState("all");
   const dispatch = useDispatch();
@@ -100,20 +93,19 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
     );
   };
   return (
-    <Box  sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={-3}>
         <Grid item xs={3} md={5}>
-          <Typography 
-            variant="h5" 
-            component="div" 
-            sx={{ marginLeft:10, 
-            marginBottom:-10
-            }}>
-              Total Responses {All}
-          </Typography> 
-          <Grid sx={{marginTop:0, marginLeft:-10}}>
-          <PieChart width={600} height={500} >
-            <Pie
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ marginLeft: 10, marginBottom: -10 }}
+          >
+            Total Responses {All}
+          </Typography>
+          <Grid sx={{ marginTop: 0, marginLeft: -10 }}>
+            <PieChart width={600} height={500}>
+              <Pie
                 data={data}
                 cx="45%"
                 cy="60%"
@@ -123,7 +115,7 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
                 outerRadius={120}
                 paddingAngle={1}
                 dataKey="value"
-            >
+              >
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
@@ -136,22 +128,31 @@ const DoughnutNPS = ({ dateFrom, dateTo }) => {
                     key={`cell-${index}`}
                     value={`NPS ${NPS}`}
                     position="center"
-                    fontFamily='sans-serif'
+                    fontFamily="sans-serif"
                     fontWeight={400}
                     fontSize="30"
                     fill="#555555"
                     onClick={() => setSelection(data2[index].name)}
                   />
-                  ))}
-            </Pie>
+                ))}
+              </Pie>
               <Tooltip />
-              <Legend height={100} iconType="circle" align="center" fontFamily='sans-serif'/>
-          </PieChart>
-          </Grid> 
-        </Grid>
-          <Grid item xs={4} md={6} sx={{marginTop:10, marginLeft:-6}}>
-            <Responses dateFrom={dateFrom} dateTo={dateTo} selection={selection} /> 
+              <Legend
+                height={100}
+                iconType="circle"
+                align="center"
+                fontFamily="sans-serif"
+              />
+            </PieChart>
           </Grid>
+        </Grid>
+        <Grid item xs={4} md={6} sx={{ marginTop: 10, marginLeft: -6 }}>
+          <Responses
+            dateFrom={dateFrom}
+            dateTo={dateTo}
+            selection={selection}
+          />
+        </Grid>
       </Grid>
     </Box>
   );

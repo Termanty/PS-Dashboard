@@ -19,14 +19,21 @@ function HomeCard({ id, name, description, link }) {
       key={id}
       sx={{
         maxWidth: 345,
-        height: 260,
+        height: 300,
         textAlign: "center",
-        border: "1px solid black",
+        border: "0.3px solid #888888",
         padding: "5px",
       }}
     >
       <CardContent>
-        <Typography sx={{ fontSize: "30px", fontWeight: 800 }}>
+        <Typography
+          sx={{
+            fontSize: "30px",
+            fontWeight: 600,
+            color: "#222222",
+            margin: "5px",
+          }}
+        >
           {name}
         </Typography>
         <Typography sx={{ fontSize: "22px" }}>{description}</Typography>
@@ -40,9 +47,9 @@ function HomeCard({ id, name, description, link }) {
             backgroundColor: "#D66434",
             borderRadius: "5px",
             color: "white",
-            '&: hover': {
-              backgroundColor: "#F56434"
-            }
+            "&: hover": {
+              backgroundColor: "#F56434",
+            },
           }}
           onClick={onClickUrl(link)}
         >

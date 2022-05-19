@@ -11,7 +11,9 @@ export const leftbarStyle = makeStyles({
     borderRadius: "3px",
     marginLeft: "20px",
     "&:hover": {
-      backgroundColor: "sandybrown",
+      backgroundColor: "#D66434",
+      color: "#fff",
+      fontSize: "bolder",
       opacity: [0.4, 0.5, 0.7],
     },
   },
@@ -23,7 +25,7 @@ export const leftbarStyle = makeStyles({
     borderRadius: "3px",
     marginLeft: "20px",
     "&:hover": {
-      backgroundColor: "sandybrown",
+      backgroundColor: "#D66434",
       opacity: [0.4, 0.5, 0, 7],
     },
   },

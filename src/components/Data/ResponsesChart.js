@@ -1,5 +1,5 @@
 import { Paper } from "@mui/material";
-import { Bar} from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ function ResponsesChart({ dateFrom, dateTo }) {
   useEffect(() => dispatch(fetchResponses()), []);
   let responses = useSelector((state) => state.responses);
 
-  let dateToValue = moment.utc(dateTo).add(1, 'day').format("");
+  let dateToValue = moment.utc(dateTo).add(1, "day").format("");
   if (dateFrom !== "" && dateToValue !== "") {
     responses = responses.filter((res) => {
       return res.created_at >= dateFrom && res.created_at <= dateToValue;
@@ -52,14 +52,13 @@ function ResponsesChart({ dateFrom, dateTo }) {
     .reduce(reducer, {});
 
   const NPSPerDay = {};
-    Object.keys(responsesPerDay).forEach((day) => {
-      const promoters = promotersPerDay[day] || 0;
-      const detractors = detractorsPerDay[day] || 0;
-      const all = responsesPerDay[day];
-      const NPS = Math.round(((promoters - detractors) / all) * 100);
-      NPSPerDay[day] = Math.min(Math.max(parseInt(NPS), -100), 100);
+  Object.keys(responsesPerDay).forEach((day) => {
+    const promoters = promotersPerDay[day] || 0;
+    const detractors = detractorsPerDay[day] || 0;
+    const all = responsesPerDay[day];
+    const NPS = Math.round(((promoters - detractors) / all) * 100);
+    NPSPerDay[day] = Math.min(Math.max(parseInt(NPS), -100), 100);
   });
-
 
   const data = {
     labels: "",
@@ -70,11 +69,11 @@ function ResponsesChart({ dateFrom, dateTo }) {
         showLine: true,
         type: "line",
         order: 0,
-        borderColor: " #ED6930",
+        borderColor: "#8566AA",
         tension: 0.2,
         hoverPointRadius: 1,
-        backgroundColor: ["#ED6930"],
-        yAxisID: 'NPS',
+        backgroundColor: ["#8566AA"],
+        yAxisID: "NPS",
       },
       {
         label: "Detractors",
@@ -82,8 +81,8 @@ function ResponsesChart({ dateFrom, dateTo }) {
         backgroundColor: ["#E26060"],
         categoryPercentage: 1,
         barPercentage: 0.8,
-        yAxisID: 'y',
-        type: 'bar',
+        yAxisID: "y",
+        type: "bar",
       },
       {
         label: "Passives",
@@ -91,8 +90,8 @@ function ResponsesChart({ dateFrom, dateTo }) {
         backgroundColor: ["#F3C934"],
         categoryPercentage: 1,
         barPercentage: 0.8,
-        yAxisID: 'y',
-        type: 'bar',
+        yAxisID: "y",
+        type: "bar",
       },
       {
         label: "Promoters",
@@ -100,27 +99,25 @@ function ResponsesChart({ dateFrom, dateTo }) {
         backgroundColor: ["#52A569"],
         categoryPercentage: 1,
         barPercentage: 0.8,
-        yAxisID: 'y',
-        type: 'bar',
+        yAxisID: "y",
+        type: "bar",
       },
       {
         label: "Total Responses",
         data: responsesPerDay,
-        backgroundColor: ["#162667"],
+        backgroundColor: ["#43D8C9"],
         borderColor: " #ffffff",
         borderWidth: 1,
         order: 1,
         showLine: false,
-        pointRadius: 4,
+        pointRadius: 5,
         tension: 0.7,
-        yAxisID: 'y',
+        yAxisID: "y",
         type: "line",
       },
-      
-      
     ],
   };
-  
+
   const options = {
     maintainAspectRatio: false,
     layout: {
@@ -181,9 +178,9 @@ function ResponsesChart({ dateFrom, dateTo }) {
         },
         stacked: true,
         beginAtZero: true,
-        type:'linear',
-        position:'left',
-        
+        type: "linear",
+        position: "left",
+
         ticks: {
           font: {
             size: 15,
@@ -200,10 +197,10 @@ function ResponsesChart({ dateFrom, dateTo }) {
         },
         stacked: true,
         beginAtZero: true,
-        type:'linear',
-        position:'right',
-        grid:{
-          drawOnChartArea:false,
+        type: "linear",
+        position: "right",
+        grid: {
+          drawOnChartArea: false,
         },
         ticks: {
           font: {
@@ -219,12 +216,12 @@ function ResponsesChart({ dateFrom, dateTo }) {
     <Paper
       elevation={0}
       sx={{
-        borderColor:"#F6F7F9",
+        borderColor: "#F6F7F9",
         boxShadow: 2,
-        width: "100%",     
+        width: "100%",
         borderRadius: 5,
         margin: 6,
-        height: '80%', 
+        height: "80%",
       }}
     >
       <BarChart

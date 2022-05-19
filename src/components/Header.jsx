@@ -21,9 +21,9 @@ function Header() {
   const location = useLocation();
   const locationPath = location.pathname;
 
-  const colorToggle= (theme) =>{
-    return theme.darkTheme ? "black" : "white"
-  }
+  const colorToggle = (theme) => {
+    return theme.darkTheme ? "black" : "white";
+  };
 
   const ToggleSwitch = () => {
     const dispatch = useDispatch();
@@ -39,7 +39,9 @@ function Header() {
                 color="default"
               />
             }
-            label={theme.darkTheme ? <p style={{color: "white"}}>light</p> : "dark"}
+            label={
+              theme.darkTheme ? <p style={{ color: "white" }}>light</p> : "dark"
+            }
           />
         </Stack>
       </Box>
@@ -64,7 +66,7 @@ function Header() {
               variant="h6"
               noWrap
               component="div"
-              color= {theme.darkTheme ? "white" : "black"}
+              color={theme.darkTheme ? "white" : "black"}
               position="relative"
               marginRight="50"
             >
@@ -73,7 +75,7 @@ function Header() {
           </Toolbar>
         )}
         <Grid container justifyContent="flex-end">
-        <ToggleSwitch />
+          <ToggleSwitch />
           <NotificationBell badgeContent={4} />
           <Typography
             variant="h6"
@@ -81,9 +83,9 @@ function Header() {
             component="div"
             color={theme.darkTheme ? "white" : "black"}
             marginLeft="20px"
-            marginTop= "15px"
+            marginTop="15px"
           >
-            Logged as {user.name}
+            Logged in
           </Typography>
         </Grid>
       </Toolbar>

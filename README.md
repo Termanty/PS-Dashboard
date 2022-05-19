@@ -48,6 +48,7 @@ http://localhost:3000/
 By clicking **"Home"** on the left side bar you will navigate to the Home page. You can also click **"READ MORE"** on each card to find out more about NPS score system and surveys. In the upper left corner there is a switch – you can choose dark or light mode.
 
 ![Home page](screenshots/Home_page.png)
+![Light or Dark Mode](screenshots/Ligh_dark_mode.png)
 
 ---
 

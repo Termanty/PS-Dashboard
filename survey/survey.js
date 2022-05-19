@@ -1,11 +1,14 @@
+let npsScore = undefined;
+
 function animation() {
+  npsScore = 10;
   const emoji = document.getElementById("emoji");
-  const btn10 = document.getElementsByClassName("bt10");
   emoji.innerText = String.fromCodePoint(0x1f495, 0x1f60a);
   emoji.classList.add("btn10animation");
 }
 
-function clearEmoji() {
+function clearEmoji(value) {
+  npsScore = value;
   document.getElementById("emoji").innerText = "";
   document.getElementById("emoji").classList.remove("btn10animation");
 }
@@ -21,6 +24,7 @@ rating.addEventListener("click", function (e) {
   rating.value = finalx;
   ratingValue.value = finalx * 10;
   let ratingScore = ratingValue.value;
+  npsScore = ratingScore;
   switch (ratingScore) {
     case "0":
       rating.style.backgroundImage =
@@ -72,46 +76,76 @@ rating.addEventListener("click", function (e) {
   }
 });
 
-const  setCookie = (getName,getValue,expiredAt)=> {
-  const currentDate = new Date();
-  currentDate.setTime(currentDate.getTime() + (expiredAt *24 * 60 * 60 * 1000));
-  let expires = "expires=" + currentDate.toUTCString();
-  document.cookie = getName+ "=" + getValue + ";" + expires + ";path=/";
-}
+// const setCookie = (getName, getValue, expiredAt) => {
+//   const currentDate = new Date();
+//   currentDate.setTime(currentDate.getTime() + expiredAt * 24 * 60 * 60 * 1000);
+//   let expires = "expires=" + currentDate.toUTCString();
+//   document.cookie = getName + "=" + getValue + ";" + expires + ";path=/";
+// };
 
-const getCookie=(getName) => {
-  let name = getName + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let cookiesAccess = decodedCookie.split(';');
-  for(let i = 0; i < cookiesAccess.length; i++) {
-    while (cookiesAccess[i].charAt(0) === ' ') {
-      cookiesAccess[i]= cookiesAccess[i].substring(1);
-    }
-    if (cookiesAccess[i].indexOf(name) === 0) {
-      return cookiesAccess[i].substring(name.length, cookiesAccess[i].length);
-    }
-  }
-  return "";
-}
+// const getCookie = (getName) => {
+//   let name = getName + "=";
+//   let decodedCookie = decodeURIComponent(document.cookie);
+//   let cookiesAccess = decodedCookie.split(";");
+//   for (let i = 0; i < cookiesAccess.length; i++) {
+//     while (cookiesAccess[i].charAt(0) === " ") {
+//       cookiesAccess[i] = cookiesAccess[i].substring(1);
+//     }
+//     if (cookiesAccess[i].indexOf(name) === 0) {
+//       return cookiesAccess[i].substring(name.length, cookiesAccess[i].length);
+//     }
+//   }
+//   return "";
+// };
 
-const checkCookie = () =>{
-  let userName = getCookie("userName");
-  
-  if (userName !== "") {
-    alert("Welcome again " + userName);
-  } else {
-     userName = prompt("Please insert your name to accept or cancel to checked our policy :","") ;
-     if (userName !== "" && userName != null) {
-       setCookie("userName", userName, 30);
-     }else{
-      alert("Click ok to read more about cookies and the GDPR policy in EU",window.location.href = "https://gdpr.eu/cookies/" )
-     }
-  }
-}
-checkCookie()
+// const checkCookie = () => {
+//   let userName = getCookie("userName");
+
+//   if (userName !== "") {
+//     alert("Welcome again " + userName);
+//   } else {
+//     userName = prompt(
+//       "Please insert your name to accept or cancel to checked our policy :",
+//       ""
+//     );
+//     if (userName !== "" && userName != null) {
+//       setCookie("userName", userName, 30);
+//     } else {
+//       alert(
+//         "Click ok to read more about cookies and the GDPR policy in EU",
+//         (window.location.href = "https://gdpr.eu/cookies/")
+//       );
+//     }
+//   }
+// };
+// checkCookie();
 
 document.getElementById("save").addEventListener("click", function () {
   document.querySelector(".bg-modal").style.display = "flex";
+  if (npsScore === undefined) return;
+
+  const comment = document.getElementById("message").value;
+  const url =
+    "http://ec2-13-53-206-94.eu-north-1.compute.amazonaws.com/responses";
+  // const url = "http://localhost:3001/responses";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify({
+      surveyId: "6a3734d0-4499-4dd7-aa06-94a1f8c6f21e",
+      score: npsScore,
+      comment,
+    }),
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 document.querySelector("#thanks_close").addEventListener("click", function () {

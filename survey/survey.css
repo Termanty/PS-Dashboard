@@ -357,7 +357,6 @@ textarea:focus {
 }
 
 .bt10:hover {
-  background-image: url(img/favicon.ico);
   background-position: center;
   animation: heart 10s timing-function delay iteration-count direction fill-mode;
   color: #162639;

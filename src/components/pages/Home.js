@@ -23,7 +23,7 @@ function Home() {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               {items.map((item) => (
-                <Grid item xs={6} md={4}>
+                <Grid item xs={6} md={4}  key={item.id}>
                   <HomeCard
                     key={item.id}
                     name={item.name}

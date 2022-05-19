@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState} from "react";
+import { Link } from "react-router-dom";
 import LoginHeader from "./LoginHeader";
 import styles from "./Login.module.css";
 
@@ -7,14 +7,13 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { search } = useLocation();
-
+  
   const redirectInUrl = new URLSearchParams().get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/login2";
   return (
     <div>
       <LoginHeader />
-      <form onSubmit={""} className={styles.form}>
+      <form  className={styles.form}>
         <div className={styles.heading}>
           <h2>Sign Up</h2>
           <h4>Create an account for free</h4>

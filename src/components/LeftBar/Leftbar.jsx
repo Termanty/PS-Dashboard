@@ -96,7 +96,7 @@ function Leftbar() {
         >
           <ListItemText primary={"Create new survey"} />
           <ListItemIcon sx={{minWidth: "20px"}}>
-            <AddIcon/>
+            <AddIcon style={{ color: "black" }} />
           </ListItemIcon>
         </ListItem>
 

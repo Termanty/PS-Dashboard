@@ -41,7 +41,9 @@ It will copy all the configuration files and the transitive dependencies (Webpac
 
 ---
 
-## [Home page](http://localhost:3001/)
+## Home page
+
+http://localhost:3000/
 
 By clicking **"Home"** on the left side bar you will navigate to the Home page. You can also click **"READ MORE"** on each card to find out more about NPS score system and surveys. In the upper left corner there is a switch – you can choose dark or light mode.
 
@@ -49,7 +51,9 @@ By clicking **"Home"** on the left side bar you will navigate to the Home page. 
 
 ---
 
-## [My Surveys page](http://localhost:3001/MySurveys)
+## My Surveys page
+
+http://localhost:3000/MySurveys
 
 By clicking **"My Surveys"** on the leftside bar you will navigate to My Surveys page which shows all the listed surveys that hav been created and are in use. The search line allows you to search for the survey based on its name. By clicking **"OPEN"** button you can navigate to the surveys's data page. (See more information in the **Data Page** section).
 
@@ -57,7 +61,9 @@ By clicking **"My Surveys"** on the leftside bar you will navigate to My Surveys
 
 ---
 
-## [Data page](http://localhost:3001/Data)
+## Data page
+
+http://localhost:3000/Data
 
 By clicking **"Data"** on the leftside bar you will navigate to the Data page where you can find both visual and numerical NPS score representation as well as comments left by the users.
 
@@ -65,9 +71,13 @@ By clicking **"Data"** on the leftside bar you will navigate to the Data page wh
 
 Each part of the pie chart is coloured and it corresponds with the data of the NPS score and is reflected in the table on the right. If you click in the center of the pie chart you will get the overall data of the whole survey.
 
+![Data page](Data_1.png)
+
 ### _Date Picker_
 
 You can also the **date picker**: pick the starting date of the survey (left side date picker) and ending date (right side date picker) for checking the NPS score data of the designated period.
+
+![Data page](Data_2.png)
 
 ### _Total Responses_
 
@@ -87,15 +97,24 @@ The **Line Chart** (located below the pie chart) shows the trend of the NPS scor
 
 The **Response Volume Chart** shows the volume of detractors, passives, promoters and total responses in each volume. Based on the total responses showed a line chart will show the response trend.
 
----
-
-## [Embed page](http://localhost:3001/Embed)
-
-The **Embed page** generates either the **direct link** (on the left) or **embed script** (on the right) which allow users to embed our solution into their software. The link/script can be copied automatically.
+![Data page](Data_3.png)
 
 ---
 
-## [Create new survey page](http://localhost:3001/CreateNewSurvey)
+## Embed page
+
+http://localhost:3000/Embed
+
+The **Embed page** generates either the **direct link** (on the left) opens up a web page where a user can fill in the survey. or **embed script** (on the right) which allow users to copy the HTML snippet and embed it into their own web application.
+
+![Direct link](Embed_1.png)
+![Embed script](Embed_2.png)
+
+---
+
+## Create new survey page
+
+http://localhost:3000/CreateNewSurvey
 
 By clicking on **"Create new survey page"** on the left side bar you will navigate to a single survey creation page. Fill in the **survey name** and leave a **survey question** in order to finalize the survey description.
 

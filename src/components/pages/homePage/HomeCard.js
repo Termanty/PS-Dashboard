@@ -36,9 +36,13 @@ function HomeCard({ id, name, description, link }) {
           sx={{
             width: "120px",
             height: "40px",
+            textTransform: "none",
             backgroundColor: "#D66434",
             borderRadius: "5px",
             color: "white",
+            '&: hover': {
+              backgroundColor: "#F56434"
+            }
           }}
           onClick={onClickUrl(link)}
         >

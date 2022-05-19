@@ -47,7 +47,7 @@ http://localhost:3000/
 
 By clicking **"Home"** on the left side bar you will navigate to the Home page. You can also click **"READ MORE"** on each card to find out more about NPS score system and surveys. In the upper left corner there is a switch – you can choose dark or light mode.
 
-![Home page](Home_page.png)
+![Home page](screenshots/Home_page.png)
 
 ---
 
@@ -57,7 +57,7 @@ http://localhost:3000/MySurveys
 
 By clicking **"My Surveys"** on the leftside bar you will navigate to My Surveys page which shows all the listed surveys that hav been created and are in use. The search line allows you to search for the survey based on its name. By clicking **"OPEN"** button you can navigate to the surveys's data page. (See more information in the **Data Page** section).
 
-![My surveys](My_surveys.png)
+![My surveys](screenshots/My_surveys.png)
 
 ---
 
@@ -71,13 +71,13 @@ By clicking **"Data"** on the leftside bar you will navigate to the Data page wh
 
 Each part of the pie chart is coloured and it corresponds with the data of the NPS score and is reflected in the table on the right. If you click in the center of the pie chart you will get the overall data of the whole survey.
 
-![Data page](Data_1.png)
+![Data page](screenshots/Data_1.png)
 
 ### _Date Picker_
 
 You can also the **date picker**: pick the starting date of the survey (left side date picker) and ending date (right side date picker) for checking the NPS score data of the designated period.
 
-![Data page](Data_2.png)
+![Data page](screenshots/Data_2.png)
 
 ### _Total Responses_
 
@@ -97,7 +97,7 @@ The **Line Chart** (located below the pie chart) shows the trend of the NPS scor
 
 The **Response Volume Chart** shows the volume of detractors, passives, promoters and total responses in each volume. Based on the total responses showed a line chart will show the response trend.
 
-![Data page](Data_3.png)
+![Data page](screenshots/Data_3.png)
 
 ---
 
@@ -105,10 +105,12 @@ The **Response Volume Chart** shows the volume of detractors, passives, promoter
 
 http://localhost:3000/Embed
 
-The **Embed page** generates either the **direct link** (on the left) opens up a web page where a user can fill in the survey. or **embed script** (on the right) which allow users to copy the HTML snippet and embed it into their own web application.
+The **Embed page** generates the **direct link** (on the left) which opens up a web page where a user can fill in the survey. However **embed script** (on the right) allows users to copy the **HTML** snippet and embed it into their own web application. The direct link survey's design and code can be _modified_ (go to survey folder in **PS-Dashboard**).
 
-![Direct link](Embed_1.png)
-![Embed script](Embed_2.png)
+![Direct link](screenshots/Embed_1.png)
+![Embed script](screenshots/Embed_2.png)
+![Survey design](screenshots/Survey_1.png)
+![Pop up](screenshots/Survey_2.png)
 
 ---
 
@@ -118,7 +120,7 @@ http://localhost:3000/CreateNewSurvey
 
 By clicking on **"Create new survey page"** on the left side bar you will navigate to a single survey creation page. Fill in the **survey name** and leave a **survey question** in order to finalize the survey description.
 
-![New survey](Create_new_survey.png)
+![New survey](screenshots/Create_new_survey.png)
 
 ---
 

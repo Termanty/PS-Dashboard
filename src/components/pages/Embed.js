@@ -24,7 +24,9 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 2 }}>
-          <Typography component={'span'} variant={'body2'}>{children}</Typography>
+          <Typography component={"span"} variant={"body2"}>
+            {children}
+          </Typography>
         </Box>
       )}
     </div>
@@ -124,7 +126,7 @@ function Embed() {
                     color: "white",
                     backgroundColor: "rgb(22, 38, 57)",
                     "&:hover": {
-                      backgroundColor: "rgb(80, 50, 90)",
+                      backgroundColor: "#07101B",
                       opacity: [0.4, 0.35, 0, 7],
                     },
                   }}
@@ -136,7 +138,11 @@ function Embed() {
                 </Button>
               </CopyToClipboard>
               {copied ? (
-                <span style={{ color: "red", marginTop: 14 }}>Copied.</span>
+                <span
+                  style={{ color: "#07101B", marginTop: 14, marginLeft: 10 }}
+                >
+                  Copied.
+                </span>
               ) : null}
             </div>
           </Box>
@@ -165,7 +171,12 @@ function Embed() {
               }}
             >
               <textarea
-                style={{ width: 900, fontSize: 20 }}
+                style={{
+                  width: 900,
+                  fontSize: 20,
+                  border: "none",
+                  padding: 10,
+                }}
                 id="embed-script"
                 rows="5"
                 defaultValue="<div class='happy-survey-wrapper'>
@@ -187,11 +198,11 @@ function Embed() {
                     width: 100,
                     height: 45,
                     marginTop: 1,
-                    marginLeft: 0.1,
+                    marginLeft: 5,
                     color: "white",
                     backgroundColor: "rgb(22, 38, 57)",
                     "&:hover": {
-                      backgroundColor: "rgb(80, 50, 90)",
+                      backgroundColor: "#07101B",
                       opacity: [0.4, 0.35, 0, 7],
                     },
                   }}
@@ -203,7 +214,11 @@ function Embed() {
                 </Button>
               </CopyToClipboard>
               {scriptCopied ? (
-                <span style={{ color: "red", marginTop: 14 }}>Copied.</span>
+                <span
+                  style={{ color: "#07101B", marginTop: 14, marginLeft: 10 }}
+                >
+                  Copied.
+                </span>
               ) : null}
             </div>
           </Box>

@@ -9,6 +9,12 @@ export const PagesStyle = makeStyles({
     height: "40px",
     backgroundColor: "#D66434",
     borderRadius: "25px",
+    "&:hover": {
+      backgroundColor: "#D66434",
+      color: "#fff",
+      fontSize: "bolder",
+      opacity: [0.4, 0.5, 0.7],
+    },
   },
   circle: {
     width: "15px",

@@ -60,7 +60,7 @@ function CreateNewSurvey() {
       ></textarea>
       <Button
         className={classes.saveButton}
-        sx={{ marginTop: 4 }}
+        sx={{ marginTop: 4, textTransform: "none" }}
         onClick={saveHandler}
       >
         Save

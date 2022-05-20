@@ -110,7 +110,7 @@ function Embed() {
               <input
                 style={{ width: 900, fontSize: 20 }}
                 id="direct_link"
-                defaultValue="/http://ec2-13-53-206-94.eu-north-1.compute.amazonaws.com/popupsurvey"
+                defaultValue="http://ec2-13-53-206-94.eu-north-1.compute.amazonaws.com/popupsurvey"
                 readOnly
               />
               <CopyToClipboard

@@ -30,7 +30,6 @@ function HomeCard({ id, name, description, link }) {
           sx={{
             fontSize: "30px",
             fontWeight: 600,
-            color: "#222222",
             margin: "5px",
           }}
         >
